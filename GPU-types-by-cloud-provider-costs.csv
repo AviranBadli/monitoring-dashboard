@@ -1,0 +1,865 @@
+Instance Type,Instance Family,Cloud Provider,GPU Count,GPU Type,GPU Memory (GB),Cost (Total)
+Standard_ND96is_MI300X_v5,ND,Azure,8,AMD MI300X,192,$96.08
+Standard_ND96isr_MI300X_v5,ND,Azure,8,AMD MI300X,192,$86.03
+g4ad.2xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,$21.08
+g4ad.4xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,$401.16
+g4ad.xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,$24.26
+g4ad.8xlarge,g4ad,AWS,2,AMD Radeon Pro V520,8,$0.39
+g4ad.16xlarge,g4ad,AWS,4,AMD Radeon Pro V520,8,$9.06
+Standard_NV4as_v4,NV,Azure,1/8,AMD Radeon Pro V520,8,$0.01
+inf1.6xlarge,inf1,AWS,4,Inferentia 1,8,$0.00
+inf2.8xlarge,inf2,AWS,1,Inferentia 2,32,$30.17
+inf2.xlarge,inf2,AWS,1,Inferentia 2,32,$142.25
+inf2.24xlarge,inf2,AWS,6,Inferentia 2,32,$0.00
+Standard_NV36ads_A10_v5,NV,Azure,1,NVIDIA A10,24,$1.60
+Standard_NV72ads_A10_v5,NV,Azure,2,NVIDIA A10,24,$3.92
+Standard_NV12ads_A10_v5,NV,Azure,1/3,NVIDIA A10,24,$1.23
+Standard_NV6ads_A10_v5,NV,Azure,1/6,NVIDIA A10,24,$4.46
+p4d.24xlarge,p4d,AWS,8,NVIDIA A100,40,"$105,381.51"
+p4de.24xlarge,p4de,AWS,8,NVIDIA A100,80,"$11,687.98"
+Standard_NC24ads_A100_v4,NC,Azure,1,NVIDIA A100,80,"$1,105.25"
+Standard_NC48ads_A100_v4,NC,Azure,2,NVIDIA A100,80,$233.12
+highgpu.a2-1g-vcpu,highgpu,GCP,1,NVIDIA A100,40,"$4,551.83"
+ultragpu.a2-1g-vcpu,ultragpu,GCP,1,NVIDIA A100,40,"$1,719.40"
+highgpu.a2-2g-vcpu,highgpu,GCP,2,NVIDIA A100,40,"$3,914.52"
+ultragpu.a2-2g-vcpu,ultragpu,GCP,2,NVIDIA A100,40,$1.60
+ultragpu.a2-4g-vcpu,ultragpu,GCP,4,NVIDIA A100,40,$35.54
+highgpu.a4-8g-vcpu,highgpu,GCP,8,NVIDIA A100,80,"$10,803.11"
+ultragpu.a2-8g-vcpu,ultragpu,GCP,8,NVIDIA A100,40,"$9,162.58"
+g5.16xlarge,g5,AWS,1,NVIDIA A10G,24,$0.34
+g5.2xlarge,g5,AWS,1,NVIDIA A10G,24,"$26,303.63"
+g5.4xlarge,g5,AWS,1,NVIDIA A10G,24,"$15,164.73"
+g5.8xlarge,g5,AWS,1,NVIDIA A10G,24,$831.40
+g5.xlarge,g5,AWS,1,NVIDIA A10G,24,"$7,744.28"
+g5.12xlarge,g5,AWS,4,NVIDIA A10G,24,"$3,091.24"
+g5.24xlarge,g5,AWS,4,NVIDIA A10G,24,"$1,388.60"
+g5.48xlarge,g5,AWS,8,NVIDIA A10G,24,"$14,017.21"
+p6-b300.48xlarge,p6-b300,AWS,8,NVIDIA B300,268,"$3,512.09"
+p5.4xlarge,p5,AWS,1,NVIDIA H100,80,"$7,844.77"
+Standard_NC40ads_H100_v5,NC,Azure,1,NVIDIA H100,94,"$5,504.34"
+Standard_NC80adis_H100_v5,NC,Azure,2,NVIDIA H100,94,"$7,998.91"
+highgpu.a3-1g-vcpu,highgpu,GCP,1,NVIDIA H100,80,$725.93
+highgpu.a3-2g-vcpu,highgpu,GCP,2,NVIDIA H100,80,$243.00
+highgpu.a3-4g-vcpu,highgpu,GCP,4,NVIDIA H100,80,$588.63
+highgpu.a3-8g-vcpu,highgpu,GCP,8,NVIDIA H100,80,"$27,346.38"
+ultragpu.a3-8g-vcpu,ultragpu,GCP,8,NVIDIA H100,80,"$7,121.98"
+g6.16xlarge,g6,AWS,1,NVIDIA L4,24,$48.65
+g6.2xlarge,g6,AWS,1,NVIDIA L4,24,"$24,709.53"
+g6.4xlarge,g6,AWS,1,NVIDIA L4,24,"$7,235.10"
+g6.8xlarge,g6,AWS,1,NVIDIA L4,24,"$2,577.99"
+g6.xlarge,g6,AWS,1,NVIDIA L4,24,"$3,425.13"
+g6f.2xlarge,g6f,AWS,1,NVIDIA L4,24,$0.12
+g6f.4xlarge,g6f,AWS,1,NVIDIA L4,24,$481.57
+g6f.large,g6f,AWS,1,NVIDIA L4,24,$0.11
+g6f.xlarge,g6f,AWS,1,NVIDIA L4,24,$5.75
+g6.12xlarge,g6,AWS,4,NVIDIA L4,24,"$44,632.07"
+g6.48xlarge,g6,AWS,8,NVIDIA L4,24,"$6,423.79"
+standard.g2-16-vcpu,standard,GCP,1,NVIDIA L4,24,$225.37
+standard.g2-24-vcpu,standard,GCP,1,NVIDIA L4,24,$454.14
+standard.g2-4-vcpu,standard,GCP,1,NVIDIA L4,24,$148.34
+standard.g2-48-vcpu,standard,GCP,1,NVIDIA L4,24,"$3,727.98"
+standard.g2-96-vcpu,standard,GCP,8,NVIDIA L4,24,"$3,744.54"
+g6e.2xlarge,g6e,AWS,1,NVIDIA L40S,48,"$29,387.35"
+g6e.4xlarge,g6e,AWS,1,NVIDIA L40S,48,"$2,276.90"
+g6e.8xlarge,g6e,AWS,1,NVIDIA L40S,48,"$1,699.59"
+g6e.xlarge,g6e,AWS,1,NVIDIA L40S,48,"$2,641.24"
+g7e.2xlarge,g7e,AWS,1,NVIDIA L40S,48,$456.71
+g7e.4xlarge,g7e,AWS,1,NVIDIA L40S,48,$0.44
+g7e.8xlarge,g7e,AWS,1,NVIDIA L40S,48,$13.80
+g6e.16xlarge,g6e,AWS,2,NVIDIA L40S,48,"$1,153.01"
+g6e.12xlarge,g6e,AWS,4,NVIDIA L40S,48,"$24,737.64"
+g6e.24xlarge,g6e,AWS,4,NVIDIA L40S,48,"$9,900.42"
+g7e.12xlarge,g7e,AWS,4,NVIDIA L40S,48,"$1,000.97"
+g6e.48xlarge,g6e,AWS,8,NVIDIA L40S,48,"$39,211.48"
+g3.4xlarge,g3,AWS,1,NVIDIA M60,8,$1.50
+Standard_NV48s_v3,NV,Azure,4,NVIDIA M60,8,$0.87
+g4dn.16xlarge,g4dn,AWS,1,NVIDIA T4,16,$414.66
+g4dn.2xlarge,g4dn,AWS,1,NVIDIA T4,16,"$1,799.44"
+g4dn.4xlarge,g4dn,AWS,1,NVIDIA T4,16,$718.79
+g4dn.8xlarge,g4dn,AWS,1,NVIDIA T4,16,$358.64
+g4dn.xlarge,g4dn,AWS,1,NVIDIA T4,16,"$3,374.87"
+gr6.4xlarge,gr6,AWS,1,NVIDIA T4,16,$0.39
+g4dn.12xlarge,g4dn,AWS,4,NVIDIA T4,16,$839.39
+g4dn.metal,g4dn,AWS,8,NVIDIA T4,16,"$5,292.20"
+Standard_NC4as_T4_v3,NC,Azure,1,NVIDIA T4,16,$126.40
+Standard_NC4as_T4_v3,NV,Azure,1,NVIDIA T4,16,$0.10
+Standard_NC8as_T4_v3,NC,Azure,1,NVIDIA T4,16,$0.05
+Standard_NC64as_T4_v3,NC,Azure,4,NVIDIA T4,16,$0.71
+g5g.2xlarge,g5g,AWS,1,NVIDIA T4G,16,$60.78
+g5g.4xlarge,g5g,AWS,1,NVIDIA T4G,16,$0.88
+g5g.xlarge,g5g,AWS,1,NVIDIA T4G,16,$0.96
+p3.2xlarge,p3,AWS,1,NVIDIA V100,16,"$2,545.34"
+Standard_NC12s_v3,NC,Azure,2,NVIDIA V100,16,"$3,506.76"
+trn1.2xlarge,trn1,AWS,1,Trainium 1,32,$0.00
+trn1.32xlarge,trn1,AWS,16,Trainium 1,32,$0.00
+trn1n.32xlarge,trn1n,AWS,16,Trainium 1,32,$0.00
+trn2.48xlarge,trn2,AWS,16,Trainium 2,96,"$2,969.08"
+vt1.3xlarge,vt1,AWS,1,Xilinx U30,?,$16.95
+Standard_NP10s,NP,Azure,1,Xilinx U30,?,"$4,132.56"
+a1.4xlarge,a1,AWS,,,,$5.33
+Bastion,(not set),AWS,,,,$704.30
+c3.4xlarge,c3,AWS,,,,$0.00
+c3.8xlarge,c3,AWS,,,,$0.04
+c3.large,c3,AWS,,,,$0.00
+c4.2xlarge,c4,AWS,,,,$16.04
+c4.4xlarge,c4,AWS,,,,$6.30
+c4.8xlarge,c4,AWS,,,,$0.00
+c4.large,c4,AWS,,,,$174.63
+c4.xlarge,c4,AWS,,,,$15.08
+c5,c5,AWS,,,,"$1,746.09"
+c5.12xlarge,c5,AWS,,,,$0.00
+c5.18xlarge,c5,AWS,,,,$0.00
+c5.24xlarge,c5,AWS,,,,$0.00
+c5.2xlarge,c5,AWS,,,,"$1,282.73"
+c5.4xlarge,c5,AWS,,,,$885.20
+c5.9xlarge,c5,AWS,,,,$649.62
+c5.large,c5,AWS,,,,$309.37
+c5.metal,c5,AWS,,,,"$14,349.33"
+c5.xlarge,c5,AWS,,,,"$3,790.53"
+c5a.12xlarge,c5a,AWS,,,,$0.00
+c5a.16xlarge,c5a,AWS,,,,"$1,428.82"
+c5a.2xlarge,c5a,AWS,,,,$812.59
+c5a.4xlarge,c5a,AWS,,,,$387.80
+c5a.8xlarge,c5a,AWS,,,,$32.10
+c5a.large,c5a,AWS,,,,$222.09
+c5a.large-management-hours,c5a,AWS,,,,$34.17
+c5a.xlarge,c5a,AWS,,,,$229.71
+c5ad.12xlarge,c5ad,AWS,,,,$3.92
+c5ad.2xlarge,c5ad,AWS,,,,$16.60
+c5ad.4xlarge,c5ad,AWS,,,,$0.00
+c5ad.8xlarge,c5ad,AWS,,,,$16.61
+c5ad.large,c5ad,AWS,,,,$0.33
+c5ad.xlarge,c5ad,AWS,,,,$0.00
+c5d.18xlarge,c5d,AWS,,,,$0.00
+c5d.2xlarge,c5d,AWS,,,,$74.71
+c5d.4xlarge,c5d,AWS,,,,$565.29
+c5d.9xlarge,c5d,AWS,,,,$91.12
+c5d.large,c5d,AWS,,,,$222.76
+c5d.metal,c5d,AWS,,,,$0.00
+c5n.2xlarge,c5n,AWS,,,,$0.00
+c5n.4xlarge,c5n,AWS,,,,$0.00
+c5n.9xlarge,c5n,AWS,,,,$0.00
+c5n.large,c5n,AWS,,,,$0.70
+c5n.metal,c5n,AWS,,,,"$1,773.16"
+c5n.xlarge,c5n,AWS,,,,$64.98
+c6a.12xlarge,c6a,AWS,,,,$0.00
+c6a.16xlarge,c6a,AWS,,,,$19.37
+c6a.24xlarge,c6a,AWS,,,,$0.00
+c6a.2xlarge,c6a,AWS,,,,$214.34
+c6a.32xlarge,c6a,AWS,,,,$0.00
+c6a.48xlarge,c6a,AWS,,,,$63.69
+c6a.4xlarge,c6a,AWS,,,,$300.33
+c6a.8xlarge,c6a,AWS,,,,$613.88
+c6a.large,c6a,AWS,,,,$385.26
+c6a.large-management-hours,c6a,AWS,,,,$74.03
+c6a.metal,c6a,AWS,,,,$6.72
+c6a.xlarge,c6a,AWS,,,,$0.00
+c6a.xlarge-management-hours,c6a,AWS,,,,$0.06
+c6g.2xlarge,c6g,AWS,,,,$0.00
+c6g.4xlarge,c6g,AWS,,,,$164.06
+c6g.8xlarge,c6g,AWS,,,,$189.44
+c6g.large,c6g,AWS,,,,$174.83
+c6g.large-management-hours,c6g,AWS,,,,$32.36
+c6g.medium,c6g,AWS,,,,$89.79
+c6g.metal,c6g,AWS,,,,$51.25
+c6g.xlarge,c6g,AWS,,,,$0.00
+c6gd.2xlarge,c6gd,AWS,,,,$41.67
+c6gd.4xlarge,c6gd,AWS,,,,$0.00
+c6gd.large,c6gd,AWS,,,,$43.59
+c6gd.metal,c6gd,AWS,,,,$12.44
+c6gd.xlarge,c6gd,AWS,,,,$0.00
+c6gn.large,c6gn,AWS,,,,$0.19
+c6gn.medium,c6gn,AWS,,,,$53.47
+c6gn.xlarge,c6gn,AWS,,,,$0.77
+c6i.12xlarge,c6i,AWS,,,,$0.00
+c6i.2xlarge,c6i,AWS,,,,$52.02
+c6i.32xlarge,c6i,AWS,,,,$15.96
+c6i.4xlarge,c6i,AWS,,,,$0.84
+c6i.8xlarge,c6i,AWS,,,,$243.72
+c6i.large,c6i,AWS,,,,$34.67
+c6i.metal,c6i,AWS,,,,$9.00
+c6i.xlarge,c6i,AWS,,,,$5.52
+c6id.12xlarge,c6id,AWS,,,,$0.00
+c6id.16xlarge,c6id,AWS,,,,$0.00
+c6id.32xlarge,c6id,AWS,,,,$11.38
+c6id.4xlarge,c6id,AWS,,,,$0.00
+c6id.8xlarge,c6id,AWS,,,,$24.88
+c6id.large,c6id,AWS,,,,$5.11
+c6id.metal,c6id,AWS,,,,$4.50
+c6id.xlarge,c6id,AWS,,,,$0.00
+c6in.2xlarge,c6in,AWS,,,,$0.00
+c6in.32xlarge,c6in,AWS,,,,$0.00
+c6in.4xlarge,c6in,AWS,,,,$0.00
+c6in.8xlarge,c6in,AWS,,,,$0.00
+c6in.large,c6in,AWS,,,,$36.02
+c6in.metal,c6in,AWS,,,,$0.00
+c7a.12xlarge,c7a,AWS,,,,$0.00
+c7a.16xlarge,c7a,AWS,,,,$0.00
+c7a.48xlarge,c7a,AWS,,,,$22.11
+c7a.4xlarge,c7a,AWS,,,,$27.92
+c7a.8xlarge,c7a,AWS,,,,$0.00
+c7a.large,c7a,AWS,,,,$45.91
+c7a.medium,c7a,AWS,,,,$2.57
+c7a.metal-48xl,c7a,AWS,,,,$47.96
+c7a.xlarge,c7a,AWS,,,,$2.51
+c7g.16xlarge,c7g,AWS,,,,$0.00
+c7g.2xlarge,c7g,AWS,,,,$325.43
+c7g.4xlarge,c7g,AWS,,,,$0.00
+c7g.8xlarge,c7g,AWS,,,,$0.00
+c7g.large,c7g,AWS,,,,$26.80
+c7g.medium,c7g,AWS,,,,$10.41
+c7g.metal,c7g,AWS,,,,$54.63
+c7g.xlarge,c7g,AWS,,,,$0.00
+c7gd.16xlarge,c7gd,AWS,,,,$0.00
+c7gd.4xlarge,c7gd,AWS,,,,$0.00
+c7gd.large,c7gd,AWS,,,,$0.03
+c7gd.metal,c7gd,AWS,,,,$4.13
+c7gn.16xlarge,c7gn,AWS,,,,$0.00
+c7gn.2xlarge,c7gn,AWS,,,,$0.00
+c7gn.8xlarge,c7gn,AWS,,,,$0.00
+c7gn.large,c7gn,AWS,,,,$0.98
+c7gn.medium,c7gn,AWS,,,,$0.44
+c7i-flex.2xlarge,c7i-flex,AWS,,,,$0.10
+c7i-flex.4xlarge,c7i-flex,AWS,,,,$0.00
+c7i-flex.8xlarge,c7i-flex,AWS,,,,$0.00
+c7i-flex.large,c7i-flex,AWS,,,,$21.27
+c7i.24xlarge,c7i,AWS,,,,$0.00
+c7i.2xlarge,c7i,AWS,,,,$2.71
+c7i.48xlarge,c7i,AWS,,,,$132.19
+c7i.4xlarge,c7i,AWS,,,,"$1,593.92"
+c7i.8xlarge,c7i,AWS,,,,$0.00
+c7i.large,c7i,AWS,,,,$7.81
+c7i.metal-24xl,c7i,AWS,,,,$437.85
+c7i.metal-48xl,c7i,AWS,,,,$44.84
+c7i.xlarge,c7i,AWS,,,,$0.10
+c8a.4xlarge,c8a,AWS,,,,$0.00
+c8a.8xlarge,c8a,AWS,,,,$0.00
+c8a.large,c8a,AWS,,,,$8.55
+c8a.medium,c8a,AWS,,,,$0.79
+c8a.metal-24xl,c8a,AWS,,,,$0.00
+c8g.2xlarge,c8g,AWS,,,,$0.00
+c8g.large,c8g,AWS,,,,$0.82
+c8g.medium,c8g,AWS,,,,$0.00
+c8g.metal-24xl,c8g,AWS,,,,$76.91
+c8g.xlarge,c8g,AWS,,,,$0.00
+c8gb.large,c8gb,AWS,,,,$0.07
+c8gd.12xlarge,c8gd,AWS,,,,$0.00
+c8gd.24xlarge,c8gd,AWS,,,,$0.00
+c8gd.2xlarge,c8gd,AWS,,,,$0.00
+c8gd.large,c8gd,AWS,,,,$0.02
+c8gd.xlarge,c8gd,AWS,,,,$0.00
+c8gn.2xlarge,c8gn,AWS,,,,$0.00
+c8gn.large,c8gn,AWS,,,,$0.09
+c8gn.xlarge,c8gn,AWS,,,,$0.00
+c8i-flex.16xlarge,c8i-flex,AWS,,,,$11.40
+c8i-flex.4xlarge,c8i-flex,AWS,,,,$4.99
+c8i-flex.8xlarge,c8i-flex,AWS,,,,$0.00
+c8i-flex.large,c8i-flex,AWS,,,,$18.08
+c8i.12xlarge,c8i,AWS,,,,$21.42
+c8i.24xlarge,c8i,AWS,,,,$69.40
+c8i.2xlarge,c8i,AWS,,,,$0.00
+c8i.4xlarge,c8i,AWS,,,,$0.09
+c8i.8xlarge,c8i,AWS,,,,$51.12
+c8i.96xlarge,c8i,AWS,,,,$290.06
+c8i.large,c8i,AWS,,,,$233.28
+c8i.metal-48xl,c8i,AWS,,,,$477.71
+c8i.metal-96xl,c8i,AWS,,,,$996.32
+c8id.4xlarge,c8id,AWS,,,,$0.00
+c8id.8xlarge,c8id,AWS,,,,$0.00
+c8id.large,c8id,AWS,,,,$1.91
+d2.xlarge,d2,AWS,,,,$0.00
+d3.xlarge,d3,AWS,,,,$4.24
+dc2.large,dc2,AWS,,,,$581.25
+Gateway,(not set),AWS,,,,$729.26
+h1.4xlarge,h1,AWS,,,,$2.33
+i3.2xlarge,i3,AWS,,,,"$3,902.49"
+i3.4xlarge,i3,AWS,,,,$32.76
+i3.large,i3,AWS,,,,$201.34
+i3.metal,i3,AWS,,,,"$1,640.56"
+i3.xlarge,i3,AWS,,,,$78.37
+i3en.2xlarge,i3en,AWS,,,,$0.12
+i3en.metal,i3en,AWS,,,,$0.00
+i4g.large,i4g,AWS,,,,$0.10
+i4g.xlarge,i4g,AWS,,,,$0.01
+i4i.12xlarge,i4i,AWS,,,,$5.61
+i4i.2xlarge,i4i,AWS,,,,$400.61
+i4i.large,i4i,AWS,,,,$17.40
+i4i.metal,i4i,AWS,,,,"$5,006.62"
+i7i.48xlarge,i7i,AWS,,,,$0.00
+i7i.metal-24xl,i7i,AWS,,,,$52.21
+i7i.metal-48xl,i7i,AWS,,,,$2.43
+i8g.8xlarge,i8g,AWS,,,,$0.10
+i8g.large,i8g,AWS,,,,$2.93
+im4gn.16xlarge,im4gn,AWS,,,,"$1,168.91"
+im4gn.large,im4gn,AWS,,,,$0.03
+m1.small,m1,AWS,,,,"$22,329.39"
+m3.large,m3,AWS,,,,$0.00
+m3.medium,m3,AWS,,,,$78.76
+m3.xlarge,m3,AWS,,,,$259.38
+m4.10xlarge,m4,AWS,,,,$0.00
+m4.2xlarge,m4,AWS,,,,$645.12
+m4.4xlarge,m4,AWS,,,,"$1,781.78"
+m4.large,m4,AWS,,,,$657.27
+m4.xlarge,m4,AWS,,,,$822.19
+m5.12xlarge,m5,AWS,,,,"$6,839.49"
+m5.16xlarge,m5,AWS,,,,$37.14
+m5.1yrAllUpfront,m5,AWS,,,,"$253,601.30"
+m5.1yrPartialUpfront,m5,AWS,,,,"$17,469.16"
+m5.24xlarge,m5,AWS,,,,"$7,903.01"
+m5.2xlarge,m5,AWS,,,,"$81,599.06"
+m5.4xlarge,m5,AWS,,,,"$67,644.45"
+m5.8xlarge,m5,AWS,,,,"$22,394.60"
+m5.large,m5,AWS,,,,"$48,239.21"
+m5.metal,m5,AWS,,,,"$22,959.68"
+m5.xlarge,m5,AWS,,,,"$59,471.56"
+m5a.12xlarge,m5a,AWS,,,,$0.00
+m5a.2xlarge,m5a,AWS,,,,$66.86
+m5a.4xlarge,m5a,AWS,,,,"$5,893.77"
+m5a.8xlarge,m5a,AWS,,,,"$1,758.94"
+m5a.large,m5a,AWS,,,,$980.28
+m5a.xlarge,m5a,AWS,,,,"$3,004.61"
+m5a.xlarge-management-hours,m5a,AWS,,,,$3.22
+m5ad.2xlarge,m5ad,AWS,,,,$15.88
+m5ad.4xlarge,m5ad,AWS,,,,$76.24
+m5ad.large,m5ad,AWS,,,,$0.69
+m5d.2xlarge,m5d,AWS,,,,"$2,623.63"
+m5d.4xlarge,m5d,AWS,,,,$0.47
+m5d.8xlarge,m5d,AWS,,,,$12.34
+m5d.large,m5d,AWS,,,,"$3,802.33"
+m5d.metal,m5d,AWS,,,,$821.12
+m5d.xlarge,m5d,AWS,,,,$0.08
+m5dn.24xlarge,m5dn,AWS,,,,$0.00
+m5n.4xlarge,m5n,AWS,,,,$0.00
+m5n.metal,m5n,AWS,,,,$0.00
+m5zn.3xlarge,m5zn,AWS,,,,$0.00
+m5zn.large,m5zn,AWS,,,,$672.17
+m5zn.metal,m5zn,AWS,,,,$410.24
+m6a,m6a,AWS,,,,$0.00
+m6a.12xlarge,m6a,AWS,,,,$509.51
+m6a.16xlarge,m6a,AWS,,,,$0.00
+m6a.2xlarge,m6a,AWS,,,,"$16,649.08"
+m6a.4xlarge,m6a,AWS,,,,"$31,644.11"
+m6a.8xlarge,m6a,AWS,,,,"$20,137.99"
+m6a.large,m6a,AWS,,,,"$16,754.67"
+m6a.metal,m6a,AWS,,,,"$2,676.06"
+m6a.xlarge,m6a,AWS,,,,"$63,093.82"
+m6g.2xlarge,m6g,AWS,,,,"$5,477.95"
+m6g.4xlarge,m6g,AWS,,,,"$1,720.54"
+m6g.8xlarge,m6g,AWS,,,,"$2,917.62"
+m6g.large,m6g,AWS,,,,"$17,477.43"
+m6g.medium,m6g,AWS,,,,$71.61
+m6g.metal,m6g,AWS,,,,$90.60
+m6g.xlarge,m6g,AWS,,,,"$16,923.96"
+m6gd.2xlarge,m6gd,AWS,,,,"$1,050.20"
+m6gd.large,m6gd,AWS,,,,$216.61
+m6gd.medium,m6gd,AWS,,,,$0.10
+m6gd.metal,m6gd,AWS,,,,$4.24
+m6gd.xlarge,m6gd,AWS,,,,$0.01
+m6i,m6i,AWS,,,,$295.81
+m6i.12xlarge,m6i,AWS,,,,$7.37
+m6i.2xlarge,m6i,AWS,,,,"$11,046.10"
+m6i.32xlarge,m6i,AWS,,,,$57.28
+m6i.4xlarge,m6i,AWS,,,,"$4,473.36"
+m6i.8xlarge,m6i,AWS,,,,"$4,148.08"
+m6i.large,m6i,AWS,,,,"$4,343.87"
+m6i.metal,m6i,AWS,,,,$638.23
+m6i.xlarge,m6i,AWS,,,,"$54,710.65"
+m6id.4xlarge,m6id,AWS,,,,$0.69
+m6id.8xlarge,m6id,AWS,,,,$0.00
+m6id.large,m6id,AWS,,,,$8.14
+m6id.metal,m6id,AWS,,,,$0.00
+m6id.xlarge,m6id,AWS,,,,$0.38
+m6idn.2xlarge,m6idn,AWS,,,,$25.49
+m6in.8xlarge,m6in,AWS,,,,$0.00
+m6in.large,m6in,AWS,,,,$76.81
+m7a.16xlarge,m7a,AWS,,,,$0.00
+m7a.2xlarge,m7a,AWS,,,,$806.80
+m7a.4xlarge,m7a,AWS,,,,$245.96
+m7a.8xlarge,m7a,AWS,,,,$287.06
+m7a.large,m7a,AWS,,,,$155.00
+m7a.medium,m7a,AWS,,,,"$3,656.72"
+m7a.xlarge,m7a,AWS,,,,$31.59
+m7g.12xlarge,m7g,AWS,,,,"$3,949.82"
+m7g.16xlarge,m7g,AWS,,,,"$2,445.25"
+m7g.2xlarge,m7g,AWS,,,,"$1,494.44"
+m7g.4xlarge,m7g,AWS,,,,$755.68
+m7g.8xlarge,m7g,AWS,,,,"$11,765.88"
+m7g.large,m7g,AWS,,,,"$1,989.25"
+m7g.medium,m7g,AWS,,,,$3.78
+m7g.metal,m7g,AWS,,,,$910.05
+m7g.xlarge,m7g,AWS,,,,"$2,392.10"
+m7gd.2xlarge,m7gd,AWS,,,,$66.28
+m7gd.large,m7gd,AWS,,,,$298.39
+m7gd.metal,m7gd,AWS,,,,$0.00
+m7i-flex.12xlarge,m7i-flex,AWS,,,,"$8,410.71"
+m7i-flex.2xlarge,m7i-flex,AWS,,,,$497.52
+m7i-flex.4xlarge,m7i-flex,AWS,,,,$99.58
+m7i-flex.8xlarge,m7i-flex,AWS,,,,$0.18
+m7i-flex.large,m7i-flex,AWS,,,,$2.65
+m7i-flex.xlarge,m7i-flex,AWS,,,,$388.80
+m7i.16xlarge,m7i,AWS,,,,$0.00
+m7i.24xlarge,m7i,AWS,,,,$0.00
+m7i.2xlarge,m7i,AWS,,,,"$3,331.65"
+m7i.48xlarge,m7i,AWS,,,,$355.33
+m7i.4xlarge,m7i,AWS,,,,$747.58
+m7i.8xlarge,m7i,AWS,,,,"$1,167.77"
+m7i.large,m7i,AWS,,,,"$18,101.16"
+m7i.metal-24xl,m7i,AWS,,,,"$14,024.08"
+m7i.xlarge,m7i,AWS,,,,"$4,822.30"
+m8a.16xlarge,m8a,AWS,,,,$4.21
+m8a.4xlarge,m8a,AWS,,,,$1.66
+m8a.8xlarge,m8a,AWS,,,,$8.36
+m8a.large,m8a,AWS,,,,$0.08
+m8a.medium,m8a,AWS,,,,$15.68
+m8a.metal-24xl,m8a,AWS,,,,$492.60
+m8azn.medium,m8azn,AWS,,,,$5.47
+m8azn.metal-12xl,m8azn,AWS,,,,$2.27
+m8g.2xlarge,m8g,AWS,,,,$389.30
+m8g.4xlarge,m8g,AWS,,,,$0.00
+m8g.large,m8g,AWS,,,,$0.08
+m8g.medium,m8g,AWS,,,,$1.47
+m8g.metal-24xl,m8g,AWS,,,,$0.00
+m8g.xlarge,m8g,AWS,,,,$359.27
+m8gd.8xlarge,m8gd,AWS,,,,$0.00
+m8gd.large,m8gd,AWS,,,,$5.02
+m8i.12xlarge,m8i,AWS,,,,$60.30
+m8i.2xlarge,m8i,AWS,,,,$0.00
+m8i.4xlarge,m8i,AWS,,,,$0.00
+m8i.8xlarge,m8i,AWS,,,,$0.00
+m8i.96xlarge,m8i,AWS,,,,$293.59
+m8i.large,m8i,AWS,,,,$331.07
+m8i.metal-96xl,m8i,AWS,,,,$163.02
+m8i.xlarge,m8i,AWS,,,,$9.71
+m8id.large,m8id,AWS,,,,$0.05
+mac1,mac1,AWS,,,,$506.40
+mac1.metal,mac1,AWS,,,,$0.00
+mac2,mac2,AWS,,,,"$1,756.34"
+mac2-m1ultra,mac2-m1ultra,AWS,,,,$34.20
+mac2-m1ultra.metal,mac2-m1ultra,AWS,,,,$0.00
+mac2-m2,mac2-m2,AWS,,,,"$3,180.61"
+mac2-m2.metal,mac2-m2,AWS,,,,$0.00
+mac2.metal,mac2,AWS,,,,$0.00
+ml.m5.8xlarge,ml.m5,AWS,,,,$0.33
+ml.t3.medium,ml.t3,AWS,,,,$29.09
+perCPU,perCPU,AWS,,,,$2.22
+r3.xlarge,r3,AWS,,,,$0.00
+r4.2xlarge,r4,AWS,,,,$10.98
+r4.4xlarge,r4,AWS,,,,$0.00
+r4.8xlarge,r4,AWS,,,,$197.93
+r4.large,r4,AWS,,,,$7.21
+r4.xlarge,r4,AWS,,,,$0.00
+r5.12xlarge,r5,AWS,,,,$0.00
+r5.16xlarge,r5,AWS,,,,$812.04
+r5.1yrNoUpfront,r5,AWS,,,,"$5,015.20"
+r5.2xlarge,r5,AWS,,,,"$5,379.10"
+r5.4xlarge,r5,AWS,,,,"$1,054.89"
+r5.8xlarge,r5,AWS,,,,$480.50
+r5.large,r5,AWS,,,,"$13,349.37"
+r5.xlarge,r5,AWS,,,,"$9,151.66"
+r5a.12xlarge,r5a,AWS,,,,$0.00
+r5a.1yrNoUpfront,r5a,AWS,,,,"$4,619.74"
+r5a.24xlarge,r5a,AWS,,,,$163.65
+r5a.2xlarge,r5a,AWS,,,,"$3,154.31"
+r5a.4xlarge,r5a,AWS,,,,$0.00
+r5a.8xlarge,r5a,AWS,,,,$136.32
+r5a.large,r5a,AWS,,,,"$5,575.96"
+r5a.xlarge,r5a,AWS,,,,"$1,760.80"
+r5ad.2xlarge,r5ad,AWS,,,,$0.28
+r5b.2xlarge,r5b,AWS,,,,$0.03
+r5d.12xlarge,r5d,AWS,,,,$171.34
+r5d.2xlarge,r5d,AWS,,,,$0.04
+r5d.4xlarge,r5d,AWS,,,,$0.22
+r5d.large,r5d,AWS,,,,$2.69
+r5d.xlarge,r5d,AWS,,,,$0.51
+r5dn.16xlarge,r5dn,AWS,,,,$0.00
+r5dn.xlarge,r5dn,AWS,,,,$0.00
+r5n.2xlarge,r5n,AWS,,,,$0.03
+r5n.large,r5n,AWS,,,,$52.49
+r5n.xlarge,r5n,AWS,,,,$0.00
+r6a.1yrNoUpfront,r6a,AWS,,,,"$2,898.24"
+r6a.2xlarge,r6a,AWS,,,,$425.69
+r6a.4xlarge,r6a,AWS,,,,$114.70
+r6a.large,r6a,AWS,,,,"$1,156.87"
+r6a.xlarge,r6a,AWS,,,,$943.17
+r6g.2xlarge,r6g,AWS,,,,"$15,043.86"
+r6g.4xlarge,r6g,AWS,,,,"$8,363.29"
+r6g.8xlarge,r6g,AWS,,,,"$4,177.12"
+r6g.large,r6g,AWS,,,,"$62,973.59"
+r6g.medium,r6g,AWS,,,,$8.93
+r6g.xlarge,r6g,AWS,,,,"$5,575.71"
+r6gd.2xlarge,r6gd,AWS,,,,$767.78
+r6gd.large,r6gd,AWS,,,,$418.67
+r6gd.xlarge,r6gd,AWS,,,,$837.93
+r6i.16xlarge,r6i,AWS,,,,$0.00
+r6i.1yrNoUpfront,r6i,AWS,,,,"$2,607.52"
+r6i.2xlarge,r6i,AWS,,,,"$4,586.35"
+r6i.4xlarge,r6i,AWS,,,,$675.06
+r6i.8xlarge,r6i,AWS,,,,$59.85
+r6i.large,r6i,AWS,,,,"$10,282.69"
+r6i.xlarge,r6i,AWS,,,,"$1,076.66"
+r6idn.metal,r6idn,AWS,,,,$9.00
+r7a.2xlarge,r7a,AWS,,,,$232.59
+r7a.large,r7a,AWS,,,,$34.79
+r7a.medium,r7a,AWS,,,,$27.94
+r7a.xlarge,r7a,AWS,,,,$1.26
+r7g.12xlarge,r7g,AWS,,,,"$6,103.41"
+r7g.2xlarge,r7g,AWS,,,,$12.13
+r7g.8xlarge,r7g,AWS,,,,$219.50
+r7g.large,r7g,AWS,,,,$504.72
+r7g.medium,r7g,AWS,,,,$0.02
+r7g.xlarge,r7g,AWS,,,,$0.00
+r7gd.large,r7gd,AWS,,,,$0.01
+r7gd.medium,r7gd,AWS,,,,$65.70
+r7i.2xlarge,r7i,AWS,,,,$0.27
+r7i.48xlarge,r7i,AWS,,,,$114.57
+r7i.metal-24xl,r7i,AWS,,,,$0.00
+r7i.xlarge,r7i,AWS,,,,$159.56
+r8a.medium,r8a,AWS,,,,$18.60
+r8g.2xlarge,r8g,AWS,,,,$0.00
+r8g.large,r8g,AWS,,,,$0.50
+r8g.medium,r8g,AWS,,,,$0.30
+r8g.xlarge,r8g,AWS,,,,$2.97
+r8gd.large,r8gd,AWS,,,,$0.01
+r8i.2xlarge,r8i,AWS,,,,$77.61
+r8i.96xlarge,r8i,AWS,,,,$416.13
+r8i.metal-96xl,r8i,AWS,,,,$658.54
+ra3.16xlarge,ra3,AWS,,,,"$75,404.82"
+ra3.4xlarge,ra3,AWS,,,,"$11,186.02"
+ra3.large,ra3,AWS,,,,$315.60
+t2.2xlarge,t2,AWS,,,,"$2,849.72"
+t2.large,t2,AWS,,,,$862.06
+t2.medium,t2,AWS,,,,"$2,289.24"
+t2.micro,t2,AWS,,,,$760.68
+t2.nano,t2,AWS,,,,$0.00
+t2.small,t2,AWS,,,,$918.77
+t2.xlarge,t2,AWS,,,,"$1,718.67"
+t3,t3,AWS,,,,$0.00
+t3.2xlarge,t3,AWS,,,,"$1,712.90"
+t3.large,t3,AWS,,,,"$1,017.33"
+t3.medium,t3,AWS,,,,"$5,447.62"
+t3.micro,t3,AWS,,,,"$7,220.44"
+t3.nano,t3,AWS,,,,$3.57
+t3.small,t3,AWS,,,,"$4,943.38"
+t3.xlarge,t3,AWS,,,,"$4,249.58"
+t3a.2xlarge,t3a,AWS,,,,$485.27
+t3a.large,t3a,AWS,,,,$678.65
+t3a.medium,t3a,AWS,,,,"$1,615.93"
+t3a.micro,t3a,AWS,,,,$0.71
+t3a.small,t3a,AWS,,,,$72.13
+t3a.xlarge,t3a,AWS,,,,$88.63
+t4g.2xlarge,t4g,AWS,,,,$219.46
+t4g.large,t4g,AWS,,,,"$1,292.89"
+t4g.medium,t4g,AWS,,,,$908.81
+t4g.micro,t4g,AWS,,,,$846.09
+t4g.nano,t4g,AWS,,,,$0.00
+t4g.small,t4g,AWS,,,,"$1,108.35"
+t4g.xlarge,t4g,AWS,,,,"$1,203.16"
+u-6tb1.56xlarge,u-6tb1,AWS,,,,$0.00
+ultrawarm1.large.search,ultrawarm1.large,AWS,,,,"$4,674.46"
+ultrawarm1.medium.search,ultrawarm1.medium,AWS,,,,"$1,522.11"
+VolumeUsage.gp3,VolumeUsage,AWS,,,,$3.72
+x1e.xlarge,x1e,AWS,,,,$0.00
+x2gd.large,x2gd,AWS,,,,$0.21
+x2idn.metal,x2idn,AWS,,,,$0.00
+x2iedn.metal,x2iedn,AWS,,,,$0.00
+x8i.24xlarge,x8i,AWS,,,,$0.00
+x8i.large,x8i,AWS,,,,$0.34
+z1d.metal,z1d,AWS,,,,$998.06
+z1d.xlarge,z1d,AWS,,,,$0.00
+Standard_A2_v2,A,Azure,,,,$11.79
+Standard_B16as_v2,B,Azure,,,,$0.03
+Standard_B16ms,B,Azure,,,,$589.73
+Standard_B16ps_v2,B,Azure,,,,$0.04
+Standard_B1ls,B,Azure,,,,$6.47
+Standard_B1ms,B,Azure,,,,$0.05
+Standard_B1ms,D,Azure,,,,$0.00
+Standard_B1s,B,Azure,,,,$154.22
+Standard_B2als_v2,B,Azure,,,,$43.23
+Standard_B2as_v2,B,Azure,,,,$0.01
+Standard_B2ms,B,Azure,,,,$309.33
+Standard_B2s,B,Azure,,,,$376.56
+Standard_B2s_v2,B,Azure,,,,$1.49
+Standard_B4als_v2,B,Azure,,,,$0.14
+Standard_B4ms,B,Azure,,,,$199.11
+Standard_B8ms,B,Azure,,,,$100.98
+Standard_D128ds_v6,D,Azure,,,,$2.63
+Standard_D14_v2,D,Azure,,,,"$1,067.44"
+Standard_D16_v3,D,Azure,,,,"$26,329.34"
+Standard_D16_v4,D,Azure,,,,$195.67
+Standard_D16ads_v5,D,Azure,,,,$366.60
+Standard_D16ads_v6,D,Azure,,,,"$1,113.92"
+Standard_D16alds_v6,D,Azure,,,,$0.66
+Standard_D16als_v6,D,Azure,,,,$0.17
+Standard_D16as_v4,D,Azure,,,,$92.34
+Standard_D16as_v5,D,Azure,,,,$72.27
+Standard_D16as_v6,D,Azure,,,,$46.21
+Standard_D16ds_v6,D,Azure,,,,$4.06
+Standard_D16lds_v5,D,Azure,,,,$364.01
+Standard_D16lds_v6,D,Azure,,,,$0.57
+Standard_D16ls_v5,D,Azure,,,,$192.46
+Standard_D16ls_v6,D,Azure,,,,$0.29
+Standard_D16ps_v5,D,Azure,,,,$127.45
+Standard_D16s_v3,D,Azure,,,,"$6,532.77"
+Standard_D16s_v4,D,Azure,,,,$58.17
+Standard_D16s_v5,D,Azure,,,,"$9,527.98"
+Standard_D16s_v6,D,Azure,,,,$79.04
+Standard_D192s_v6,D,Azure,,,,$70.79
+Standard_D2_v5,D,Azure,,,,$302.53
+Standard_D2ads_v5,D,Azure,,,,$338.82
+Standard_D2ads_v6,D,Azure,,,,$2.34
+Standard_D2alds_v6,D,Azure,,,,"$3,287.94"
+Standard_D2als_v6,D,Azure,,,,$0.14
+Standard_D2as_v5,D,Azure,,,,$18.59
+Standard_D2as_v5,DS,Azure,,,,$0.02
+Standard_D2ls_v5,D,Azure,,,,$69.56
+Standard_D2plds_v5,D,Azure,,,,$0.02
+Standard_D2pls_v5,D,Azure,,,,$1.55
+Standard_D2ps_v6,D,Azure,,,,$74.60
+Standard_D2s_v3,D,Azure,,,,"$4,032.36"
+Standard_D2s_v4,D,Azure,,,,"$1,037.09"
+Standard_D2s_v5,D,Azure,,,,$51.28
+Standard_D32ads_v6,D,Azure,,,,$3.56
+Standard_D32alds_v6,D,Azure,,,,$0.34
+Standard_D32als_v6,D,Azure,,,,$0.18
+Standard_D32as_v5,D,Azure,,,,$12.91
+Standard_D32as_v6,D,Azure,,,,$0.99
+Standard_D32ds_v6,D,Azure,,,,$3.86
+Standard_D32lds_v6,D,Azure,,,,$2.82
+Standard_D32ls_v5,D,Azure,,,,$0.45
+Standard_D32pds_v6,D,Azure,,,,$5.15
+Standard_D32plds_v6,D,Azure,,,,$0.06
+Standard_D32ps_v5,D,Azure,,,,$232.00
+Standard_D32s_v3,D,Azure,,,,"$1,845.11"
+Standard_D32s_v4,D,Azure,,,,"$1,106.50"
+Standard_D32s_v5,D,Azure,,,,$964.48
+Standard_D4_v4,D,Azure,,,,$8.58
+Standard_D48ads_v6,D,Azure,,,,$15.65
+Standard_D48alds_v6,D,Azure,,,,$2.48
+Standard_D48as_v5,D,Azure,,,,$6.07
+Standard_D48ds_v6,D,Azure,,,,$1.68
+Standard_D48lds_v6,D,Azure,,,,$3.32
+Standard_D48ls_v5,D,Azure,,,,$0.87
+Standard_D48ls_v6,D,Azure,,,,$2.26
+Standard_D48s_v3,D,Azure,,,,"$11,640.83"
+Standard_D48s_v4,D,Azure,,,,$2.28
+Standard_D48s_v5,D,Azure,,,,$2.78
+Standard_D4ads_v5,D,Azure,,,,$92.97
+Standard_D4alds_v6,D,Azure,,,,$3.38
+Standard_D4as_v4,D,Azure,,,,$0.83
+Standard_D4as_v5,D,Azure,,,,$545.66
+Standard_D4as_v6,D,Azure,,,,$47.52
+Standard_D4as_v7,D,Azure,,,,$43.65
+Standard_D4d_v4,D,Azure,,,,$8.30
+Standard_D4d_v5,D,Azure,,,,$418.09
+Standard_D4ds_v4,D,Azure,,,,$192.85
+Standard_D4ds_v5,D,Azure,,,,"$5,524.29"
+Standard_D4ds_v6,D,Azure,,,,$243.78
+Standard_D4lds_v5,D,Azure,,,,$9.13
+Standard_D4ls_v5,D,Azure,,,,$142.37
+Standard_D4ps_v5,D,Azure,,,,"$3,805.39"
+Standard_D4ps_v6,D,Azure,,,,$97.36
+Standard_D4s_v3,D,Azure,,,,"$42,656.56"
+Standard_D4s_v4,D,Azure,,,,$684.77
+Standard_D4s_v5,D,Azure,,,,"$20,305.40"
+Standard_D4s_v6,D,Azure,,,,$52.99
+Standard_D5_v2,D,Azure,,,,$163.45
+Standard_D64ads_v5,D,Azure,,,,$47.09
+Standard_D64ads_v6,D,Azure,,,,$5.36
+Standard_D64alds_v6,D,Azure,,,,$0.69
+Standard_D64as_v5,D,Azure,,,,$1.76
+Standard_D64as_v6,D,Azure,,,,$2.05
+Standard_D64ds_v6,D,Azure,,,,$2.34
+Standard_D64lds_v6,D,Azure,,,,$0.26
+Standard_D64s_v3,D,Azure,,,,$129.06
+Standard_D64s_v4,D,Azure,,,,$2.72
+Standard_D64s_v5,D,Azure,,,,$1.76
+Standard_D8a_v4,D,Azure,,,,$15.08
+Standard_D8ads_v5,D,Azure,,,,$17.96
+Standard_D8ads_v6,D,Azure,,,,$11.17
+Standard_D8as_v5,D,Azure,,,,"$7,328.22"
+Standard_D8as_v6,D,Azure,,,,$80.37
+Standard_D8d_v4,D,Azure,,,,$177.51
+Standard_D8d_v5,D,Azure,,,,$16.94
+Standard_D8ds_v4,D,Azure,,,,$19.20
+Standard_D8ds_v5,D,Azure,,,,$101.04
+Standard_D8ds_v6,D,Azure,,,,$55.26
+Standard_D8lds_v5,D,Azure,,,,$765.38
+Standard_D8lds_v6,D,Azure,,,,$347.78
+Standard_D8ls_v5,D,Azure,,,,$50.53
+Standard_D8ps_v5,D,Azure,,,,"$7,311.27"
+Standard_D8ps_v6,D,Azure,,,,$61.96
+Standard_D8s_v3,D,Azure,,,,"$84,376.18"
+Standard_D8s_v4,D,Azure,,,,"$4,458.79"
+Standard_D8s_v5,D,Azure,,,,"$26,969.95"
+Standard_D8s_v6,D,Azure,,,,$46.94
+Standard_D96ads_v6,D,Azure,,,,$1.87
+Standard_D96ds_v6,D,Azure,,,,$4.46
+Standard_DC16as_v5,DC,Azure,,,,$0.40
+Standard_DC2as_v5,DC,Azure,,,,$67.64
+Standard_DC2es_v5,DC,Azure,,,,$0.01
+Standard_DC4ads_v5,DC,Azure,,,,$94.28
+Standard_DC4ads_v6,DC,Azure,,,,$2.45
+Standard_DC4as_v5,DC,Azure,,,,$21.53
+Standard_DC4as_v6,DC,Azure,,,,$4.03
+Standard_DC4es_v5,DC,Azure,,,,$28.90
+Standard_DC4s_v3,DC,Azure,,,,$106.96
+Standard_DC8ads_v5,DC,Azure,,,,$194.24
+Standard_DC8as_v5,DC,Azure,,,,$7.77
+Standard_DC8as_v6,DC,Azure,,,,$9.03
+Standard_DS1_v2,DS,Azure,,,,"$2,273.79"
+Standard_DS12-1_v2,DS,Azure,,,,$13.29
+Standard_DS14_v2,DS,Azure,,,,$177.84
+Standard_DS2_v2,DS,Azure,,,,"$3,055.95"
+Standard_DS3_v2,DS,Azure,,,,$16.42
+Standard_DS4_v2,DS,Azure,,,,$0.07
+Standard_E16ads_v6,E,Azure,,,,$5.50
+Standard_E16as_v6,E,Azure,,,,$0.38
+Standard_E16bs_v5,E,Azure,,,,$6.03
+Standard_E16ds_v6,E,Azure,,,,$2.53
+Standard_E16s_v3,E,Azure,,,,$28.70
+Standard_E16s_v4,E,Azure,,,,$2.82
+Standard_E16s_v5,E,Azure,,,,$2.54
+Standard_E16s_v6,E,Azure,,,,$0.73
+Standard_E20ads_v6,E,Azure,,,,$3.01
+Standard_E20as_v5,E,Azure,,,,$0.83
+Standard_E20as_v6,E,Azure,,,,$1.89
+Standard_E20ds_v6,E,Azure,,,,$0.68
+Standard_E20s_v4,E,Azure,,,,$3.95
+Standard_E20s_v5,E,Azure,,,,$0.31
+Standard_E20s_v6,E,Azure,,,,$4.93
+Standard_E2ads_v5,E,Azure,,,,$1.91
+Standard_E2ads_v5,D,Azure,,,,$0.36
+Standard_E2s_v3,E,Azure,,,,$0.97
+Standard_E2s_v3,D,Azure,,,,$0.18
+Standard_E32ads_v6,E,Azure,,,,$3.56
+Standard_E32as_v6,E,Azure,,,,$0.80
+Standard_E32bs_v5,E,Azure,,,,$7.67
+Standard_E32ds_v6,E,Azure,,,,$3.94
+Standard_E32s_v3,E,Azure,,,,$185.95
+Standard_E32s_v4,E,Azure,,,,$1.14
+Standard_E32s_v5,E,Azure,,,,$0.02
+Standard_E32s_v6,E,Azure,,,,$0.77
+Standard_E48ads_v6,E,Azure,,,,$7.55
+Standard_E48as_v6,E,Azure,,,,$2.18
+Standard_E48bs_v5,E,Azure,,,,$7.18
+Standard_E48s_v4,E,Azure,,,,$3.91
+Standard_E48s_v5,E,Azure,,,,$2.02
+Standard_E48s_v6,E,Azure,,,,$1.16
+Standard_E4as_v5,E,Azure,,,,$32.59
+Standard_E4s_v3,E,Azure,,,,$129.06
+Standard_E4s_v5,E,Azure,,,,$5.69
+Standard_E64ads_v6,E,Azure,,,,$0.05
+Standard_E64bs_v5,E,Azure,,,,$0.41
+Standard_E64s_v4,E,Azure,,,,$1.77
+Standard_E64s_v6,E,Azure,,,,$0.21
+Standard_E8ads_v6,E,Azure,,,,$0.65
+Standard_E8bs_v5,E,Azure,,,,$0.28
+Standard_E8ds_v6,E,Azure,,,,$0.38
+Standard_E8ps_v6,E,Azure,,,,$10.70
+Standard_E8s_v3,E,Azure,,,,$41.49
+Standard_E8s_v4,E,Azure,,,,$1.13
+Standard_E8s_v5,E,Azure,,,,$0.21
+Standard_E96s_v6,E,Azure,,,,$2.92
+Standard_EC2ads_v5,EC,Azure,,,,$49.72
+Standard_EC4es_v5,EC,Azure,,,,$13.10
+Standard_F16als_v6,F,Azure,,,,$0.78
+Standard_F16ams_v6,F,Azure,,,,$1.79
+Standard_F16ams_v7,F,Azure,,,,$0.22
+Standard_F16as_v6,F,Azure,,,,$0.86
+Standard_F2s_v2,F,Azure,,,,$0.22
+Standard_F32als_v6,F,Azure,,,,$0.60
+Standard_F32ams_v6,F,Azure,,,,$4.96
+Standard_F32as_v6,F,Azure,,,,$1.31
+Standard_F48als_v6,F,Azure,,,,$0.48
+Standard_F48ams_v6,F,Azure,,,,$4.30
+Standard_F4s_v2,F,Azure,,,,$55.76
+Standard_F64ams_v6,F,Azure,,,,$3.62
+Standard_F8ads_v7,F,Azure,,,,$0.12
+Standard_F8amds_v7,F,Azure,,,,$0.60
+Standard_F8ams_v6,F,Azure,,,,$13.18
+Standard_F8ams_v7,F,Azure,,,,$2.11
+Standard_F8as_v6,F,Azure,,,,$0.40
+Standard_FX12mds_v2,FX,Azure,,,,$24.23
+Standard_FX4mds_v2,FX,Azure,,,,$6.77
+Standard_FX8mds_v2,FX,Azure,,,,$4.74
+Standard_FX8ms_v2,(not set),Azure,,,,$0.70
+Standard_FX8ms_v2,FX,Azure,,,,$0.05
+Standard_L8aos_v4,L,Azure,,,,$2.82
+Standard_M192ids_v2,M,Azure,,,,$38.50
+Standard_M32ls,M,Azure,,,,$163.74
+48.n2d-24-vcpu,48,GCP,,,,"$1,053.27"
+custom.custom-1-vcpu,custom,GCP,,,,$0.05
+custom.custom-16-vcpu,custom,GCP,,,,"$6,163.48"
+custom.custom-2-vcpu,custom,GCP,,,,$56.70
+custom.custom-32-vcpu,custom,GCP,,,,$5.17
+custom.custom-4-vcpu,custom,GCP,,,,"$2,951.16"
+custom.custom-8-vcpu,custom,GCP,,,,"$30,875.35"
+custom.e2-16-vcpu,custom,GCP,,,,"$13,283.82"
+custom.e2-2-vcpu,custom,GCP,,,,$42.30
+custom.e2-4-vcpu,custom,GCP,,,,$19.86
+custom.e2-6-vcpu,custom,GCP,,,,"$36,020.22"
+custom.e2-8-vcpu,custom,GCP,,,,$433.67
+custom.n1-custom-vcpu,custom,GCP,,,,"$4,443.53"
+highcpu.c3-192-vcpu,highcpu,GCP,,,,"$15,187.53"
+highcpu.c3-4-vcpu,highcpu,GCP,,,,$42.19
+highcpu.e2-2-vcpu,highcpu,GCP,,,,$23.22
+highcpu.n2-32-vcpu,highcpu,GCP,,,,$0.30
+highcpu.n4-80-vcpu,highcpu,GCP,,,,$3.93
+highmem.e2-4-vcpu,highmem,GCP,,,,$99.46
+highmem.e2-8-vcpu,highmem,GCP,,,,$173.53
+highmem.n1-4-vcpu,highmem,GCP,,,,$248.70
+highmem.n2-16-vcpu,highmem,GCP,,,,$188.98
+highmem.n2-32-vcpu,highmem,GCP,,,,$443.31
+highmem.n2-4-vcpu,highmem,GCP,,,,"$6,148.67"
+highmem.n2-8-vcpu,highmem,GCP,,,,"$3,658.03"
+highmem.n2d-2-vcpu,highmem,GCP,,,,$66.79
+highmem.n4-32-vcpu,highmem,GCP,,,,$0.02
+sharedcore.e2-2-vcpu,sharedcore,GCP,,,,"$1,767.54"
+sharedcore.f1-1-vcpu,sharedcore,GCP,,,,$4.40
+sharedcore.g1-1-vcpu,sharedcore,GCP,,,,$0.05
+standard.c2-16-vcpu,standard,GCP,,,,$65.05
+standard.c2-4-vcpu,standard,GCP,,,,$2.34
+standard.c2-8-vcpu,standard,GCP,,,,$734.94
+standard.c2d-2-vcpu,standard,GCP,,,,$0.24
+standard.c2d-4-vcpu,standard,GCP,,,,$10.24
+standard.c3-192-vcpu,standard,GCP,,,,"$12,081.86"
+standard.c3-4-vcpu,standard,GCP,,,,$335.53
+standard.c3d-4-vcpu,standard,GCP,,,,$37.74
+standard.c4-8-vcpu,standard,GCP,,,,$42.46
+standard.c4a-2-vcpu,standard,GCP,,,,$0.21
+standard.c4a-4-vcpu,standard,GCP,,,,$0.91
+standard.ct6e-1t-vcpu,standard,GCP,,,,$0.60
+standard.ct6e-4t-vcpu,standard,GCP,,,,"$9,154.02"
+standard.e2-16-vcpu,standard,GCP,,,,"$12,539.90"
+standard.e2-2-vcpu,standard,GCP,,,,$735.02
+standard.e2-32-vcpu,standard,GCP,,,,$828.72
+standard.e2-4-vcpu,standard,GCP,,,,"$10,630.37"
+standard.e2-8-vcpu,standard,GCP,,,,"$44,424.63"
+standard.h3-88-vcpu,standard,GCP,,,,$3.51
+standard.n1-1-vcpu,standard,GCP,,,,$126.49
+standard.n1-16-vcpu,standard,GCP,,,,"$7,594.94"
+standard.n1-2-vcpu,standard,GCP,,,,$425.75
+standard.n1-32-vcpu,standard,GCP,,,,"$7,538.85"
+standard.n1-4-vcpu,standard,GCP,,,,"$15,068.83"
+standard.n1-8-vcpu,standard,GCP,,,,"$6,101.26"
+standard.n2-128-vcpu,standard,GCP,,,,$5.33
+standard.n2-16-vcpu,standard,GCP,,,,"$44,864.50"
+standard.n2-2-vcpu,standard,GCP,,,,"$1,530.10"
+standard.n2-4-vcpu,standard,GCP,,,,"$29,141.90"
+standard.n2-64-vcpu,standard,GCP,,,,"$8,482.19"
+standard.n2-8-vcpu,standard,GCP,,,,"$50,033.97"
+standard.n2d-2-vcpu,standard,GCP,,,,$87.90
+standard.n2d-4-vcpu,standard,GCP,,,,$225.53
+standard.n2d-8-vcpu,standard,GCP,,,,$1.55
+standard.n4-2-vcpu,standard,GCP,,,,$1.43
+standard.n4-4-vcpu,standard,GCP,,,,$17.54
+standard.n4a-2-vcpu,standard,GCP,,,,$0.26
+standard.n4a-4-vcpu,standard,GCP,,,,$1.03
+standard.t2a-1-vcpu,standard,GCP,,,,$3.64
+standard.t2a-16-vcpu,standard,GCP,,,,$35.47
+standard.t2a-2-vcpu,standard,GCP,,,,$363.26
+standard.t2a-4-vcpu,standard,GCP,,,,"$1,495.46"
+standard.t2a-8-vcpu,standard,GCP,,,,"$1,686.61"
+standard.t2d-2-vcpu,standard,GCP,,,,$0.70
+standard.t2d-4-vcpu,standard,GCP,,,,$13.53
+ultramem.m1-40-vcpu,ultramem,GCP,,,,$57.14
