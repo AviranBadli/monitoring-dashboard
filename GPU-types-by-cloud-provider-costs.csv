@@ -24,7 +24,7 @@ ultragpu.a2-1g-vcpu,ultragpu,GCP,1,NVIDIA A100,40,SXM4
 highgpu.a2-2g-vcpu,highgpu,GCP,2,NVIDIA A100,40,SXM4
 ultragpu.a2-2g-vcpu,ultragpu,GCP,2,NVIDIA A100,40,SXM4
 ultragpu.a2-4g-vcpu,ultragpu,GCP,4,NVIDIA A100,40,SXM4
-highgpu.a4-8g-vcpu,highgpu,GCP,8,NVIDIA A100,80,
+highgpu.a4-8g-vcpu,highgpu,GCP,8,NVIDIA A100,80,SXM4
 ultragpu.a2-8g-vcpu,ultragpu,GCP,8,NVIDIA A100,40,SXM4
 g5.16xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe
 g5.2xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe
@@ -43,22 +43,23 @@ highgpu.a3-2g-vcpu,highgpu,GCP,2,NVIDIA H100,80,SXM5
 highgpu.a3-4g-vcpu,highgpu,GCP,4,NVIDIA H100,80,SXM5
 highgpu.a3-8g-vcpu,highgpu,GCP,8,NVIDIA H100,80,SXM5
 ultragpu.a3-8g-vcpu,ultragpu,GCP,8,NVIDIA H100,80,SXM5
-g6.16xlarge,g6,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6.2xlarge,g6,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6.4xlarge,g6,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6.8xlarge,g6,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6.xlarge,g6,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6f.2xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6f.4xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6f.large,g6f,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6f.xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe Gen4
-g6.12xlarge,g6,AWS,4,NVIDIA L4,24,PCIe Gen4
-g6.48xlarge,g6,AWS,8,NVIDIA L4,24,PCIe Gen4
-standard.g2-16-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe Gen4
-standard.g2-24-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe Gen4
-standard.g2-4-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe Gen4
-standard.g2-48-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe Gen4
-standard.g2-96-vcpu,standard,GCP,8,NVIDIA L4,24,PCIe Gen4
+g6.16xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
+g6.2xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
+g6.4xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
+g6.8xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
+g6.xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
+g6f.2xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe
+g6f.4xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe
+g6f.large,g6f,AWS,1,NVIDIA L4,24,PCIe
+g6f.xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe
+g6.12xlarge,g6,AWS,4,NVIDIA L4,24,PCIe
+g6.48xlarge,g6,AWS,8,NVIDIA L4,24,PCIe
+standard.g2-16-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
+standard.g2-24-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
+standard.g2-4-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
+standard.g2-48-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
+standard.g2-96-vcpu,standard,GCP,8,NVIDIA L4,24,PCIe
+highgpu.a4x-4g-vcpu,highgpu,GCP,4,NVIDIA B200,186,NVL (GB200)
 g6e.2xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe
 g6e.4xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe
 g6e.8xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe
