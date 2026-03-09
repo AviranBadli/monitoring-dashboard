@@ -1,0 +1,630 @@
+{
+  "name": "GPU_Type",
+  "defaultValue": "No GPU",
+  "statements": [
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_ND96is_MI300X_v5'",
+      "valueExpression": "'AMD MI300X 192 OAM x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_ND96isr_MI300X_v5'",
+      "valueExpression": "'AMD MI300X 192 OAM x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3d-208x1792x8mi300x'",
+      "valueExpression": "'AMD MI300X 192 OAM x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4ad.2xlarge'",
+      "valueExpression": "'AMD Radeon Pro V520 8 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4ad.4xlarge'",
+      "valueExpression": "'AMD Radeon Pro V520 8 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4ad.xlarge'",
+      "valueExpression": "'AMD Radeon Pro V520 8 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4ad.8xlarge'",
+      "valueExpression": "'AMD Radeon Pro V520 8 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4ad.16xlarge'",
+      "valueExpression": "'AMD Radeon Pro V520 8 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NV4as_v4'",
+      "valueExpression": "'AMD Radeon Pro V520 8 PCIe x 1/8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'f2.6xlarge'",
+      "valueExpression": "'AMD Virtex 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'f2.12xlarge'",
+      "valueExpression": "'AMD Virtex 16 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'f2.48xlarge'",
+      "valueExpression": "'AMD Virtex 16 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf1.xlarge'",
+      "valueExpression": "'Inferentia 1 8 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf1.2xlarge'",
+      "valueExpression": "'Inferentia 1 8 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf1.6xlarge'",
+      "valueExpression": "'Inferentia 1 8 x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf1.24xlarge'",
+      "valueExpression": "'Inferentia 1 8 x 16'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf2.8xlarge'",
+      "valueExpression": "'Inferentia 2 32 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf2.xlarge'",
+      "valueExpression": "'Inferentia 2 32 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf2.24xlarge'",
+      "valueExpression": "'Inferentia 2 32 x 6'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'inf2.48xlarge'",
+      "valueExpression": "'Inferentia 2 32 x 12'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'dl1.24xlarge'",
+      "valueExpression": "'Intel Gaudi 1 32 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3d-160x1792x8gaudi3'",
+      "valueExpression": "'Intel Gaudi 3 128 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3d-160x1792x8gaudi3-internal'",
+      "valueExpression": "'Intel Gaudi 3 128 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NV36ads_A10_v5'",
+      "valueExpression": "'NVIDIA A10 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NV72ads_A10_v5'",
+      "valueExpression": "'NVIDIA A10 24 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NV12ads_A10_v5'",
+      "valueExpression": "'NVIDIA A10 24 PCIe x 1/3'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NV6ads_A10_v5'",
+      "valueExpression": "'NVIDIA A10 24 PCIe x 1/6'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a2-1g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'ultragpu.a2-1g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a2-2g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'ultragpu.a2-2g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'ultragpu.a2-4g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a2-4g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p4d.24xlarge'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'ultragpu.a2-8g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a2-8g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'megagpu.a2-16g-vcpu'",
+      "valueExpression": "'NVIDIA A100 40 SXM4 x 16'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC24ads_A100_v4'",
+      "valueExpression": "'NVIDIA A100 80 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3d-24x120x1a100p'",
+      "valueExpression": "'NVIDIA A100 80 SXM4 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC48ads_A100_v4'",
+      "valueExpression": "'NVIDIA A100 80 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3d-48x240x2a100p'",
+      "valueExpression": "'NVIDIA A100 80 SXM4 x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p4de.24xlarge'",
+      "valueExpression": "'NVIDIA A100 80 SXM4 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a4-8g-vcpu'",
+      "valueExpression": "'NVIDIA A100 80 SXM4 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx2-80x1280x8a100'",
+      "valueExpression": "'NVIDIA A100 80 SXM4 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.16xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.2xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.4xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.8xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.12xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.24xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5.48xlarge'",
+      "valueExpression": "'NVIDIA A10G 24 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p6-b200.48xlarge'",
+      "valueExpression": "'NVIDIA B200 180 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p6-b300.48xlarge'",
+      "valueExpression": "'NVIDIA B300 268 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p6e-gb200.36xlarge'",
+      "valueExpression": "'NVIDIA GB200 186 NVL x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a4x-4g-vcpu'",
+      "valueExpression": "'NVIDIA GB200 186 NVL x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'u-p6e-gb200x36'",
+      "valueExpression": "'NVIDIA GB200 186 NVL x 36'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'u-p6e-gb200x72'",
+      "valueExpression": "'NVIDIA GB200 186 NVL x 72'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'maxgpu.a4x-4g-metal-vcpu'",
+      "valueExpression": "'NVIDIA GB300 279 NVL x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p5.4xlarge'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a3-1g-vcpu'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a3-2g-vcpu'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a3-4g-vcpu'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p5.48xlarge'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'highgpu.a3-8g-vcpu'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'ultragpu.a3-8g-vcpu'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'edgegpu.a3-8g-vcpu'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'megagpu.a3-8g-vcpu'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3d-160x1792x8h100'",
+      "valueExpression": "'NVIDIA H100 80 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC40ads_H100_v5'",
+      "valueExpression": "'NVIDIA H100 94 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC80adis_H100_v5'",
+      "valueExpression": "'NVIDIA H100 94 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p5e.48xlarge'",
+      "valueExpression": "'NVIDIA H200 141 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p5en.48xlarge'",
+      "valueExpression": "'NVIDIA H200 141 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3d-160x1792x8h200'",
+      "valueExpression": "'NVIDIA H200 141 SXM5 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gr6.8xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gr6f.4xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 0.5'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.16xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.2xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.4xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.8xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6f.2xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6f.4xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6f.large'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6f.xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-16-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-24-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-4-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-48-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-12-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-32-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-8-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3-16x80x1l4'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3-24x120x1l40s'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3-32x160x2l4'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3-48x240x2l40s'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.12xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.24xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx3-64x320x4l4'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6.48xlarge'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g2-96-vcpu'",
+      "valueExpression": "'NVIDIA L4 24 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.2xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.4xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.8xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g7e.2xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g7e.4xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g7e.8xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.16xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.12xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.24xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g7e.12xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g7e.24xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g6e.48xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g7e.48xlarge'",
+      "valueExpression": "'NVIDIA L40S 48 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g3.4xlarge'",
+      "valueExpression": "'NVIDIA M60 8 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NV48s_v3'",
+      "valueExpression": "'NVIDIA M60 8 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4dn.16xlarge'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4dn.2xlarge'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4dn.4xlarge'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4dn.8xlarge'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4dn.xlarge'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gr6.4xlarge'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC4as_T4_v3'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC4as_T4_v3'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC8as_T4_v3'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4dn.12xlarge'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC64as_T4_v3'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g4dn.metal'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5g.2xlarge'",
+      "valueExpression": "'NVIDIA T4G 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5g.4xlarge'",
+      "valueExpression": "'NVIDIA T4G 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5g.xlarge'",
+      "valueExpression": "'NVIDIA T4G 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5g.8xlarge'",
+      "valueExpression": "'NVIDIA T4G 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5g.16xlarge'",
+      "valueExpression": "'NVIDIA T4G 16 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'g5g.metal'",
+      "valueExpression": "'NVIDIA T4G 16 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'p3.2xlarge'",
+      "valueExpression": "'NVIDIA V100 16 SXM2 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx2-16x128x1v100'",
+      "valueExpression": "'NVIDIA V100 16 SXM2 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx2-8x64x1v100'",
+      "valueExpression": "'NVIDIA V100 16 SXM2 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC6s_v3'",
+      "valueExpression": "'NVIDIA V100 16 SXM2 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC12s_v3'",
+      "valueExpression": "'NVIDIA V100 16 SXM2 x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx2-16x128x2v100'",
+      "valueExpression": "'NVIDIA V100 16 SXM2 x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'gx2-32x256x2v100'",
+      "valueExpression": "'NVIDIA V100 16 SXM2 x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'dl2q.24xlarge'",
+      "valueExpression": "'Qualcomm AI 100 16 x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g4-48-vcpu'",
+      "valueExpression": "'RTX PRO 6000 96 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g4-96-vcpu'",
+      "valueExpression": "'RTX PRO 6000 96 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g4-192-vcpu'",
+      "valueExpression": "'RTX PRO 6000 96 PCIe x 4'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'standard.g4-384-vcpu'",
+      "valueExpression": "'RTX PRO 6000 96 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'trn1.2xlarge'",
+      "valueExpression": "'Trainium 1 32 x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'trn1.32xlarge'",
+      "valueExpression": "'Trainium 1 32 x 16'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'trn1n.32xlarge'",
+      "valueExpression": "'Trainium 1 32 x 16'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'trn2.48xlarge'",
+      "valueExpression": "'Trainium 2 96 x 16'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'trn2u.48xlarge'",
+      "valueExpression": "'Trainium 2 96 x 16'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'vt1.3xlarge'",
+      "valueExpression": "'Xilinx U30 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NP10s'",
+      "valueExpression": "'Xilinx U30 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'vt1.6xlarge'",
+      "valueExpression": "'Xilinx U30 PCIe x 2'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'vt1.24xlarge'",
+      "valueExpression": "'Xilinx U30 PCIe x 8'"
+    }
+  ]
+}
