@@ -72,7 +72,7 @@ def seed_test_data():
             (
                 "prod-us-west-2-node-001",
                 "prod-us-west-2",
-                "p3.16xlarge",
+                "p3.2xlarge",
                 "ML Platform",
                 8,
                 "nvidia-v100-16gb-sxm2",
@@ -89,7 +89,7 @@ def seed_test_data():
             (
                 "prod-gcp-node-001",
                 "prod-gcp-us-central1",
-                "a2-highgpu-8g",
+                "highgpu.a3-8g-vcpu",
                 "LLM Training",
                 8,
                 "nvidia-a100-40gb-sxm4",
@@ -97,7 +97,7 @@ def seed_test_data():
             (
                 "prod-gcp-node-002",
                 "prod-gcp-us-central1",
-                "a3-highgpu-8g",
+                "highgpu.a3-8g-vcpu",
                 "LLM Training",
                 8,
                 "nvidia-h100-80gb-sxm5",
@@ -106,7 +106,7 @@ def seed_test_data():
             (
                 "dev-azure-node-001",
                 "dev-azure-eastus",
-                "Standard_NC24s_v3",
+                "standard_nc24ads_a100_v4",
                 "Data Science",
                 4,
                 "nvidia-v100-16gb-sxm2",
@@ -193,8 +193,8 @@ def seed_test_data():
             "p5.48xlarge": 98.32,
             "p3.16xlarge": 24.48,
             "g5.12xlarge": 5.672,
-            "a2-highgpu-8g": 12.48,
-            "a3-highgpu-8g": 26.00,
+            "highgpu.a2-8g-vcpu": 12.48,
+            "highgpu.a3-8g-vcpu": 26.00,
             "Standard_NC24s_v3": 12.24,
         }
 

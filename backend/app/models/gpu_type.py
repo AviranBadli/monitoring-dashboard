@@ -20,6 +20,7 @@ class GpuType(Base):
 
     # Relationships
     gpus = relationship("GPU", back_populates="gpu_type")
+    instance_types = relationship("InstanceType", back_populates="gpu_type")
 
     # Table-level constraints
     # Note: CheckConstraint disabled for SQLite compatibility in tests

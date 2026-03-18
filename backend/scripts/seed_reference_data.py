@@ -33,71 +33,100 @@ def to_kebab_case(text):
     return text
 
 
+def parse_gpu_memory(memory_str):
+    """Parse GPU memory string, handling fractional values and empty strings"""
+    try:
+        if "/" in memory_str:
+            # For fractional values, use 0
+            return 0
+        elif memory_str:
+            return int(float(memory_str))
+        else:
+            return 0
+    except (ValueError, AttributeError):
+        return 0
+
+
+def build_gpu_display_name(family, memory_gb, variant):
+    """Build GPU type display name from components"""
+    if variant and memory_gb > 0:
+        return f"{family} {memory_gb}GB {variant}"
+    elif memory_gb > 0:
+        return f"{family} {memory_gb}GB"
+    elif variant:
+        return f"{family} {variant}"
+    else:
+        return family
+
+
+def read_csv_data(csv_path):
+    """Read CSV file and return all rows as a list"""
+    with open(csv_path, "r") as csvfile:
+        reader = csv.DictReader(csvfile)
+        return list(reader)
+
+
 def seed_reference_data():
     """Seed lookup tables with reference data"""
     db = SessionLocal()
     try:
         print("Seeding reference data...")
 
-        # Clouds
-        clouds = [
-            Cloud(name="AWS"),
-            Cloud(name="GCP"),
-            Cloud(name="Azure"),
-            Cloud(name="IBM Cloud"),
-            Cloud(name="OCI"),
-        ]
-        db.add_all(clouds)
-        db.flush()
-        print(f"✓ Added {len(clouds)} cloud providers")
-
-        # GPU Types - read from CSV file
+        # Read CSV file once
         csv_path = (
             Path(__file__).parent.parent.parent / "apptio" / "GPU-types-by-cloud-provider.csv"
         )
-        gpu_types_data = set()  # Use set to get unique combinations
 
+        csv_data = None
         try:
-            with open(csv_path, "r") as csvfile:
-                reader = csv.DictReader(csvfile)
-                for row in reader:
-                    gpu_family = row["GPU Type"].strip()
-                    memory_str = row["GPU Memory (GB)"].strip()
-                    variant = row["GPU Variant"].strip()
+            csv_data = read_csv_data(csv_path)
+            print(f"✓ Read {len(csv_data)} rows from CSV file")
+        except FileNotFoundError:
+            print(f"⚠ Warning: CSV file not found at {csv_path}")
+            print("  Using fallback reference data...")
 
-                    # Skip if GPU Type is empty
-                    if not gpu_family:
-                        raise ValueError(f"GPU Type is empty in row {row} of {csv_path}")
+        # Clouds
+        if csv_data:
+            cloud_names = set()
+            for row in csv_data:
+                cloud_name = row["Cloud Provider"].strip()
+                if cloud_name:
+                    cloud_names.add(cloud_name)
 
-                    # Parse memory (handle cases like "1/8" or empty values)
-                    try:
-                        if "/" in memory_str:
-                            # For fractional values, use 0 or skip
-                            memory_gb = 0
-                        elif memory_str:
-                            memory_gb = int(float(memory_str))
-                        else:
-                            memory_gb = 0
-                    except (ValueError, AttributeError):
-                        memory_gb = 0
+            clouds = [Cloud(name=name) for name in sorted(cloud_names)]
+            db.add_all(clouds)
+            db.flush()
+            print(f"✓ Added {len(clouds)} cloud providers: {', '.join(sorted(cloud_names))}")
+        else:
+            clouds = [
+                Cloud(name="AWS"),
+                Cloud(name="Azure"),
+                Cloud(name="GCP"),
+                Cloud(name="IBM"),
+            ]
+            db.add_all(clouds)
+            db.flush()
+            print(f"✓ Added {len(clouds)} fallback cloud providers")
 
-                    # Create unique tuple
-                    gpu_types_data.add((gpu_family, memory_gb, variant))
+        # GPU Types
+        if csv_data:
+            gpu_types_data = set()  # Use set to get unique combinations
+            for row in csv_data:
+                gpu_family = row["GPU Type"].strip()
+                memory_str = row["GPU Memory (GB)"].strip()
+                variant = row["GPU Variant"].strip()
+
+                # Skip if GPU Type is empty
+                if not gpu_family:
+                    continue
+
+                memory_gb = parse_gpu_memory(memory_str)
+                gpu_types_data.add((gpu_family, memory_gb, variant))
 
             # Create GpuType objects from unique combinations
             gpu_types = []
             for family, memory_gb, variant in sorted(gpu_types_data):
-                # Create display name from family, memory, and variant
-                if variant and memory_gb > 0:
-                    display_name = f"{family} {memory_gb}GB {variant}"
-                elif memory_gb > 0:
-                    display_name = f"{family} {memory_gb}GB"
-                elif variant:
-                    display_name = f"{family} {variant}"
-                else:
-                    display_name = family
-
-                # Convert display name to kebab-case for the name field (primary key)
+                display_name = build_gpu_display_name(family, memory_gb, variant)
                 kebab_name = to_kebab_case(display_name)
 
                 gpu_type = GpuType(
@@ -112,11 +141,7 @@ def seed_reference_data():
             db.add_all(gpu_types)
             db.flush()
             print(f"✓ Added {len(gpu_types)} GPU types from CSV")
-
-        except FileNotFoundError:
-            print(f"⚠ Warning: CSV file not found at {csv_path}")
-            print("  Using fallback GPU types...")
-            # Fallback to basic GPU types if CSV not found
+        else:
             fallback_data = [
                 ("NVIDIA A100", 40, None),
                 ("NVIDIA H100", 80, None),
@@ -176,36 +201,48 @@ def seed_reference_data():
         print(f"✓ Added {len(allocation_types)} allocation types")
 
         # Instance Types
-        instance_types = [
-            # AWS
-            InstanceType(name="p4d.24xlarge", cloud_name="AWS"),  # 8x A100 40GB
-            InstanceType(name="p4de.24xlarge", cloud_name="AWS"),  # 8x A100 80GB
-            InstanceType(name="p5.48xlarge", cloud_name="AWS"),  # 8x H100 80GB
-            InstanceType(name="p3.2xlarge", cloud_name="AWS"),  # 1x V100
-            InstanceType(name="p3.8xlarge", cloud_name="AWS"),  # 4x V100
-            InstanceType(name="p3.16xlarge", cloud_name="AWS"),  # 8x V100
-            InstanceType(name="g5.xlarge", cloud_name="AWS"),  # 1x A10G
-            InstanceType(name="g5.12xlarge", cloud_name="AWS"),  # 4x A10G
-            InstanceType(name="g4dn.xlarge", cloud_name="AWS"),  # 1x T4
-            # GCP
-            InstanceType(name="a2-highgpu-1g", cloud_name="GCP"),  # 1x A100 40GB
-            InstanceType(name="a2-highgpu-2g", cloud_name="GCP"),  # 2x A100 40GB
-            InstanceType(name="a2-highgpu-4g", cloud_name="GCP"),  # 4x A100 40GB
-            InstanceType(name="a2-highgpu-8g", cloud_name="GCP"),  # 8x A100 40GB
-            InstanceType(name="a2-ultragpu-1g", cloud_name="GCP"),  # 1x A100 80GB
-            InstanceType(name="a2-ultragpu-8g", cloud_name="GCP"),  # 8x A100 80GB
-            InstanceType(name="a3-highgpu-8g", cloud_name="GCP"),  # 8x H100 80GB
-            InstanceType(name="g2-standard-4", cloud_name="GCP"),  # 1x L4
-            # Azure
-            InstanceType(name="Standard_ND96asr_v4", cloud_name="Azure"),  # 8x A100 40GB
-            InstanceType(name="Standard_ND96amsr_A100_v4", cloud_name="Azure"),  # 8x A100 80GB
-            InstanceType(name="Standard_NC24ads_A100_v4", cloud_name="Azure"),  # 1x A100 80GB
-            InstanceType(name="Standard_NC6s_v3", cloud_name="Azure"),  # 1x V100
-            InstanceType(name="Standard_NC24s_v3", cloud_name="Azure"),  # 4x V100
-        ]
-        db.add_all(instance_types)
-        db.flush()
-        print(f"✓ Added {len(instance_types)} instance types")
+        instance_types = []
+        if csv_data:
+            skipped_count = 0
+            for row in csv_data:
+                instance_name = row["Instance Type"].strip()
+                cloud_name = row["Cloud Provider"].strip()
+                gpu_family = row["GPU Type"].strip()
+                memory_str = row["GPU Memory (GB)"].strip()
+                variant = row["GPU Variant"].strip()
+
+                # Skip if required fields are empty
+                if not instance_name or not cloud_name or not gpu_family:
+                    skipped_count += 1
+                    continue
+
+                # Build GPU type name (same logic as GPU type creation)
+                memory_gb = parse_gpu_memory(memory_str)
+                gpu_display_name = build_gpu_display_name(gpu_family, memory_gb, variant)
+                gpu_type_name = to_kebab_case(gpu_display_name)
+
+                # Verify that the GPU type exists in the database
+                gpu_type = db.query(GpuType).filter(GpuType.name == gpu_type_name).first()
+                if not gpu_type:
+                    print(f"  ⚠ Warning: GPU type '{gpu_type_name}' not found for instance '{instance_name}', skipping")
+                    skipped_count += 1
+                    continue
+
+                # Create instance type
+                instance_type = InstanceType(
+                    name=instance_name,
+                    cloud_name=cloud_name,
+                    gpu_type_name=gpu_type_name,
+                )
+                instance_types.append(instance_type)
+
+            db.add_all(instance_types)
+            db.flush()
+            print(f"✓ Added {len(instance_types)} instance types from CSV")
+            if skipped_count > 0:
+                print(f"  ⚠ Skipped {skipped_count} instance types (missing data or GPU type not found)")
+        else:
+            print("  Skipping instance types (no CSV data)")
 
         db.commit()
         print("\n✓ Reference data seeded successfully!")
