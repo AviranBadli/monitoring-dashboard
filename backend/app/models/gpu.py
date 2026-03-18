@@ -15,7 +15,6 @@ class GPU(Base):
     uuid = Column(String, primary_key=True, index=True)
     gpu_number = Column(Integer, nullable=False)  # GPU number within the node
     gpu_cluster = Column(String, nullable=False, index=True)  # From Prometheus labels
-    model_name = Column(String, nullable=False)  # e.g., "NVIDIA A100-SXM4-80GB"
     node_name = Column(String, ForeignKey("gpu_nodes.name"), nullable=True)
     gpu_type_name = Column(String, ForeignKey("gpu_types.name"), nullable=True)
 

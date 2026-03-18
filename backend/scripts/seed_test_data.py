@@ -45,21 +45,21 @@ def seed_test_data():
         # Create GPU Nodes and GPUs
         node_configs = [
             # AWS prod-us-east-1
-            ("prod-us-east-1-node-001", "prod-us-east-1", "p4d.24xlarge", "AI Research", 8, "NVIDIA A100-SXM4-40GB", "A100"),
-            ("prod-us-east-1-node-002", "prod-us-east-1", "p4d.24xlarge", "AI Research", 8, "NVIDIA A100-SXM4-40GB", "A100"),
-            ("prod-us-east-1-node-003", "prod-us-east-1", "p4de.24xlarge", "LLM Training", 8, "NVIDIA A100-SXM4-80GB", "A100-80GB"),
+            ("prod-us-east-1-node-001", "prod-us-east-1", "p4d.24xlarge", "AI Research", 8, "nvidia-a100-40gb-sxm4"),
+            ("prod-us-east-1-node-002", "prod-us-east-1", "p4d.24xlarge", "AI Research", 8, "nvidia-a100-40gb-sxm4"),
+            ("prod-us-east-1-node-003", "prod-us-east-1", "p4de.24xlarge", "LLM Training", 8, "nvidia-a100-40gb-sxm4"),
             # AWS prod-us-west-2
-            ("prod-us-west-2-node-001", "prod-us-west-2", "p3.16xlarge", "ML Platform", 8, "Tesla V100-SXM2-16GB", "V100"),
-            ("prod-us-west-2-node-002", "prod-us-west-2", "g5.12xlarge", "ML Platform", 4, "NVIDIA A10G", "A10G"),
+            ("prod-us-west-2-node-001", "prod-us-west-2", "p3.16xlarge", "ML Platform", 8, "nvidia-v100-16gb-sxm2"),
+            ("prod-us-west-2-node-002", "prod-us-west-2", "g5.12xlarge", "ML Platform", 4, "nvidia-a10-24gb-pcie"),
             # GCP prod-gcp-us-central1
-            ("prod-gcp-node-001", "prod-gcp-us-central1", "a2-highgpu-8g", "LLM Training", 8, "NVIDIA A100-SXM4-40GB", "A100"),
-            ("prod-gcp-node-002", "prod-gcp-us-central1", "a3-highgpu-8g", "LLM Training", 8, "NVIDIA H100-SXM5-80GB", "H100-80GB"),
+            ("prod-gcp-node-001", "prod-gcp-us-central1", "a2-highgpu-8g", "LLM Training", 8, "nvidia-a100-40gb-sxm4"),
+            ("prod-gcp-node-002", "prod-gcp-us-central1", "a3-highgpu-8g", "LLM Training", 8, "nvidia-h100-80gb-sxm5"),
             # Azure dev-azure-eastus
-            ("dev-azure-node-001", "dev-azure-eastus", "Standard_NC24s_v3", "Data Science", 4, "Tesla V100-PCIE-16GB", "V100"),
+            ("dev-azure-node-001", "dev-azure-eastus", "Standard_NC24s_v3", "Data Science", 4, "nvidia-v100-16gb-sxm2"),
         ]
 
         all_gpus = []
-        for node_name, cluster_name, instance_type, team, gpu_count, model_name, gpu_type in node_configs:
+        for node_name, cluster_name, instance_type, team, gpu_count, gpu_type in node_configs:
             # Create node
             node = GPUNode(
                 name=node_name,
@@ -77,7 +77,6 @@ def seed_test_data():
                     uuid=gpu_uuid,
                     gpu_number=i,
                     gpu_cluster=cluster_name,
-                    model_name=model_name,
                     node_name=node_name,
                     gpu_type_name=gpu_type,
                     first_discovered=datetime.utcnow() - timedelta(days=random.randint(30, 90)),
@@ -145,7 +144,7 @@ def seed_test_data():
         }
 
         # Generate hourly cost data for the last 30 days
-        for node_name, cluster_name, instance_type, team, gpu_count, model_name, gpu_type in node_configs:
+        for node_name, cluster_name, instance_type, team, gpu_count, gpu_type in node_configs:
             base_cost = instance_costs.get(instance_type, 10.0)
 
             current_time = base_time

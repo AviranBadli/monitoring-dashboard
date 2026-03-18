@@ -1,6 +1,8 @@
 """Seed reference/lookup data for the database"""
 
 import sys
+import csv
+import re
 from pathlib import Path
 
 # Add parent directory to path to import app modules
@@ -8,6 +10,27 @@ sys.path.append(str(Path(__file__).parent.parent))
 
 from app.core.database import SessionLocal
 from app.models import Cloud, GpuType, Team, WorkloadType, AllocationType, InstanceType
+
+
+def to_kebab_case(text):
+    """
+    Convert text to kebab-case (lowercase with hyphens)
+
+    Examples:
+        "NVIDIA A100 40GB SXM4" -> "nvidia-a100-40gb-sxm4"
+        "Intel Gaudi 3 128GB PCIe" -> "intel-gaudi-3-128gb-pcie"
+    """
+    # Replace spaces and underscores with hyphens
+    text = re.sub(r'[\s_]+', '-', text)
+    # Remove any non-alphanumeric characters except hyphens
+    text = re.sub(r'[^a-zA-Z0-9-]', '', text)
+    # Convert to lowercase
+    text = text.lower()
+    # Remove multiple consecutive hyphens
+    text = re.sub(r'-+', '-', text)
+    # Remove leading/trailing hyphens
+    text = text.strip('-')
+    return text
 
 
 def seed_reference_data():
@@ -28,22 +51,92 @@ def seed_reference_data():
         db.flush()
         print(f"✓ Added {len(clouds)} cloud providers")
 
-        # GPU Types
-        gpu_types = [
-            GpuType(name="A100"),
-            GpuType(name="A100-80GB"),
-            GpuType(name="H100"),
-            GpuType(name="H100-80GB"),
-            GpuType(name="V100"),
-            GpuType(name="V100-32GB"),
-            GpuType(name="L4"),
-            GpuType(name="L40S"),
-            GpuType(name="A10G"),
-            GpuType(name="T4"),
-        ]
-        db.add_all(gpu_types)
-        db.flush()
-        print(f"✓ Added {len(gpu_types)} GPU types")
+        # GPU Types - read from CSV file
+        csv_path = Path(__file__).parent.parent.parent / "apptio" / "GPU-types-by-cloud-provider.csv"
+        gpu_types_data = set()  # Use set to get unique combinations
+
+        try:
+            with open(csv_path, 'r') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    gpu_family = row['GPU Type'].strip()
+                    memory_str = row['GPU Memory (GB)'].strip()
+                    variant = row['GPU Variant'].strip()
+
+                    # Skip if GPU Type is empty
+                    if not gpu_family:
+                        raise ValueError(f"GPU Type is empty in row {row} of {csv_path}");
+
+                    # Parse memory (handle cases like "1/8" or empty values)
+                    try:
+                        if '/' in memory_str:
+                            # For fractional values, use 0 or skip
+                            memory_gb = 0
+                        elif memory_str:
+                            memory_gb = int(float(memory_str))
+                        else:
+                            memory_gb = 0
+                    except (ValueError, AttributeError):
+                        memory_gb = 0
+
+                    # Create unique tuple
+                    gpu_types_data.add((gpu_family, memory_gb, variant))
+
+            # Create GpuType objects from unique combinations
+            gpu_types = []
+            for family, memory_gb, variant in sorted(gpu_types_data):
+                # Create display name from family, memory, and variant
+                if variant and memory_gb > 0:
+                    display_name = f"{family} {memory_gb}GB {variant}"
+                elif memory_gb > 0:
+                    display_name = f"{family} {memory_gb}GB"
+                elif variant:
+                    display_name = f"{family} {variant}"
+                else:
+                    display_name = family
+
+                # Convert display name to kebab-case for the name field (primary key)
+                kebab_name = to_kebab_case(display_name)
+
+                gpu_type = GpuType(
+                    name=kebab_name,
+                    display_name=display_name,
+                    family=family,
+                    memory_gb=memory_gb,
+                    variant=variant if variant else None
+                )
+                gpu_types.append(gpu_type)
+
+            db.add_all(gpu_types)
+            db.flush()
+            print(f"✓ Added {len(gpu_types)} GPU types from CSV")
+
+        except FileNotFoundError:
+            print(f"⚠ Warning: CSV file not found at {csv_path}")
+            print("  Using fallback GPU types...")
+            # Fallback to basic GPU types if CSV not found
+            fallback_data = [
+                ("NVIDIA A100", 40, None),
+                ("NVIDIA H100", 80, None),
+                ("NVIDIA V100", 16, None),
+                ("NVIDIA L4", 24, None),
+            ]
+            gpu_types = []
+            for family, memory_gb, variant in fallback_data:
+                display_name = f"{family} {memory_gb}GB"
+                name = to_kebab_case(display_name)
+                gpu_types.append(
+                    GpuType(
+                        name=name,
+                        display_name=display_name,
+                        family=family,
+                        memory_gb=memory_gb,
+                        variant=variant
+                    )
+                )
+            db.add_all(gpu_types)
+            db.flush()
+            print(f"✓ Added {len(gpu_types)} fallback GPU types")
 
         # Teams
         teams = [

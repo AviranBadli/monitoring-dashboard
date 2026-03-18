@@ -26,7 +26,7 @@ cp .env.example .env
 
 ```bash
 # Run migrations
-poetry run alembic upgrade head
+poetry run python -m alembic upgrade head
 ```
 
 ### Running the API
