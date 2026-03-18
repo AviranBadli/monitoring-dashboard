@@ -43,6 +43,7 @@ poetry.lock
 .coverage
 htmlcov/
 .ruff_cache/
+test.db
 
 # MyPy
 .mypy_cache/

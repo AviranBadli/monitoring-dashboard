@@ -72,10 +72,7 @@ async def health_check():
 
     # Check database
     db_success, db_msg = check_database()
-    checks["database"] = {
-        "status": "healthy" if db_success else "unhealthy",
-        "message": db_msg
-    }
+    checks["database"] = {"status": "healthy" if db_success else "unhealthy", "message": db_msg}
     if not db_success:
         all_healthy = False
 
@@ -83,20 +80,14 @@ async def health_check():
     vm_success, vm_msg = await check_victoria_metrics()
     checks["victoria_metrics"] = {
         "status": "healthy" if vm_success else "unhealthy",
-        "message": vm_msg
+        "message": vm_msg,
     }
     if not vm_success:
         all_healthy = False
 
-    response_data = {
-        "status": "healthy" if all_healthy else "unhealthy",
-        "checks": checks
-    }
+    response_data = {"status": "healthy" if all_healthy else "unhealthy", "checks": checks}
 
     # Return 503 if any check failed
     status_code = 200 if all_healthy else 503
 
-    return JSONResponse(
-        content=response_data,
-        status_code=status_code
-    )
+    return JSONResponse(content=response_data, status_code=status_code)

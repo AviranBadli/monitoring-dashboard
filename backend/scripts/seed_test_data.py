@@ -1,17 +1,16 @@
 """Seed test data with realistic GPU infrastructure and allocations"""
 
 import sys
+import uuid
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 import random
 
 # Add parent directory to path to import app modules
 sys.path.append(str(Path(__file__).parent.parent))
 
 from app.core.database import SessionLocal
-from app.models import (
-    Owner, GPUCluster, GPUNode, GPU, Allocation, CostTimeseries
-)
+from app.models import Owner, GPUCluster, GPUNode, GPU, Allocation, CostTimeseries
 
 
 def seed_test_data():
@@ -45,17 +44,73 @@ def seed_test_data():
         # Create GPU Nodes and GPUs
         node_configs = [
             # AWS prod-us-east-1
-            ("prod-us-east-1-node-001", "prod-us-east-1", "p4d.24xlarge", "AI Research", 8, "nvidia-a100-40gb-sxm4"),
-            ("prod-us-east-1-node-002", "prod-us-east-1", "p4d.24xlarge", "AI Research", 8, "nvidia-a100-40gb-sxm4"),
-            ("prod-us-east-1-node-003", "prod-us-east-1", "p4de.24xlarge", "LLM Training", 8, "nvidia-a100-40gb-sxm4"),
+            (
+                "prod-us-east-1-node-001",
+                "prod-us-east-1",
+                "p4d.24xlarge",
+                "AI Research",
+                8,
+                "nvidia-a100-40gb-sxm4",
+            ),
+            (
+                "prod-us-east-1-node-002",
+                "prod-us-east-1",
+                "p4d.24xlarge",
+                "AI Research",
+                8,
+                "nvidia-a100-40gb-sxm4",
+            ),
+            (
+                "prod-us-east-1-node-003",
+                "prod-us-east-1",
+                "p4de.24xlarge",
+                "LLM Training",
+                8,
+                "nvidia-a100-40gb-sxm4",
+            ),
             # AWS prod-us-west-2
-            ("prod-us-west-2-node-001", "prod-us-west-2", "p3.16xlarge", "ML Platform", 8, "nvidia-v100-16gb-sxm2"),
-            ("prod-us-west-2-node-002", "prod-us-west-2", "g5.12xlarge", "ML Platform", 4, "nvidia-a10-24gb-pcie"),
+            (
+                "prod-us-west-2-node-001",
+                "prod-us-west-2",
+                "p3.16xlarge",
+                "ML Platform",
+                8,
+                "nvidia-v100-16gb-sxm2",
+            ),
+            (
+                "prod-us-west-2-node-002",
+                "prod-us-west-2",
+                "g5.12xlarge",
+                "ML Platform",
+                4,
+                "nvidia-a10-24gb-pcie",
+            ),
             # GCP prod-gcp-us-central1
-            ("prod-gcp-node-001", "prod-gcp-us-central1", "a2-highgpu-8g", "LLM Training", 8, "nvidia-a100-40gb-sxm4"),
-            ("prod-gcp-node-002", "prod-gcp-us-central1", "a3-highgpu-8g", "LLM Training", 8, "nvidia-h100-80gb-sxm5"),
+            (
+                "prod-gcp-node-001",
+                "prod-gcp-us-central1",
+                "a2-highgpu-8g",
+                "LLM Training",
+                8,
+                "nvidia-a100-40gb-sxm4",
+            ),
+            (
+                "prod-gcp-node-002",
+                "prod-gcp-us-central1",
+                "a3-highgpu-8g",
+                "LLM Training",
+                8,
+                "nvidia-h100-80gb-sxm5",
+            ),
             # Azure dev-azure-eastus
-            ("dev-azure-node-001", "dev-azure-eastus", "Standard_NC24s_v3", "Data Science", 4, "nvidia-v100-16gb-sxm2"),
+            (
+                "dev-azure-node-001",
+                "dev-azure-eastus",
+                "Standard_NC24s_v3",
+                "Data Science",
+                4,
+                "nvidia-v100-16gb-sxm2",
+            ),
         ]
 
         all_gpus = []
@@ -65,22 +120,22 @@ def seed_test_data():
                 name=node_name,
                 cluster_name=cluster_name,
                 instance_type_name=instance_type,
-                team_name=team
+                team_name=team,
             )
             db.add(node)
             db.flush()
 
             # Create GPUs for this node
             for i in range(gpu_count):
-                gpu_uuid = f"GPU-{node_name}-{i:02d}"
+                gpu_uuid = str(uuid.uuid4())
                 gpu = GPU(
                     uuid=gpu_uuid,
                     gpu_number=i,
                     gpu_cluster=cluster_name,
                     node_name=node_name,
                     gpu_type_name=gpu_type,
-                    first_discovered=datetime.utcnow() - timedelta(days=random.randint(30, 90)),
-                    last_seen=datetime.utcnow()
+                    first_discovered=datetime.now(UTC) - timedelta(days=random.randint(30, 90)),
+                    last_seen=datetime.now(UTC),
                 )
                 db.add(gpu)
                 all_gpus.append(gpu)
@@ -94,11 +149,11 @@ def seed_test_data():
         allocation_types = ["on-demand", "reserved", "spot"]
         teams = ["AI Research", "ML Platform", "LLM Training", "Data Science"]
 
-        base_time = datetime.utcnow() - timedelta(days=30)
+        base_time = datetime.now(UTC) - timedelta(days=30)
 
         for gpu in all_gpus:
             current_time = base_time
-            end_time = datetime.utcnow()
+            end_time = datetime.now(UTC)
 
             # Create 5-10 allocation periods for each GPU over 30 days
             num_allocations = random.randint(5, 10)
@@ -117,7 +172,7 @@ def seed_test_data():
                     workload_type_name=random.choice(workload_types),
                     allocation_type_name=random.choice(allocation_types),
                     start_time=current_time,
-                    end_time=alloc_end
+                    end_time=alloc_end,
                 )
                 allocations.append(allocation)
 
@@ -148,7 +203,7 @@ def seed_test_data():
             base_cost = instance_costs.get(instance_type, 10.0)
 
             current_time = base_time
-            while current_time < datetime.utcnow():
+            while current_time < datetime.now(UTC):
                 # Randomly assign workload type based on time of day
                 hour = current_time.hour
                 if 2 <= hour <= 6:
@@ -164,7 +219,7 @@ def seed_test_data():
                     cost=base_cost,
                     node_name=node_name,
                     instance_type_name=instance_type,
-                    workload_type_name=workload
+                    workload_type_name=workload,
                 )
                 cost_data.append(cost_entry)
 
@@ -188,6 +243,7 @@ def seed_test_data():
         db.rollback()
         print(f"\n✗ Error seeding test data: {e}")
         import traceback
+
         traceback.print_exc()
         raise
     finally:

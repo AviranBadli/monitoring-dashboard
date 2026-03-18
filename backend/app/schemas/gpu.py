@@ -10,7 +10,6 @@ class GPUBase(BaseModel):
     uuid: str
     gpu_number: int
     gpu_cluster: str
-    model_name: str
 
 
 class GPU(GPUBase):
