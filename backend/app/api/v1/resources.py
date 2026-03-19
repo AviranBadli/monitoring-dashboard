@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from app.api.deps import get_db
-from app.models import Cloud, Team, GpuType, WorkloadType, AllocationType
+from app.models import Cloud, Team, GpuType, WorkloadType, AllocationType, InstanceType
 from app.schemas.cloud import Cloud as CloudSchema, CloudCreate
 from app.schemas.team import Team as TeamSchema, TeamCreate
 
@@ -75,3 +75,33 @@ def list_workload_types(db: Session = Depends(get_db)):
 def list_allocation_types(db: Session = Depends(get_db)):
     """List all allocation types"""
     return db.query(AllocationType).all()
+
+
+# Instance Types
+@router.get("/instance-types")
+def list_instance_types(db: Session = Depends(get_db)):
+    """List all instance types"""
+    return db.query(InstanceType).all()
+
+
+@router.post("/instance-types", status_code=201)
+def create_instance_type(
+    name: str,
+    cloud_name: str,
+    gpu_type_name: str,
+    gpu_count: float,
+    instance_family: str,
+    db: Session = Depends(get_db)
+):
+    """Create a new instance type"""
+    db_instance_type = InstanceType(
+        name=name,
+        cloud_name=cloud_name,
+        gpu_type_name=gpu_type_name,
+        gpu_count=gpu_count,
+        instance_family=instance_family
+    )
+    db.add(db_instance_type)
+    db.commit()
+    db.refresh(db_instance_type)
+    return db_instance_type

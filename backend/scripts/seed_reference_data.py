@@ -206,13 +206,23 @@ def seed_reference_data():
             skipped_count = 0
             for row in csv_data:
                 instance_name = row["Instance Type"].strip()
+                instance_family = row["Instance Family"].strip()
                 cloud_name = row["Cloud Provider"].strip()
                 gpu_family = row["GPU Type"].strip()
                 memory_str = row["GPU Memory (GB)"].strip()
                 variant = row["GPU Variant"].strip()
+                gpu_count_str = row.get("GPU Count", "").strip()
 
                 # Skip if required fields are empty
-                if not instance_name or not cloud_name or not gpu_family:
+                if not instance_name or not cloud_name or not gpu_family or not gpu_count_str:
+                    skipped_count += 1
+                    continue
+
+                # Parse GPU count
+                try:
+                    gpu_count = float(gpu_count_str)
+                except (ValueError, AttributeError):
+                    print(f"  ⚠ Warning: Invalid GPU count '{gpu_count_str}' for instance '{instance_name}', skipping")
                     skipped_count += 1
                     continue
 
@@ -233,6 +243,8 @@ def seed_reference_data():
                     name=instance_name,
                     cloud_name=cloud_name,
                     gpu_type_name=gpu_type_name,
+                    gpu_count=gpu_count,
+                    instance_family=instance_family,
                 )
                 instance_types.append(instance_type)
 
