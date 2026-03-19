@@ -1,5 +1,7 @@
 # GPUaaS Monitoring Dashboard
 
+[![CI](https://github.com/AIPCC-GPUaaS/monitoring-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/AIPCC-GPUaaS/monitoring-dashboard/actions/workflows/ci.yml)
+
 This work defined the data structures for the monitoring dashboard.
 
 ## Prototype frontend
