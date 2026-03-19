@@ -28,7 +28,6 @@ class GPU(Base):
     # Relationships
     node = relationship("GPUNode", back_populates="gpus")
     gpu_type = relationship("GpuType", back_populates="gpus")
-    allocations = relationship("Allocation", back_populates="gpu")
 
     # Table-level constraints
     # Note: CheckConstraint disabled for SQLite compatibility in tests

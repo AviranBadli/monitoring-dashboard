@@ -12,13 +12,15 @@ class GPUNode(Base):
     __tablename__ = "gpu_nodes"
 
     name = Column(String, primary_key=True, index=True)
-    cluster_name = Column(String, ForeignKey("gpu_clusters.name"), nullable=False)
+    cluster_name = Column(String, ForeignKey("gpu_clusters.name"), nullable=True)
     instance_type_name = Column(String, ForeignKey("instance_types.name"), nullable=False)
     team_name = Column(String, ForeignKey("teams.name"), nullable=False)
+    region = Column(String, nullable=True)
 
     # Relationships
     cluster = relationship("GPUCluster", back_populates="nodes")
     instance_type = relationship("InstanceType", back_populates="nodes")
     team = relationship("Team", back_populates="nodes")
     gpus = relationship("GPU", back_populates="node")
+    allocations = relationship("Allocation", back_populates="node")
     cost_timeseries = relationship("CostTimeseries", back_populates="node")

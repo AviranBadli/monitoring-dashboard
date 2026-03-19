@@ -43,7 +43,7 @@ def seed_test_data():
 
         # Create GPU Nodes and GPUs
         node_configs = [
-            # AWS prod-us-east-1
+            # AWS prod-us-east-1 (format: name, cluster, instance_type, team, gpu_count, gpu_type)
             (
                 "prod-us-east-1-node-001",
                 "prod-us-east-1",
@@ -144,18 +144,32 @@ def seed_test_data():
         print(f"✓ Added {len(node_configs)} GPU nodes with {len(all_gpus)} GPUs")
 
         # Create Allocations (last 30 days)
+        # Now allocations are at the node level, not individual GPUs
         allocations = []
         workload_types = ["training", "inference", "development", "idle"]
         allocation_types = ["on-demand", "reserved", "spot"]
         teams = ["AI Research", "ML Platform", "LLM Training", "Data Science"]
 
+        # Map nodes to their primary allocation types for cost calculation
+        node_allocation_map = {
+            "prod-us-east-1-node-001": "reserved",
+            "prod-us-east-1-node-002": "reserved",
+            "prod-us-east-1-node-003": "on-demand",
+            "prod-us-west-2-node-001": "on-demand",
+            "prod-us-west-2-node-002": "spot",
+            "prod-gcp-node-001": "reserved",
+            "prod-gcp-node-002": "on-demand",
+            "dev-azure-node-001": "spot",
+        }
+
         base_time = datetime.now(UTC) - timedelta(days=30)
 
-        for gpu in all_gpus:
+        # Create allocations for each node
+        for node_name, cluster_name, instance_type, team, gpu_count, gpu_type in node_configs:
             current_time = base_time
             end_time = datetime.now(UTC)
 
-            # Create 5-10 allocation periods for each GPU over 30 days
+            # Create 5-10 allocation periods for each node over 30 days
             num_allocations = random.randint(5, 10)
 
             for _ in range(num_allocations):
@@ -167,7 +181,7 @@ def seed_test_data():
                 alloc_end = min(current_time + timedelta(hours=duration_hours), end_time)
 
                 allocation = Allocation(
-                    gpu_uuid=gpu.uuid,
+                    node_name=node_name,
                     team_name=random.choice(teams),
                     workload_type_name=random.choice(workload_types),
                     allocation_type_name=random.choice(allocation_types),
@@ -181,7 +195,7 @@ def seed_test_data():
 
         db.add_all(allocations)
         db.flush()
-        print(f"✓ Added {len(allocations)} allocations")
+        print(f"✓ Added {len(allocations)} node allocations")
 
         # Create Cost Timeseries data
         cost_data = []
@@ -198,13 +212,28 @@ def seed_test_data():
             "Standard_NC24s_v3": 12.24,
         }
 
+        # Allocation type cost multipliers (relative to on-demand pricing)
+        allocation_multipliers = {
+            "on-demand": 1.0,   # Full price
+            "reserved": 0.65,   # ~35% discount for commitment
+            "spot": 0.30,       # ~70% discount but interruptible
+        }
+
         # Generate hourly cost data for the last 30 days
+        # Cost is based on instance type and the allocation type (from allocations)
         for node_name, cluster_name, instance_type, team, gpu_count, gpu_type in node_configs:
-            base_cost = instance_costs.get(instance_type, 10.0)
+            base_instance_cost = instance_costs.get(instance_type, 10.0)
+
+            # Use the primary allocation type for this node (simplified for seed data)
+            # In real system, you'd look up which allocation was active at each time
+            primary_allocation_type = node_allocation_map.get(node_name, "on-demand")
+            allocation_multiplier = allocation_multipliers.get(primary_allocation_type, 1.0)
+            hourly_cost = base_instance_cost * allocation_multiplier
 
             current_time = base_time
             while current_time < datetime.now(UTC):
                 # Randomly assign workload type based on time of day
+                # In real system, this would come from the active allocation
                 hour = current_time.hour
                 if 2 <= hour <= 6:
                     workload = "idle"
@@ -216,9 +245,8 @@ def seed_test_data():
                 cost_entry = CostTimeseries(
                     date=current_time,
                     duration_seconds=3600,  # 1 hour
-                    cost=base_cost,
+                    cost=hourly_cost,
                     node_name=node_name,
-                    instance_type_name=instance_type,
                     workload_type_name=workload,
                 )
                 cost_data.append(cost_entry)

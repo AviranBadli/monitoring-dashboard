@@ -7,7 +7,7 @@ from pydantic import BaseModel
 class AllocationBase(BaseModel):
     """Base Allocation schema"""
 
-    gpu_uuid: str
+    node_name: str
     team_name: str
     workload_type_name: str
     allocation_type_name: str
@@ -41,7 +41,7 @@ class AllocationQuery(BaseModel):
     """Schema for querying allocations"""
 
     team_name: str | None = None
-    gpu_uuid: str | None = None
+    node_name: str | None = None
     cluster_name: str | None = None
     start_time: datetime | None = None
     end_time: datetime | None = None

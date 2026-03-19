@@ -22,7 +22,6 @@ class InstanceType(Base):
     cloud = relationship("Cloud", back_populates="instance_types")
     gpu_type = relationship("GpuType", back_populates="instance_types")
     nodes = relationship("GPUNode", back_populates="instance_type")
-    cost_timeseries = relationship("CostTimeseries", back_populates="instance_type")
 
     # Table-level constraints
     # Note: CheckConstraint disabled for SQLite compatibility in tests

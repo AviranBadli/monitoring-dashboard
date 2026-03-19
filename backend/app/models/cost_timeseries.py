@@ -17,10 +17,8 @@ class CostTimeseries(Base):
     cost = Column(Float, nullable=False)
 
     node_name = Column(String, ForeignKey("gpu_nodes.name"), nullable=False, index=True)
-    instance_type_name = Column(String, ForeignKey("instance_types.name"), nullable=False)
     workload_type_name = Column(String, ForeignKey("workload_types.name"), nullable=False)
 
     # Relationships
     node = relationship("GPUNode", back_populates="cost_timeseries")
-    instance_type = relationship("InstanceType", back_populates="cost_timeseries")
     workload_type = relationship("WorkloadType", back_populates="cost_timeseries")

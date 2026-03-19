@@ -1,4 +1,4 @@
-"""GPU allocation endpoints"""
+"""GPU Node allocation endpoints"""
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -7,7 +7,7 @@ from typing import List
 from datetime import datetime
 
 from app.api.deps import get_db
-from app.models import Allocation, GPU
+from app.models import Allocation, GPUNode
 from app.schemas.allocation import (
     Allocation as AllocationSchema,
     AllocationCreate,
@@ -20,7 +20,7 @@ router = APIRouter()
 @router.get("/", response_model=List[AllocationSchema])
 def list_allocations(
     team_name: str | None = None,
-    gpu_uuid: str | None = None,
+    node_name: str | None = None,
     start_time: datetime | None = None,
     end_time: datetime | None = None,
     db: Session = Depends(get_db),
@@ -28,14 +28,14 @@ def list_allocations(
     """
     List allocations with optional filters.
 
-    Query allocations by team, GPU, or time range.
+    Query allocations by team, node, or time range.
     """
     query = db.query(Allocation)
 
     if team_name:
         query = query.filter(Allocation.team_name == team_name)
-    if gpu_uuid:
-        query = query.filter(Allocation.gpu_uuid == gpu_uuid)
+    if node_name:
+        query = query.filter(Allocation.node_name == node_name)
 
     # Time range filtering: allocations that overlap with the query range
     if start_time and end_time:
@@ -53,17 +53,17 @@ def list_allocations(
 @router.post("/", response_model=AllocationSchema, status_code=201)
 def create_allocation(allocation: AllocationCreate, db: Session = Depends(get_db)):
     """
-    Create a new GPU allocation.
+    Create a new node allocation.
 
     Validates that:
-    - GPU exists
+    - Node exists
     - No conflicting allocations exist
     - End time is after start time
     """
-    # Validate GPU exists
-    gpu = db.query(GPU).filter(GPU.uuid == allocation.gpu_uuid).first()
-    if not gpu:
-        raise HTTPException(status_code=404, detail="GPU not found")
+    # Validate node exists
+    node = db.query(GPUNode).filter(GPUNode.name == allocation.node_name).first()
+    if not node:
+        raise HTTPException(status_code=404, detail="Node not found")
 
     # Validate time range
     if allocation.end_time <= allocation.start_time:
@@ -74,7 +74,7 @@ def create_allocation(allocation: AllocationCreate, db: Session = Depends(get_db
         db.query(Allocation)
         .filter(
             and_(
-                Allocation.gpu_uuid == allocation.gpu_uuid,
+                Allocation.node_name == allocation.node_name,
                 Allocation.start_time < allocation.end_time,
                 Allocation.end_time > allocation.start_time,
             )
