@@ -123,7 +123,6 @@ g4dn.8xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe
 g4dn.xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe
 gr6.4xlarge,gr6,AWS,1,NVIDIA T4,16,PCIe
 Standard_NC4as_T4_v3,NC,Azure,1,NVIDIA T4,16,PCIe
-Standard_NC4as_T4_v3,NV,Azure,1,NVIDIA T4,16,PCIe
 Standard_NC8as_T4_v3,NC,Azure,1,NVIDIA T4,16,PCIe
 g4dn.12xlarge,g4dn,AWS,4,NVIDIA T4,16,PCIe
 Standard_NC64as_T4_v3,NC,Azure,4,NVIDIA T4,16,PCIe

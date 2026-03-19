@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gpuaas-secrets
+type: Opaque
+stringData:
+  postgres-user: gpuaas
+  postgres-password: changeme123
+  postgres-db: gpuaas
+  database-url: postgresql://gpuaas:changeme123@postgres:5432/gpuaas
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  containers:
+  - name: postgres
+    image: docker.io/library/postgres:17-alpine
+    env:
+    - name: POSTGRES_USER
+      valueFrom:
+        secretKeyRef:
+          name: gpuaas-secrets
+          key: postgres-user
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: gpuaas-secrets
+          key: postgres-password
+    - name: POSTGRES_DB
+      valueFrom:
+        secretKeyRef:
+          name: gpuaas-secrets
+          key: postgres-db
+    - name: PGDATA
+      value: /var/lib/postgresql/data/pgdata
+    ports:
+    - containerPort: 5432
+      hostPort: 5432
+    volumeMounts:
+    - name: postgres-data
+      mountPath: /var/lib/postgresql/data
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "512Mi"
+      limits:
+        cpu: "2"
+        memory: "2Gi"
+  volumes:
+  - name: postgres-data
+    persistentVolumeClaim:
+      claimName: postgres-data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

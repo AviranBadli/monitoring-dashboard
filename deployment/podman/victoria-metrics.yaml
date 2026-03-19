@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: victoria-metrics
+  labels:
+    app: victoria-metrics
+spec:
+  containers:
+  - name: victoria-metrics
+    image: docker.io/victoriametrics/victoria-metrics:latest
+    args:
+    - "-storageDataPath=/storage"
+    - "-retentionPeriod=12"
+    - "-httpListenAddr=:8428"
+    ports:
+    - containerPort: 8428
+      hostPort: 8428
+    volumeMounts:
+    - name: vm-data
+      mountPath: /storage
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
+      limits:
+        cpu: "1"
+        memory: "1Gi"
+  volumes:
+  - name: vm-data
+    persistentVolumeClaim:
+      claimName: vm-data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vm-data
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: victoria-metrics
+spec:
+  selector:
+    app: victoria-metrics
+  ports:
+  - protocol: TCP
+    port: 8428
+    targetPort: 8428
