@@ -98,7 +98,6 @@ def seed_reference_data():
         db.flush()
         print(f"✓ Added {len(clouds)} cloud providers: {', '.join(sorted(cloud_names))}")
 
-
         # GPU Types
         gpu_types_data = set[Any]()  # Use set to get unique combinations
         for row in csv_data:
@@ -131,7 +130,6 @@ def seed_reference_data():
         db.add_all(gpu_types)
         db.flush()
         print(f"✓ Added {len(gpu_types)} GPU types from CSV")
-
 
         # Teams
         teams = [
@@ -189,7 +187,9 @@ def seed_reference_data():
             try:
                 gpu_count = float(gpu_count_str)
             except (ValueError, AttributeError):
-                print(f"  ⚠ Warning: Invalid GPU count '{gpu_count_str}' for instance '{instance_name}', skipping")
+                print(
+                    f"  ⚠ Warning: Invalid GPU count '{gpu_count_str}' for instance '{instance_name}', skipping"
+                )
                 skipped_count += 1
                 continue
 
@@ -201,7 +201,9 @@ def seed_reference_data():
             # Verify that the GPU type exists in the database
             gpu_type = db.query(GpuType).filter(GpuType.name == gpu_type_name).first()
             if not gpu_type:
-                print(f"  ⚠ Warning: GPU type '{gpu_type_name}' not found for instance '{instance_name}', skipping")
+                print(
+                    f"  ⚠ Warning: GPU type '{gpu_type_name}' not found for instance '{instance_name}', skipping"
+                )
                 skipped_count += 1
                 continue
 
@@ -219,8 +221,9 @@ def seed_reference_data():
         db.flush()
         print(f"✓ Added {len(instance_types)} instance types from CSV")
         if skipped_count > 0:
-            print(f"  ⚠ Skipped {skipped_count} instance types (missing data or GPU type not found)")
-
+            print(
+                f"  ⚠ Skipped {skipped_count} instance types (missing data or GPU type not found)"
+            )
 
         db.commit()
         print("\n✓ Reference data seeded successfully!")

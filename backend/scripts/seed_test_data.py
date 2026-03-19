@@ -214,9 +214,9 @@ def seed_test_data():
 
         # Allocation type cost multipliers (relative to on-demand pricing)
         allocation_multipliers = {
-            "on-demand": 1.0,   # Full price
-            "reserved": 0.65,   # ~35% discount for commitment
-            "spot": 0.30,       # ~70% discount but interruptible
+            "on-demand": 1.0,  # Full price
+            "reserved": 0.65,  # ~35% discount for commitment
+            "spot": 0.30,  # ~70% discount but interruptible
         }
 
         # Generate hourly cost data for the last 30 days

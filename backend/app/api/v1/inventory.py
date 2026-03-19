@@ -28,18 +28,9 @@ def get_cluster(cluster_name: str, db: Session = Depends(get_db)):
 
 
 @router.post("/clusters", status_code=201)
-def create_cluster(
-    name: str,
-    cloud_name: str,
-    owner_id: int = None,
-    db: Session = Depends(get_db)
-):
+def create_cluster(name: str, cloud_name: str, owner_id: int = None, db: Session = Depends(get_db)):
     """Create a new GPU cluster"""
-    db_cluster = GPUCluster(
-        name=name,
-        cloud_name=cloud_name,
-        owner_id=owner_id
-    )
+    db_cluster = GPUCluster(name=name, cloud_name=cloud_name, owner_id=owner_id)
     db.add(db_cluster)
     db.commit()
     db.refresh(db_cluster)
@@ -88,7 +79,7 @@ def create_node(
     instance_type_name: str,
     team_name: str,
     region: str = None,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     """Create a new GPU node"""
     db_node = GPUNode(
@@ -96,7 +87,7 @@ def create_node(
         cluster_name=cluster_name,
         instance_type_name=instance_type_name,
         team_name=team_name,
-        region=region
+        region=region,
     )
     db.add(db_node)
     db.commit()
@@ -149,7 +140,7 @@ def create_gpu(
     gpu_cluster: str,
     gpu_type_name: str,
     node_name: str = None,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     """Create a new GPU"""
     db_gpu = GPU(
@@ -157,7 +148,7 @@ def create_gpu(
         gpu_number=gpu_number,
         gpu_cluster=gpu_cluster,
         gpu_type_name=gpu_type_name,
-        node_name=node_name
+        node_name=node_name,
     )
     db.add(db_gpu)
     db.commit()

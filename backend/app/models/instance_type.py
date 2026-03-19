@@ -1,7 +1,7 @@
 """Instance Type model"""
 
 import re
-from sqlalchemy import Column, String, ForeignKey, CheckConstraint, Float
+from sqlalchemy import Column, String, ForeignKey, Float
 from sqlalchemy.orm import relationship, validates
 
 from app.core.database import Base

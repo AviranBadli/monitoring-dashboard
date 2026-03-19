@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gpuaas-config
+data:
+  VICTORIA_METRICS_URL: "http://victoria-metrics:8428"
+  API_V1_PREFIX: "/api/v1"
+  PROJECT_NAME: "GPU Monitoring API"
+  DEBUG: "true"
+  BACKEND_CORS_ORIGINS: '["http://localhost:3000", "http://localhost:8000"]'
+  POSTGRES_HOST: "postgres"
+  POSTGRES_PORT: "5432"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gpuaas-backend
+  labels:
+    app: gpuaas-backend
+spec:
+  initContainers:
+  - name: wait-for-postgres
+    image: docker.io/library/postgres:17-alpine
+    command:
+    - sh
+    - -c
+    - |
+      until pg_isready -h postgres -p 5432 -U gpuaas; do
+        echo "Waiting for PostgreSQL..."
+        sleep 2
+      done
+      echo "PostgreSQL is ready!"
+    env:
+    - name: PGPASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: gpuaas-secrets
+          key: postgres-password
+  - name: run-migrations
+    image: localhost/gpuaas-backend:latest
+    command:
+    - sh
+    - -c
+    - |
+      echo "Running database migrations..."
+      poetry run alembic upgrade head
+      echo "Migrations complete!"
+    env:
+    - name: DATABASE_URL
+      valueFrom:
+        secretKeyRef:
+          name: gpuaas-secrets
+          key: database-url
+    envFrom:
+    - configMapRef:
+        name: gpuaas-config
+  containers:
+  - name: backend
+    image: localhost/gpuaas-backend:latest
+    command:
+    - poetry
+    - run
+    - uvicorn
+    - app.main:app
+    - --host
+    - "0.0.0.0"
+    - --port
+    - "8000"
+    env:
+    - name: DATABASE_URL
+      valueFrom:
+        secretKeyRef:
+          name: gpuaas-secrets
+          key: database-url
+    envFrom:
+    - configMapRef:
+        name: gpuaas-config
+    ports:
+    - containerPort: 8000
+      hostPort: 8000
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
+      limits:
+        cpu: "1"
+        memory: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gpuaas-backend
+spec:
+  selector:
+    app: gpuaas-backend
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000

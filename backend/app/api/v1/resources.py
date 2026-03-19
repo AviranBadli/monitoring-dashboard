@@ -107,15 +107,11 @@ def create_gpu_type(
     family: str,
     memory_gb: int = 0,
     variant: str = None,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     """Create a new GPU type"""
     db_type = GpuType(
-        name=name,
-        display_name=display_name,
-        family=family,
-        memory_gb=memory_gb,
-        variant=variant
+        name=name, display_name=display_name, family=family, memory_gb=memory_gb, variant=variant
     )
     db.add(db_type)
     db.commit()
@@ -228,7 +224,7 @@ def create_instance_type(
     gpu_type_name: str,
     gpu_count: float,
     instance_family: str,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     """Create a new instance type"""
     db_instance_type = InstanceType(
@@ -236,7 +232,7 @@ def create_instance_type(
         cloud_name=cloud_name,
         gpu_type_name=gpu_type_name,
         gpu_count=gpu_count,
-        instance_family=instance_family
+        instance_family=instance_family,
     )
     db.add(db_instance_type)
     db.commit()
