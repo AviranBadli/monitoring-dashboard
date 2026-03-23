@@ -3,6 +3,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKEND_DIR="$(cd "$SCRIPT_DIR/../../backend" && pwd)"
+FRONTEND_DIR="$(cd "$SCRIPT_DIR/../../frontend" && pwd)"
 
 echo "=== GPU Monitoring Dashboard - Podman Deployment ==="
 echo ""
@@ -12,6 +13,13 @@ echo "Step 1: Building backend container image..."
 cd "$BACKEND_DIR"
 podman build -t localhost/gpuaas-backend:latest -f "$SCRIPT_DIR/Containerfile" .
 echo "✓ Backend image built"
+echo ""
+
+# Build frontend image
+echo "Step 1b: Building frontend container image..."
+cd "$FRONTEND_DIR"
+podman build -t localhost/gpuaas-frontend:latest -f "$SCRIPT_DIR/Containerfile.frontend" .
+echo "✓ Frontend image built"
 echo ""
 
 # Deploy PostgreSQL (includes secrets)
@@ -24,7 +32,7 @@ echo ""
 # Wait for PostgreSQL to be ready
 echo "Step 3: Waiting for PostgreSQL to be ready..."
 for i in {1..30}; do
-  if podman exec postgres pg_isready -U gpuaas &>/dev/null; then
+  if podman exec postgres-postgres pg_isready -U gpuaas &>/dev/null; then
     echo "✓ PostgreSQL is ready"
     break
   fi
@@ -57,9 +65,28 @@ for i in {1..30}; do
 done
 echo ""
 
+# Deploy frontend
+echo "Step 7: Deploying frontend..."
+podman kube play frontend.yaml
+echo "✓ Frontend deployed"
+echo ""
+
+# Wait for frontend to be ready
+echo "Step 8: Waiting for frontend to be ready..."
+for i in {1..30}; do
+  if curl -s http://localhost:8501 &>/dev/null; then
+    echo "✓ Frontend is ready"
+    break
+  fi
+  echo "  Waiting... ($i/30)"
+  sleep 2
+done
+echo ""
+
 echo "=== Deployment Complete ==="
 echo ""
 echo "Access points:"
+echo "  - Dashboard: http://localhost:8501"
 echo "  - API: http://localhost:8000"
 echo "  - API Docs: http://localhost:8000/docs"
 echo "  - PostgreSQL: localhost:5432"

@@ -8,6 +8,9 @@ echo ""
 
 cd "$SCRIPT_DIR"
 
+echo "Stopping frontend..."
+podman kube down frontend.yaml 2>/dev/null || true
+
 echo "Stopping backend..."
 podman kube down backend.yaml 2>/dev/null || true
 
