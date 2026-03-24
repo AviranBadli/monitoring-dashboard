@@ -46,7 +46,7 @@ API will be available at: http://localhost:8000
 ### Create a new migration
 
 ```bash
-poetry run alembic revision --autogenerate -m "description"
+poetry run python -m alembic revision --autogenerate -m "description"
 ```
 
 ### Run tests

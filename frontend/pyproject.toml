@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "gpu-monitoring-frontend"
+version = "0.1.0"
+description = "GPU Resource Management Dashboard"
+authors = ["Sean Condon"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.45.0"
+httpx = "^0.28.1"
+pandas = "^2.2.0"
+plotly = "^6.0.0"
+pydantic-settings = "^2.13.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+black = "^26.3.1"
+ruff = "^0.15.6"
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

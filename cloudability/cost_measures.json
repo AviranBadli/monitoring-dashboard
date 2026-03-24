@@ -1,0 +1,2909 @@
+[
+  {
+    "name": "invoiced_cost",
+    "label": "Cost (Total Blended)",
+    "description": "This cost metric is specific to AWS and corresponds to the lineItem/BlendedCost column of the CUR file. This metric “blends” the impact of reserved instances and savings plans.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "blended_rate",
+    "label": "Rate (Blended)",
+    "description": "For Consolidated Billing accounts, the effective rate for the line item calculated as an average of the cost of identical instances operating in that hour in the same Availability Zone.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "usage_hours",
+    "label": "Usage Hours",
+    "description": "The number of computing resources used in the units specified by each service. For example, your service may determine pricing by the amount of storage, number of requests, or hours of operation.",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "io_requests",
+    "label": "I/O Requests",
+    "description": "Describes the number of data requests from a database service.",
+    "data_type": "integer",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "requests",
+    "label": "Requests",
+    "description": "The number of computing resources used in the units specified by each service. For example, your service may determine pricing by the amount of storage, number of requests, or hours of operation. ",
+    "data_type": "integer",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "gb_months",
+    "label": "GiB Months",
+    "description": "References byte-hours, which corresponds to the number of bytes stored on an AWS, Azure, GCP or OCI storage service in a particular hourly period. ",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "byte_hours",
+    "label": "GiB Hours",
+    "description": "A gigabyte-hour refers to the number of gigabytes stored on a cloud platform in a particular hourly period.",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "tag1",
+    "label": "App-Code (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag2",
+    "label": "Service Owner (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag3",
+    "label": "Service-Phase (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag4",
+    "label": "Service Name (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag5",
+    "label": "Service Component (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag6",
+    "label": "Business Unit (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag7",
+    "label": "RHEL Migrated (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag8",
+    "label": "MAP (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag9",
+    "label": "Cost-Center (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag10",
+    "label": "Name (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "invoice_date",
+    "label": "Invoice Date",
+    "description": "The invoice date for any cost item as provided by the cloud vendor. This is reported in \"Mon DD, YYYY\" format. Cloud consumption during the month is usually given an invoice date of the first day of that month.",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "date",
+    "label": "Date",
+    "description": "The calendar date - formatted \"Mon DD, YYYY\" (Aug 9, 2022).",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "year",
+    "label": "Year",
+    "description": "The calendar year any cost item was occurred, formatted YYYY (for example, 2022).",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "month",
+    "label": "Month (Category)",
+    "description": "The month any cost item was incurred, formatted \"Mon\". Examples \"Jun\", \"Jul\", \"Aug\". This is useful for looking at costs by month for any year (such as show costs that occurred in July of any year).",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "day",
+    "label": "Day",
+    "description": "The numeric calendar day (for example, \"Aug 9, 2022\" => 9).",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "day_of_week",
+    "label": "Day of Week",
+    "description": "The day of week (for example, Monday).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "vendor",
+    "label": "Vendor",
+    "description": "The cloud vendor associated with the cost item. Valid values are Amazon, Azure, GCP and OCI.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "seller",
+    "label": "Seller",
+    "description": "The official seller of services. Using this dimension allows you to separate marketplace charges from your other cloud costs.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "service_name",
+    "label": "Product Name",
+    "description": "The official product name as provided by the vendor (for example, Amazon Elastic Compute Cloud, GCP Cloud Storage, Microsoft.Compute or OCI Compute).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "region",
+    "label": "Region",
+    "description": "The region in which a resource exists or a usage charge occurred, for example: us-east-1 for AWS, US East for Azure, us-east1 for GCP and us-ashburn-1 for OCI.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "zone",
+    "label": "Zone",
+    "description": "This field is specific to AWS, it corresponds to the letter for a specific zone in which an instance exists or a usage charge occured within an Availability Zone. This field is not used for Azure, GCP or OCI.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "region_zone",
+    "label": "Availability Zone",
+    "description": "A combination of the region and zone in which a resource exists. For example, us-east-1a.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "item_description",
+    "label": "Item Description",
+    "description": "Description of the type of usage for this line item. This description matches the description on the Bills page, including the average price of any usage that is based on a volume pricing tier.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "account_identifier",
+    "label": "Payer Account ID",
+    "description": "The unique identifier related to the AWS management account, Azure EA/MCA agreement, GCP Billing Account or OCI Root Tenancy. ",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "account_name",
+    "label": "Payer Account Name",
+    "description": "The name related to the AWS management account, Azure EA/MCA agreement, GCP Billing Account or OCI Root Tenancy. Depending on your situation this value may fall back to the unique billing ID.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "vendor_account_name",
+    "label": "Account Name",
+    "description": "The name given by the customer that's attached to each AWS Account, Azure Subscription, GCP Project or OCI Tenancy.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "vendor_account_identifier",
+    "label": "Account ID",
+    "description": "The unique identifier related to a AWS Account, Azure Subscription, GCP Project or OCI Tenancy.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "usage_type",
+    "label": "Usage Type",
+    "description": "Specifies operational details of the usage line item. The following example describes Amazon EC2 High-Memory Double ExtraLarge Instance box usage in the US West (Oregon) region. Example: USW1-BoxUsage:m2.2xlarge",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "group_name1",
+    "label": "Billing Owner",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 8,
+      "key": "account groups",
+      "name": "Account Groups"
+    }
+  },
+  {
+    "name": "group_name2",
+    "label": "MasterPayerAccount",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 8,
+      "key": "account groups",
+      "name": "Account Groups"
+    }
+  },
+  {
+    "name": "group_name3",
+    "label": "AccountType",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 8,
+      "key": "account groups",
+      "name": "Account Groups"
+    }
+  },
+  {
+    "name": "group_name4",
+    "label": "BusinessUnit",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 8,
+      "key": "account groups",
+      "name": "Account Groups"
+    }
+  },
+  {
+    "name": "tag11",
+    "label": "Project (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag12",
+    "label": "Pipeline (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag13",
+    "label": "Workload (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag14",
+    "label": "Source (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag15",
+    "label": "EBS instance (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey1",
+    "label": "App-Code (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey2",
+    "label": "Service Owner (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey3",
+    "label": "Service-Phase (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey4",
+    "label": "Service Name (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey5",
+    "label": "Service Component (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey6",
+    "label": "Business Unit (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey7",
+    "label": "RHEL Migrated (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey8",
+    "label": "MAP (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey9",
+    "label": "Cost-Center (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey10",
+    "label": "Name (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey11",
+    "label": "Project (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey12",
+    "label": "Pipeline (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey13",
+    "label": "Workload (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey14",
+    "label": "Source (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey15",
+    "label": "EBS instance (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "week",
+    "label": "Week (Category)",
+    "description": "The week any cost item was incurred, formatted \"WW\". Examples \"01\", \"15\", \"52\". This is useful for looking at costs by the week for any year (such as show costs that occurred in week 1 of any year).",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "bytes_transferred",
+    "label": "Data Transfer (GiB)",
+    "description": "The amount of data transferred in a particular time period.",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "transaction_type",
+    "label": "Transaction Type",
+    "description": "A new dimension created by Cloudability to break costs into Usage, One-Time Charges, Recurring Charges, Amortized Charges, Credits, Taxes, or Rounding.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "instance_category",
+    "label": "Instance Category",
+    "description": "The category of VM or Database an instance belongs to. Common categories include General Purpose, Compute Optimized and Memory Optimized.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "unblended_cost",
+    "label": "Cost (Total)",
+    "description": "This is the default cost metric throughout Cloudability. It is a “cash” metric and simply represents the invoiced amount associated with any cost item as reported by the cloud vendor.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "unblended_rate",
+    "label": "Rate (Unblended)",
+    "description": "The cost per hour for a line item. This is summarized across the hours of a day.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "reserved_hours",
+    "label": "Reserved Hours",
+    "description": "The amount of reserved computing hours used during the reporting period.",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "on_demand_hours",
+    "label": "On Demand Hours",
+    "description": "The amount of on demand computing hours used during the reporting period.",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "reserved_utilization_rate",
+    "label": "Reserved Coverage Rate",
+    "description": "The percentage of total hours used during the period where an RI was applied.",
+    "data_type": "percentage",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "usage_quantity",
+    "label": "Usage Quantity",
+    "description": "Generic usage quantity. Units will vary on dimensions and filters.",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "instance_family",
+    "label": "Instance Family",
+    "description": "The family of VM or Database an instance belongs to. This will typically form the prefix to the full instance type definition. ",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "instance_size",
+    "label": "Instance Size",
+    "description": "The size of VM or Database. This is correlated to key resource attributes such as the number of CPUs and available memory.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "instance_type",
+    "label": "Instance Type",
+    "description": "The  full identifier of the type of VM or Database instance, capturing both the family and size. This value forms one complete component of the product SKU (used alongside location and OS).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "compute_usage_type",
+    "label": "Compute Usage Type",
+    "description": "Handy Cloudability-defined dimension for understanding the type of compute for some AWS services such as EC2 and RDS. ",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "resource_identifier",
+    "label": "Resource ID",
+    "description": "The resource is the base entity that users can work with in the cloud. Examples are Instance Ids, Lambda Functions, S3 storage buckets.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "resource_identifier_count",
+    "label": "Resource Count",
+    "description": "The count of ?unique? resource ids in the period specified.",
+    "data_type": "integer",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "operation",
+    "label": "Operation",
+    "description": "The operation data represents the action that was taken on the asset.  This often relates to a CLI command.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "operating_system",
+    "label": "Operating System",
+    "description": "The operating system for VMs as reported by the cloud vendors for billing purposes. Example values: Linux, Windows, Red Hat Enterprise Linux.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "engine",
+    "label": "Engine",
+    "description": "The database or cache engine (for example, Oracle, SQL Server, MySQL or Redis).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "total_amortized_cost",
+    "label": "Cost (Amortized)",
+    "description": "This is an “accrual” cost metric, representing the consumed cost during any period. This metric is handy for ensuring commitments are allocated to the time and place they are consumed.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "reservation_identifier",
+    "label": "Reservation ID",
+    "description": "The unique ID of the commitment (such as reserved instance and savings plan) tied to any cost item as provided by the cloud vendor.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "usage_family",
+    "label": "Usage Family",
+    "description": "A standardized dimension created by Cloudability to consolidate similar values of Usage Type into a single high-level family (e.g. Data Transfer, Storage, API Request). To see the original values, add the Usage Type dimension.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "lease_type",
+    "label": "Lease Type",
+    "description": "The payment mode for the cost items. Valid values are: On-Demand, Savings Plan, Reserved and Spot. This is a reporting dimension defined by Cloudability to support multi-cloud cost categorization.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "enhanced_service_name",
+    "label": "Service Name",
+    "description": "A dimension defined by Cloudability that standardizes product naming conventions for AWS, Azure, GCP and OCI. To surface the original product names, use the Product Name dimension instead.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "year_month",
+    "label": "Month (Year)",
+    "description": "The month and year of any cost item (formatted Month YYYY) useful for proper chronological sorting. Examples: July 2021, September 2022.",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "year_week",
+    "label": "Week (Year)",
+    "description": "The week and year of any cost item (formatted YYYY-WW) useful for proper chronological sorting. Examples: 2021-06, 2022-52.",
+    "data_type": "date",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 5,
+      "key": "time",
+      "name": "Time"
+    }
+  },
+  {
+    "name": "cost_adjusted",
+    "label": "Cost Adjustment",
+    "description": "The amount by which the cost was adjusted.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "adjusted_cost",
+    "label": "Cost (Adjusted)",
+    "description": "Built from the cost (total) metric, this metric adjusts the figures to allow for any custom pricing rules. It only appears for Cloudability customers who have turned on the custom pricing module.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "cost_adjustment_description",
+    "label": "Cost Adjustment Description",
+    "description": "Description of the cost adjustment rule applied.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "tag16",
+    "label": "NoRightsize (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag17",
+    "label": "K8 AppCode (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag18",
+    "label": "Architecture (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag19",
+    "label": "Cross-charge (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag20",
+    "label": "*Compliance-CC (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag21",
+    "label": "*Compliance-APP (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag22",
+    "label": "*Compliance-Phase (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag23",
+    "label": "Created By (User) (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag24",
+    "label": "Job (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag25",
+    "label": "Cluster ID (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag26",
+    "label": "IBM Plan ID (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag27",
+    "label": "Gemini-Use-Case (DoNotUse) (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag28",
+    "label": "Team (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag29",
+    "label": "project-code (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag30",
+    "label": "Infrastructure (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey16",
+    "label": "NoRightsize (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey17",
+    "label": "K8 AppCode (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey18",
+    "label": "Architecture (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey19",
+    "label": "Cross-charge (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey20",
+    "label": "*Compliance-CC (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey21",
+    "label": "*Compliance-APP (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey22",
+    "label": "*Compliance-Phase (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey23",
+    "label": "Created By (User) (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey24",
+    "label": "Job (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey25",
+    "label": "Cluster ID (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey26",
+    "label": "IBM Plan ID (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey27",
+    "label": "Gemini-Use-Case (DoNotUse) (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey28",
+    "label": "Team (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey29",
+    "label": "project-code (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey30",
+    "label": "Infrastructure (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "category1",
+    "label": "Consumer",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category2",
+    "label": "Quarter",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category3",
+    "label": "Consumer Grouping",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category4",
+    "label": "Cost Center",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category6",
+    "label": "Tag-Compliance DoNotUse",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category7",
+    "label": "Organization",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category8",
+    "label": "Currated_job_name",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category9",
+    "label": "Processor (beta)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "category10",
+    "label": "Department",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "total_adjusted_amortized_cost",
+    "label": "Cost (Adjusted Amortized)",
+    "description": "Built from the cost (amortized) metric, this metric adjusts the figures to allow for any custom pricing rules. It only appears for Cloudability customers who have turned on the custom pricing module.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "public_on_demand_cost",
+    "label": "Cost (List)",
+    "description": "This metric represents cost items as if they were charged at the public on-demand rate. This means the impact of any commitments, spot instance pricing, and custom pricing are removed.",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "tenancy",
+    "label": "Tenancy",
+    "description": "AWS specific dimension identifying the tenancy of EC2 instances. Three valid values are shared, host and dedicated. \"shared\" is the default value.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "offering_class",
+    "label": "Reservation Class",
+    "description": "The commitment offering tied to any cost item. Example values include “standard” and “convertible” reserved instances, “EC2InstanceSavingsPlans” and “ComputeSavingsPlans” for savings plans.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "category11",
+    "label": "AI Compute (GPU, Accelerators, ML)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 10,
+      "key": "business dimensions",
+      "name": "Business Dimensions"
+    }
+  },
+  {
+    "name": "business_metric1",
+    "label": "AWS SP/RI/Spot Savings",
+    "description": null,
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 11,
+      "key": "business metrics",
+      "name": "Business Metrics"
+    }
+  },
+  {
+    "name": "business_metric2",
+    "label": "RHEL BYOL Savings Estimate",
+    "description": null,
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 11,
+      "key": "business metrics",
+      "name": "Business Metrics"
+    }
+  },
+  {
+    "name": "business_metric6",
+    "label": "Usage Hours - Calculated",
+    "description": null,
+    "data_type": "number",
+    "type": "metric",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 11,
+      "key": "business metrics",
+      "name": "Business Metrics"
+    }
+  },
+  {
+    "name": "business_metric7",
+    "label": "AWS Graviton Migration Saving Estimate",
+    "description": null,
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 11,
+      "key": "business metrics",
+      "name": "Business Metrics"
+    }
+  },
+  {
+    "name": "business_metric8",
+    "label": "AWS Spots savings Estimate",
+    "description": null,
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 11,
+      "key": "business metrics",
+      "name": "Business Metrics"
+    }
+  },
+  {
+    "name": "container_cluster_name",
+    "label": "Cluster Name",
+    "description": "The Kubernetes \"Cluster Name\" that the underlying cost items - such as VM, storage and network costs - belong to. The value matches the name setup by your admin when provisioning the cluster within Cloudability.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "container_namespace",
+    "label": "Namespace",
+    "description": "Kubernetes Namespace",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "invoice_id",
+    "label": "Invoice ID",
+    "description": "The invoice ID that corresponds to any charged cost item, as provided by AWS. Data is not currently available for Azure, GCP and OCI.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "atum_service_name",
+    "label": "ATUM Service Name",
+    "description": "Lowest level of the ATUM Service taxonomy (e.g. Threat & Vulnerability Management).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 13,
+      "key": "atum",
+      "name": "ATUM"
+    }
+  },
+  {
+    "name": "atum_service_type",
+    "label": "ATUM Service Type",
+    "description": "Highest level of the ATUM Service taxonomy (e.g., workplace, business, platform, infrastructure).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 13,
+      "key": "atum",
+      "name": "ATUM"
+    }
+  },
+  {
+    "name": "atum_service_category",
+    "label": "ATUM Service Category",
+    "description": "Middle level of the ATUM Service taxonomy (e.g., client computing, communication & collaboration).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 13,
+      "key": "atum",
+      "name": "ATUM"
+    }
+  },
+  {
+    "name": "ancestry_numbers",
+    "label": "GCP Ancestry Numbers",
+    "description": "This dimension displays the ancestry information of a given GCP project (for example billing account/folder[1..n]).  This information is gathered from \"project.ancestry\" column from GCP billing data. ",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "currency_code",
+    "label": "Currency Code",
+    "description": "3 letter ISO currency code.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "adjusted_fairshare_cost",
+    "label": "Fairshare Cost (Adjusted)",
+    "description": "This is calculated by dividing the sum of the used resources for the container by the total used resources of all containers running on the same hardware, and then multiplying it by the cost of the hardware",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "adjusted_utilized_cost",
+    "label": "Utilized Cost (Adjusted)",
+    "description": "The utilized cost refers to the cost incurred by the resources utilized by a workload for a given time range (can be further broken down or grouped by cluster, namespace, labels)",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "adjusted_idle_cost",
+    "label": "Idle Cost (Adjusted)",
+    "description": "The idle cost refers to the cost incurred by resources that are not used by any workload for a given time range",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "adjusted_amortized_fairshare_cost",
+    "label": "Fairshare Cost (Adjusted Amortized)",
+    "description": "This is calculated by dividing the sum of the used resources for the container by the total used resources of all containers running on the same hardware, and then multiplying it by the cost of the hardware",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "adjusted_amortized_utilized_cost",
+    "label": "Utilized Cost (Adjusted Amortized)",
+    "description": "The utilized cost refers to the cost incurred by the resources utilized by a workload for a given time range (can be further broken down or grouped by cluster, namespace, labels)",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "adjusted_amortized_idle_cost",
+    "label": "Idle Cost (Adjusted Amortized)",
+    "description": "The idle cost refers to the cost incurred by resources that are not used by any workload for a given time range",
+    "data_type": "currency",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 12,
+      "key": "containers",
+      "name": "Containers"
+    }
+  },
+  {
+    "name": "part_number",
+    "label": "Part Number",
+    "description": "This field is specific to Azure and OCI. It corresponds to the identifier used to get specific meter pricing.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "azure_reservation_order_name",
+    "label": "Azure Reservation Order Name",
+    "description": "The name or description of the product or service that was ordered or consumed (Azure specific).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "reservation_name",
+    "label": "Reservation Name",
+    "description": "The name of the purchased reservation instance (Azure specific).",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 7,
+      "key": "vendor",
+      "name": "Vendor"
+    }
+  },
+  {
+    "name": "vcpu_hours",
+    "label": "vCPU Hours",
+    "description": "Normalized CPU hours are calculated by multiplying the CPU hours used by the number of vCPUs used.",
+    "data_type": "integer",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "carbon_emissions",
+    "label": "Estimated Carbon Emissions (MTCO2e)",
+    "description": "Estimated Carbon emissions by a resource in metric tons of carbon dioxide equivalent - MTCO2e",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 14,
+      "key": "sustainability",
+      "name": "Sustainability"
+    }
+  },
+  {
+    "name": "kwh_consumption",
+    "label": "Power Consumed (kWh)",
+    "description": "Power consumed by a resource in Kilo Watt Hours - kWh",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 14,
+      "key": "sustainability",
+      "name": "Sustainability"
+    }
+  },
+  {
+    "name": "tag31",
+    "label": "Cluster type (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag49",
+    "label": "donotuse-cc-test (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tag50",
+    "label": "donotusegcpcc (value)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey31",
+    "label": "Cluster type (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey49",
+    "label": "donotuse-cc-test (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "tagkey50",
+    "label": "donotusegcpcc (key)",
+    "description": null,
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 4,
+      "key": "tags",
+      "name": "Tags"
+    }
+  },
+  {
+    "name": "resource_name",
+    "label": "Resource Name",
+    "description": "Resources are named entities, and the resource_name is its identifier. Each resource has its own unique resource name. This value is from the CSP billing files.",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 6,
+      "key": "usage",
+      "name": "Usage"
+    }
+  },
+  {
+    "name": "atum_tower",
+    "label": "ATUM Tower",
+    "description": "High-level IT service category",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 13,
+      "key": "atum",
+      "name": "ATUM"
+    }
+  },
+  {
+    "name": "atum_subtower",
+    "label": "ATUM Sub-Tower",
+    "description": "Subcategory within the ATUM Tower",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 13,
+      "key": "atum",
+      "name": "ATUM"
+    }
+  },
+  {
+    "name": "embodied_emissions",
+    "label": "Embodied Carbon Emissions (MTCO2e)",
+    "description": "Embodied Carbon Emissions in metric tons of carbon dioxide equivalent - MTCO2e",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 14,
+      "key": "sustainability",
+      "name": "Sustainability"
+    }
+  },
+  {
+    "name": "operational_emissions",
+    "label": "Operational Carbon Emissions (MTCO2e)",
+    "description": "Operational Carbon Emissions in metric tons of carbon dioxide equivalent - MTCO2e",
+    "data_type": "float",
+    "type": "metric",
+    "group": {
+      "id": 2,
+      "key": "billing",
+      "name": "Billing"
+    },
+    "sub_group": {
+      "id": 14,
+      "key": "sustainability",
+      "name": "Sustainability"
+    }
+  },
+  {
+    "name": "raw_currency_code",
+    "label": "Raw Currency Code",
+    "description": "The original currency code from the cloud provider's billing data (e.g., USD, EUR, GBP)",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "exchange_rate",
+    "label": "Exchange Rate",
+    "description": "The exchange rate applied to convert costs from the original currency to your organization's reporting currency",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  },
+  {
+    "name": "billing_exchange_rate",
+    "label": "Billing Currency Rate",
+    "description": "The exchange rate used by the cloud provider for billing purposes",
+    "data_type": "string",
+    "type": "dimension",
+    "group": {
+      "id": 1,
+      "key": "common",
+      "name": "Common"
+    },
+    "sub_group": {
+      "id": 3,
+      "key": "costs",
+      "name": "Costs"
+    }
+  }
+]

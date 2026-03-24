@@ -12,6 +12,9 @@ class Team(Base):
     __tablename__ = "teams"
 
     name = Column(String, primary_key=True, index=True)
+    account_id = Column(String, nullable=True)
+    account_name = Column(String, nullable=True)
+    cost_center = Column(String, nullable=True)
 
     # Relationships
     owners = relationship("Owner", back_populates="team")

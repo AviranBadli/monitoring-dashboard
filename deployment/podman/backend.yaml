@@ -7,7 +7,7 @@ data:
   API_V1_PREFIX: "/api/v1"
   PROJECT_NAME: "GPU Monitoring API"
   DEBUG: "true"
-  BACKEND_CORS_ORIGINS: '["http://localhost:3000", "http://localhost:8000"]'
+  BACKEND_CORS_ORIGINS: '["http://localhost:3000", "http://localhost:8000", "http://localhost:8501"]'
   POSTGRES_HOST: "postgres"
   POSTGRES_PORT: "5432"
 ---

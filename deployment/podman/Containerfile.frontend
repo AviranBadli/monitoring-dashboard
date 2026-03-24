@@ -28,7 +28,7 @@ RUN mkdir -p /opt/app-root/src/.config/pypoetry && \
 USER 1001
 
 # Expose port
-EXPOSE 8000
+EXPOSE 8501
 
 # Run the application
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "streamlit", "run", "main.py", "--server.port", "8501", "--server.address", "0.0.0.0"]

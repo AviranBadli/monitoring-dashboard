@@ -1,0 +1,502 @@
+{
+  "results": [
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "875",
+      "instance_type": "p4d.24xlarge",
+      "total_amortized_cost": "0",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "unallocated",
+      "instance_type": "(not set)",
+      "total_amortized_cost": "0",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "ultragpu.a2-8g-vcpu",
+      "total_amortized_cost": "0.35",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "557",
+      "instance_type": "g4dn.xlarge",
+      "total_amortized_cost": "0.62",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "853",
+      "instance_type": "g5.xlarge",
+      "total_amortized_cost": "1.63",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "ultragpu.a2-1g-vcpu",
+      "total_amortized_cost": "2.44",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "711",
+      "instance_type": "g5.4xlarge",
+      "total_amortized_cost": "2.87",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "827",
+      "instance_type": "g6.4xlarge",
+      "total_amortized_cost": "3.86",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "highgpu.a3-1g-vcpu",
+      "total_amortized_cost": "4.03",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "670",
+      "instance_type": "g6.4xlarge",
+      "total_amortized_cost": "4.31",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "686",
+      "instance_type": "standard.g2-24-vcpu",
+      "total_amortized_cost": "4.42",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "9227-1189-1673",
+      "account_name": "Service Delivery Production Org",
+      "category4": "148",
+      "instance_type": "g6e.2xlarge",
+      "total_amortized_cost": "6.22",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "701",
+      "instance_type": "Standard_NC4as_T4_v3",
+      "total_amortized_cost": "7.15",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "565",
+      "instance_type": "standard.n1-4-vcpu",
+      "total_amortized_cost": "10.5",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "542",
+      "instance_type": "Standard_NC8as_T4_v3",
+      "total_amortized_cost": "10.72",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "542",
+      "instance_type": "Standard_NV12ads_A10_v5",
+      "total_amortized_cost": "12.94",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "724",
+      "instance_type": "g5.4xlarge",
+      "total_amortized_cost": "14.03",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "725",
+      "instance_type": "standard.n1-4-vcpu",
+      "total_amortized_cost": "15.75",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "9227-1189-1673",
+      "account_name": "Service Delivery Production Org",
+      "category4": "148",
+      "instance_type": "g6e.12xlarge",
+      "total_amortized_cost": "17.56",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "871",
+      "instance_type": "p5.4xlarge",
+      "total_amortized_cost": "20.94",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "686",
+      "instance_type": "standard.g2-16-vcpu",
+      "total_amortized_cost": "25.2",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "542",
+      "instance_type": "Standard_NC16as_T4_v3",
+      "total_amortized_cost": "34.3",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "highgpu.a2-1g-vcpu",
+      "total_amortized_cost": "42.72",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "871",
+      "instance_type": "g5.48xlarge",
+      "total_amortized_cost": "46.45",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "658",
+      "instance_type": "g5.48xlarge",
+      "total_amortized_cost": "49.23",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "686",
+      "instance_type": "Standard_NC48ads_A100_v4",
+      "total_amortized_cost": "52.98",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "871",
+      "instance_type": "p4de.24xlarge",
+      "total_amortized_cost": "54.89",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "686",
+      "instance_type": "Standard_NC40ads_H100_v5",
+      "total_amortized_cost": "63.87",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "725",
+      "instance_type": "ultragpu.a2-1g-vcpu",
+      "total_amortized_cost": "64.95",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "725",
+      "instance_type": "standard.g2-48-vcpu",
+      "total_amortized_cost": "67.2",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "standard.g2-96-vcpu",
+      "total_amortized_cost": "67.2",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "0085BB-6B96B9-89FD9F",
+      "account_name": "0085BB-6B96B9-89FD9F",
+      "category4": "706",
+      "instance_type": "highgpu.a2-1g-vcpu",
+      "total_amortized_cost": "73.35",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "highgpu.a2-2g-vcpu",
+      "total_amortized_cost": "84.86",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "106",
+      "instance_type": "Standard_NC12s_v3",
+      "total_amortized_cost": "87.21",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "706",
+      "instance_type": "Standard_NP10s",
+      "total_amortized_cost": "122.62",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "871",
+      "instance_type": "g5.4xlarge",
+      "total_amortized_cost": "143.44",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "687",
+      "instance_type": "Standard_NC80adis_H100_v5",
+      "total_amortized_cost": "198.93",
+      "vendor": "Azure"
+    },
+    {
+      "account_identifier": "2537-2131-2158",
+      "account_name": "Red Hat IT Billing Account - it-cloud-amz-admin",
+      "category4": "871",
+      "instance_type": "p4d.24xlarge",
+      "total_amortized_cost": "291.25",
+      "vendor": "Amazon"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "highgpu.a3-8g-vcpu",
+      "total_amortized_cost": "609.96",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "016D43-3EB7A0-06F114",
+      "account_name": "016D43-3EB7A0-06F114",
+      "category4": "722",
+      "instance_type": "ultragpu.a3-8g-vcpu",
+      "total_amortized_cost": "872.31",
+      "vendor": "GCP"
+    },
+    {
+      "account_identifier": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0",
+      "account_name": "0bb6ecf2-fbd9-5c37-7caf-3fe4119b75e0:04073c7a-5839-4d66-8297-499582a7361d_2019-05-31",
+      "category4": "725",
+      "instance_type": "Standard_ND96isr_MI300X_v5",
+      "total_amortized_cost": "1045.87",
+      "vendor": "Azure"
+    }
+  ],
+  "meta": {
+    "dates": {
+      "start": "2026-03-23T00:00:00Z",
+      "end": "2026-03-23T00:00:00Z"
+    },
+    "filters": [
+      {
+        "comparator": "==",
+        "value": "usage",
+        "measure": {
+          "name": "transaction_type",
+          "label": "Transaction Type",
+          "description": "A new dimension created by Cloudability to break costs into Usage, One-Time Charges, Recurring Charges, Amortized Charges, Credits, Taxes, or Rounding.",
+          "data_type": "string",
+          "type": "dimension",
+          "group": {
+            "ID": 2,
+            "Key": "billing",
+            "Name": "Billing"
+          },
+          "sub_group": {
+            "ID": 6,
+            "Key": "usage",
+            "Name": "Usage"
+          }
+        }
+      },
+      {
+        "comparator": "==",
+        "value": "ai processors (gpu, accelerators, ml)",
+        "measure": {
+          "name": "category9",
+          "label": "Processor (beta)",
+          "description": "",
+          "data_type": "string",
+          "type": "dimension",
+          "group": {
+            "ID": 1,
+            "Key": "common",
+            "Name": "Common"
+          },
+          "sub_group": {
+            "ID": 10,
+            "Key": "business dimensions",
+            "Name": "Business Dimensions"
+          }
+        }
+      }
+    ],
+    "metrics": [
+      {
+        "name": "total_amortized_cost",
+        "label": "Cost (Amortized)",
+        "description": "This is an “accrual” cost metric, representing the consumed cost during any period. This metric is handy for ensuring commitments are allocated to the time and place they are consumed.",
+        "data_type": "currency",
+        "type": "metric",
+        "group": {
+          "ID": 2,
+          "Key": "billing",
+          "Name": "Billing"
+        },
+        "sub_group": {
+          "ID": 3,
+          "Key": "costs",
+          "Name": "Costs"
+        }
+      }
+    ],
+    "dimensions": [
+      {
+        "name": "vendor",
+        "label": "Vendor",
+        "description": "The cloud vendor associated with the cost item. Valid values are Amazon, Azure, GCP and OCI.",
+        "data_type": "string",
+        "type": "dimension",
+        "group": {
+          "ID": 2,
+          "Key": "billing",
+          "Name": "Billing"
+        },
+        "sub_group": {
+          "ID": 7,
+          "Key": "vendor",
+          "Name": "Vendor"
+        }
+      },
+      {
+        "name": "instance_type",
+        "label": "Instance Type",
+        "description": "The  full identifier of the type of VM or Database instance, capturing both the family and size. This value forms one complete component of the product SKU (used alongside location and OS).",
+        "data_type": "string",
+        "type": "dimension",
+        "group": {
+          "ID": 2,
+          "Key": "billing",
+          "Name": "Billing"
+        },
+        "sub_group": {
+          "ID": 6,
+          "Key": "usage",
+          "Name": "Usage"
+        }
+      },
+      {
+        "name": "account_name",
+        "label": "Payer Account Name",
+        "description": "The name related to the AWS management account, Azure EA/MCA agreement, GCP Billing Account or OCI Root Tenancy. Depending on your situation this value may fall back to the unique billing ID.",
+        "data_type": "string",
+        "type": "dimension",
+        "group": {
+          "ID": 2,
+          "Key": "billing",
+          "Name": "Billing"
+        },
+        "sub_group": {
+          "ID": 7,
+          "Key": "vendor",
+          "Name": "Vendor"
+        }
+      },
+      {
+        "name": "account_identifier",
+        "label": "Payer Account ID",
+        "description": "The unique identifier related to the AWS management account, Azure EA/MCA agreement, GCP Billing Account or OCI Root Tenancy. ",
+        "data_type": "string",
+        "type": "dimension",
+        "group": {
+          "ID": 2,
+          "Key": "billing",
+          "Name": "Billing"
+        },
+        "sub_group": {
+          "ID": 7,
+          "Key": "vendor",
+          "Name": "Vendor"
+        }
+      },
+      {
+        "name": "category4",
+        "label": "Cost Center",
+        "description": "",
+        "data_type": "string",
+        "type": "dimension",
+        "group": {
+          "ID": 1,
+          "Key": "common",
+          "Name": "Common"
+        },
+        "sub_group": {
+          "ID": 10,
+          "Key": "business dimensions",
+          "Name": "Business Dimensions"
+        }
+      }
+    ],
+    "aggregates": [
+      {
+        "name": "total_amortized_cost",
+        "label": "Cost (Amortized)",
+        "description": "This is an “accrual” cost metric, representing the consumed cost during any period. This metric is handy for ensuring commitments are allocated to the time and place they are consumed.",
+        "data_type": "currency",
+        "type": "metric",
+        "value": "4239.13"
+      }
+    ]
+  },
+  "offset": 0,
+  "pagination": {},
+  "limit": 0,
+  "total_results": 41
+}

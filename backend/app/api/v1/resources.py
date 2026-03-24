@@ -67,7 +67,12 @@ def get_team(name: str, db: Session = Depends(get_db)):
 @router.post("/teams", response_model=TeamSchema, status_code=201)
 def create_team(team: TeamCreate, db: Session = Depends(get_db)):
     """Create a new team"""
-    db_team = Team(name=team.name)
+    db_team = Team(
+        name=team.name,
+        account_id=team.account_id,
+        account_name=team.account_name,
+        cost_center=team.cost_center,
+    )
     db.add(db_team)
     db.commit()
     db.refresh(db_team)

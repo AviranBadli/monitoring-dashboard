@@ -57,3 +57,80 @@ jobs:
 
     - name: Run tests with pytest
       run: poetry run pytest -v
+
+  trivy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy filesystem scan (backend)
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: fs
+        scan-ref: .
+        exit-code: 1
+        severity: CRITICAL,HIGH
+
+  lint-containerfiles:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Lint Containerfile (backend)
+      uses: hadolint/hadolint-action@v3.1.0
+      with:
+        dockerfile: deployment/podman/Containerfile
+
+    - name: Lint Containerfile (frontend)
+      uses: hadolint/hadolint-action@v3.1.0
+      with:
+        dockerfile: deployment/podman/Containerfile.frontend
+
+  test-frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Cache Poetry dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/pypoetry
+          frontend/.venv
+        key: ${{ runner.os }}-poetry-frontend-${{ hashFiles('frontend/poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-poetry-frontend-
+
+    - name: Install dependencies
+      run: |
+        poetry config virtualenvs.in-project true
+        poetry install --no-interaction
+
+    - name: Run Black formatting check
+      run: poetry run black --check .
+
+    - name: Run Ruff linting
+      run: poetry run ruff check .
+
+    - name: Run tests with pytest
+      run: poetry run pytest -v
