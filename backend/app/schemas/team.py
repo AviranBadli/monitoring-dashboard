@@ -7,6 +7,9 @@ class TeamBase(BaseModel):
     """Base Team schema"""
 
     name: str
+    account_id: str | None = None
+    account_name: str | None = None
+    cost_center: str | None = None
 
 
 class TeamCreate(TeamBase):
