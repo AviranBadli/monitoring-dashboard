@@ -58,7 +58,7 @@ jobs:
     - name: Run tests with pytest
       run: poetry run pytest -v
 
-  trivy-backend:
+  trivy:
     runs-on: ubuntu-latest
 
     steps:
@@ -69,22 +69,7 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: fs
-        scan-ref: ./backend
-        exit-code: 1
-        severity: CRITICAL,HIGH
-
-  trivy-frontend:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Run Trivy filesystem scan (frontend)
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: fs
-        scan-ref: ./frontend
+        scan-ref: .
         exit-code: 1
         severity: CRITICAL,HIGH
 

@@ -76,21 +76,11 @@ except APIError:
 with st.form("create_allocation", clear_on_submit=True):
     col1, col2 = st.columns(2)
     with col1:
-        alloc_node = (
-            st.selectbox("Node", node_names)
-            if node_names
-            else st.text_input("Node Name")
-        )
-        alloc_team = (
-            st.selectbox("Team", team_names)
-            if team_names
-            else st.text_input("Team Name")
-        )
+        alloc_node = st.selectbox("Node", node_names) if node_names else st.text_input("Node Name")
+        alloc_team = st.selectbox("Team", team_names) if team_names else st.text_input("Team Name")
     with col2:
         alloc_wt = (
-            st.selectbox("Workload Type", wt_names)
-            if wt_names
-            else st.text_input("Workload Type")
+            st.selectbox("Workload Type", wt_names) if wt_names else st.text_input("Workload Type")
         )
         alloc_at = (
             st.selectbox("Allocation Type", at_names)
@@ -103,9 +93,7 @@ with st.form("create_allocation", clear_on_submit=True):
         alloc_start_date = st.date_input("Start Date", value=date.today())
         alloc_start_time = st.time_input("Start Time", value=time(0, 0))
     with col4:
-        alloc_end_date = st.date_input(
-            "End Date", value=date.today() + timedelta(days=30)
-        )
+        alloc_end_date = st.date_input("End Date", value=date.today() + timedelta(days=30))
         alloc_end_time = st.time_input("End Time", value=time(23, 59))
 
     if st.form_submit_button("Create Allocation", type="primary"):
@@ -164,12 +152,8 @@ if allocations:
             )
         with col2:
             existing_end = datetime.fromisoformat(selected_alloc["end_time"])
-            new_end_date = st.date_input(
-                "End Date", value=existing_end.date(), key="edit_end_d"
-            )
-            new_end_time = st.time_input(
-                "End Time", value=existing_end.time(), key="edit_end_t"
-            )
+            new_end_date = st.date_input("End Date", value=existing_end.date(), key="edit_end_d")
+            new_end_time = st.time_input("End Time", value=existing_end.time(), key="edit_end_t")
 
         if st.form_submit_button("Update Allocation"):
             updates = {}

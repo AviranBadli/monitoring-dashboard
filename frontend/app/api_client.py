@@ -35,9 +35,7 @@ class APIClient:
             return []
         return resp.json()
 
-    def _post(
-        self, path: str, params: dict | None = None, json: dict | None = None
-    ) -> dict:
+    def _post(self, path: str, params: dict | None = None, json: dict | None = None) -> dict:
         filtered_params = {k: v for k, v in (params or {}).items() if v is not None}
         return self._request("POST", path, params=filtered_params, json=json).json()
 
@@ -104,9 +102,7 @@ class APIClient:
         cluster_name: str | None = None,
         team_name: str | None = None,
     ) -> list:
-        return self._get(
-            "/inventory/nodes", cluster_name=cluster_name, team_name=team_name
-        )
+        return self._get("/inventory/nodes", cluster_name=cluster_name, team_name=team_name)
 
     def get_node(self, name: str) -> dict:
         return self._get(f"/inventory/nodes/{name}")

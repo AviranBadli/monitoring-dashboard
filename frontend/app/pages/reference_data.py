@@ -51,9 +51,7 @@ with tab_teams:
 
     if teams:
         st.subheader("Delete Team")
-        team_to_delete = st.selectbox(
-            "Select team", [t["name"] for t in teams], key="del_team"
-        )
+        team_to_delete = st.selectbox("Select team", [t["name"] for t in teams], key="del_team")
         if st.button("Delete Team", type="secondary"):
             try:
                 api.delete_team(team_to_delete)
@@ -88,9 +86,7 @@ with tab_clouds:
 
     if clouds:
         st.subheader("Delete Cloud")
-        cloud_to_delete = st.selectbox(
-            "Select cloud", [c["name"] for c in clouds], key="del_cloud"
-        )
+        cloud_to_delete = st.selectbox("Select cloud", [c["name"] for c in clouds], key="del_cloud")
         if st.button("Delete Cloud", type="secondary"):
             try:
                 api.delete_cloud(cloud_to_delete)
@@ -167,9 +163,7 @@ with tab_instance_types:
         except APIError:
             cloud_names = []
         cloud_name = (
-            st.selectbox("Cloud", cloud_names)
-            if cloud_names
-            else st.text_input("Cloud Name")
+            st.selectbox("Cloud", cloud_names) if cloud_names else st.text_input("Cloud Name")
         )
 
         try:
@@ -177,9 +171,7 @@ with tab_instance_types:
         except APIError:
             gt_names = []
         gpu_type_name = (
-            st.selectbox("GPU Type", gt_names)
-            if gt_names
-            else st.text_input("GPU Type Name")
+            st.selectbox("GPU Type", gt_names) if gt_names else st.text_input("GPU Type Name")
         )
 
         gpu_count = st.number_input("GPU Count", min_value=0.0625, value=1.0, step=1.0)
@@ -259,9 +251,7 @@ with tab_allocation_types:
     try:
         allocation_types = api.list_allocation_types()
         if allocation_types:
-            st.dataframe(
-                pd.DataFrame(allocation_types), width="stretch", hide_index=True
-            )
+            st.dataframe(pd.DataFrame(allocation_types), width="stretch", hide_index=True)
         else:
             st.info("No allocation types found.")
     except APIError as e:
