@@ -44,7 +44,9 @@ with st.expander("Filters", expanded=True):
         selected_gpu_types = st.multiselect("GPU Type", gt_names, default=gt_names)
     with col2:
         selected_wt = st.multiselect("Workload Type", wt_names, default=wt_names)
-        selected_clusters = st.multiselect("Cluster", cluster_names, default=cluster_names)
+        selected_clusters = st.multiselect(
+            "Cluster", cluster_names, default=cluster_names
+        )
 
     group_by = st.selectbox(
         "Group by",
@@ -156,13 +158,28 @@ col_left, col_right = st.columns(2)
 
 with col_left:
     st.subheader(f"Cost Over Time by {group_by}")
-    ts_df = df.groupby([pd.Grouper(key="date", freq="D"), group_col])["cost"].sum().reset_index()
-    fig_ts = px.line(ts_df, x="date", y="cost", color=group_col, labels={"cost": "Cost ($)", "date": "Date"})
+    ts_df = (
+        df.groupby([pd.Grouper(key="date", freq="D"), group_col])["cost"]
+        .sum()
+        .reset_index()
+    )
+    fig_ts = px.line(
+        ts_df,
+        x="date",
+        y="cost",
+        color=group_col,
+        labels={"cost": "Cost ($)", "date": "Date"},
+    )
     st.plotly_chart(fig_ts, width="stretch")
 
 with col_right:
     st.subheader(f"Cost Breakdown by {group_by}")
-    bar_df = df.groupby(group_col)["cost"].sum().reset_index().sort_values("cost", ascending=False)
+    bar_df = (
+        df.groupby(group_col)["cost"]
+        .sum()
+        .reset_index()
+        .sort_values("cost", ascending=False)
+    )
     fig_bar = px.bar(bar_df, x=group_col, y="cost", labels={"cost": "Cost ($)"})
     st.plotly_chart(fig_bar, width="stretch")
 

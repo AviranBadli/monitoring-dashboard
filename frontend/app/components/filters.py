@@ -1,4 +1,4 @@
-from datetime import date, datetime, time
+from datetime import datetime, time
 
 import streamlit as st
 
@@ -8,7 +8,9 @@ from app.api_client import APIClient, APIError
 def time_range_filter(key_prefix: str = "") -> tuple[datetime | None, datetime | None]:
     col1, col2 = st.columns(2)
     with col1:
-        start_date = st.date_input("Start date", value=None, key=f"{key_prefix}start_date")
+        start_date = st.date_input(
+            "Start date", value=None, key=f"{key_prefix}start_date"
+        )
     with col2:
         end_date = st.date_input("End date", value=None, key=f"{key_prefix}end_date")
 

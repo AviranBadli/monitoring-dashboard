@@ -32,7 +32,9 @@ with col1:
 with col2:
     # Filter clusters by cloud if selected
     if selected_cloud != "All":
-        filtered_clusters = [c for c in clusters if c.get("cloud_name") == selected_cloud]
+        filtered_clusters = [
+            c for c in clusters if c.get("cloud_name") == selected_cloud
+        ]
     else:
         filtered_clusters = clusters
     cluster_names = ["All"] + [c["name"] for c in filtered_clusters]
@@ -62,7 +64,9 @@ with tab_nodes:
         # Client-side filter by cloud if cluster isn't already filtering
         if selected_cloud != "All" and selected_cluster == "All":
             cluster_names_for_cloud = {c["name"] for c in filtered_clusters}
-            nodes = [n for n in nodes if n.get("cluster_name") in cluster_names_for_cloud]
+            nodes = [
+                n for n in nodes if n.get("cluster_name") in cluster_names_for_cloud
+            ]
 
         if nodes:
             st.metric("Nodes", len(nodes))

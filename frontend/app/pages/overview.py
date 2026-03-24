@@ -49,7 +49,19 @@ except APIError:
 
 if allocations:
     df = pd.DataFrame(allocations)
-    display_cols = [c for c in ["id", "node_name", "team_name", "workload_type_name", "allocation_type_name", "start_time", "end_time"] if c in df.columns]
+    display_cols = [
+        c
+        for c in [
+            "id",
+            "node_name",
+            "team_name",
+            "workload_type_name",
+            "allocation_type_name",
+            "start_time",
+            "end_time",
+        ]
+        if c in df.columns
+    ]
     st.dataframe(df[display_cols], width="stretch", hide_index=True)
 else:
     st.info("No active allocations.")

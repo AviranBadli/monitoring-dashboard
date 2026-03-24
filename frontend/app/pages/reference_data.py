@@ -7,8 +7,22 @@ st.header("Reference Data")
 
 api = st.session_state.api
 
-tab_teams, tab_clouds, tab_gpu_types, tab_instance_types, tab_workload_types, tab_allocation_types = st.tabs(
-    ["Teams", "Clouds", "GPU Types", "Instance Types", "Workload Types", "Allocation Types"]
+(
+    tab_teams,
+    tab_clouds,
+    tab_gpu_types,
+    tab_instance_types,
+    tab_workload_types,
+    tab_allocation_types,
+) = st.tabs(
+    [
+        "Teams",
+        "Clouds",
+        "GPU Types",
+        "Instance Types",
+        "Workload Types",
+        "Allocation Types",
+    ]
 )
 
 # --- Teams ---
@@ -37,7 +51,9 @@ with tab_teams:
 
     if teams:
         st.subheader("Delete Team")
-        team_to_delete = st.selectbox("Select team", [t["name"] for t in teams], key="del_team")
+        team_to_delete = st.selectbox(
+            "Select team", [t["name"] for t in teams], key="del_team"
+        )
         if st.button("Delete Team", type="secondary"):
             try:
                 api.delete_team(team_to_delete)
@@ -72,7 +88,9 @@ with tab_clouds:
 
     if clouds:
         st.subheader("Delete Cloud")
-        cloud_to_delete = st.selectbox("Select cloud", [c["name"] for c in clouds], key="del_cloud")
+        cloud_to_delete = st.selectbox(
+            "Select cloud", [c["name"] for c in clouds], key="del_cloud"
+        )
         if st.button("Delete Cloud", type="secondary"):
             try:
                 api.delete_cloud(cloud_to_delete)
@@ -117,7 +135,9 @@ with tab_gpu_types:
 
     if gpu_types:
         st.subheader("Delete GPU Type")
-        gt_to_delete = st.selectbox("Select GPU type", [g["name"] for g in gpu_types], key="del_gpu_type")
+        gt_to_delete = st.selectbox(
+            "Select GPU type", [g["name"] for g in gpu_types], key="del_gpu_type"
+        )
         if st.button("Delete GPU Type", type="secondary"):
             try:
                 api.delete_gpu_type(gt_to_delete)
@@ -146,13 +166,21 @@ with tab_instance_types:
             cloud_names = [c["name"] for c in api.list_clouds()]
         except APIError:
             cloud_names = []
-        cloud_name = st.selectbox("Cloud", cloud_names) if cloud_names else st.text_input("Cloud Name")
+        cloud_name = (
+            st.selectbox("Cloud", cloud_names)
+            if cloud_names
+            else st.text_input("Cloud Name")
+        )
 
         try:
             gt_names = [g["name"] for g in api.list_gpu_types()]
         except APIError:
             gt_names = []
-        gpu_type_name = st.selectbox("GPU Type", gt_names) if gt_names else st.text_input("GPU Type Name")
+        gpu_type_name = (
+            st.selectbox("GPU Type", gt_names)
+            if gt_names
+            else st.text_input("GPU Type Name")
+        )
 
         gpu_count = st.number_input("GPU Count", min_value=0.0625, value=1.0, step=1.0)
         instance_family = st.text_input("Instance Family (e.g. p4d)")
@@ -175,7 +203,9 @@ with tab_instance_types:
     if instance_types:
         st.subheader("Delete Instance Type")
         it_to_delete = st.selectbox(
-            "Select instance type", [i["name"] for i in instance_types], key="del_instance_type"
+            "Select instance type",
+            [i["name"] for i in instance_types],
+            key="del_instance_type",
         )
         if st.button("Delete Instance Type", type="secondary"):
             try:
@@ -212,7 +242,9 @@ with tab_workload_types:
     if workload_types:
         st.subheader("Delete Workload Type")
         wt_to_delete = st.selectbox(
-            "Select workload type", [w["name"] for w in workload_types], key="del_workload_type"
+            "Select workload type",
+            [w["name"] for w in workload_types],
+            key="del_workload_type",
         )
         if st.button("Delete Workload Type", type="secondary"):
             try:
@@ -227,7 +259,9 @@ with tab_allocation_types:
     try:
         allocation_types = api.list_allocation_types()
         if allocation_types:
-            st.dataframe(pd.DataFrame(allocation_types), width="stretch", hide_index=True)
+            st.dataframe(
+                pd.DataFrame(allocation_types), width="stretch", hide_index=True
+            )
         else:
             st.info("No allocation types found.")
     except APIError as e:
@@ -250,7 +284,9 @@ with tab_allocation_types:
     if allocation_types:
         st.subheader("Delete Allocation Type")
         at_to_delete = st.selectbox(
-            "Select allocation type", [a["name"] for a in allocation_types], key="del_allocation_type"
+            "Select allocation type",
+            [a["name"] for a in allocation_types],
+            key="del_allocation_type",
         )
         if st.button("Delete Allocation Type", type="secondary"):
             try:

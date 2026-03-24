@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def confirm_delete(item_type: str, item_name: str, key: str) -> bool:
-    if st.button(f"Delete", key=f"del_{key}", type="secondary"):
+    if st.button("Delete", key=f"del_{key}", type="secondary"):
         st.session_state[f"confirm_{key}"] = True
 
     if st.session_state.get(f"confirm_{key}"):

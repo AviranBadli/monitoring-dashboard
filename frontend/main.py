@@ -13,8 +13,10 @@ st.set_page_config(
 def get_client():
     return APIClient(f"{settings.BACKEND_URL}{settings.API_V1_PREFIX}")
 
+
 def get_health():
     return APIClient(f"{settings.BACKEND_URL}").health()
+
 
 st.session_state.api = get_client()
 
