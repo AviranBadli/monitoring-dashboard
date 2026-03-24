@@ -58,6 +58,53 @@ jobs:
     - name: Run tests with pytest
       run: poetry run pytest -v
 
+  trivy-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy filesystem scan (backend)
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: fs
+        scan-ref: ./backend
+        exit-code: 1
+        severity: CRITICAL,HIGH
+
+  trivy-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy filesystem scan (frontend)
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: fs
+        scan-ref: ./frontend
+        exit-code: 1
+        severity: CRITICAL,HIGH
+
+  lint-containerfiles:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Lint Containerfile (backend)
+      uses: hadolint/hadolint-action@v3.1.0
+      with:
+        dockerfile: deployment/podman/Containerfile
+
+    - name: Lint Containerfile (frontend)
+      uses: hadolint/hadolint-action@v3.1.0
+      with:
+        dockerfile: deployment/podman/Containerfile.frontend
+
   test-frontend:
     runs-on: ubuntu-latest
 
