@@ -52,7 +52,10 @@ def generate_gpu_type_mapping(csv_file, json_file=None):
     json_data = {"name": "GPU_Type", "defaultValue": "No GPU", "statements": []}
 
     # Read the CSV and create statements
-    statements = []
+    # Group by valueExpression so each unique GPU config appears only once
+    from collections import OrderedDict
+
+    value_to_instances = OrderedDict()
     rows_processed = 0
     rows_with_gpu = 0
 
@@ -124,15 +127,24 @@ def generate_gpu_type_mapping(csv_file, json_file=None):
 
                     # Add count if present
                     if gpu_count and gpu_count.strip():
-                        parts.append(" x ")
                         gpu_value += f" x {gpu_count.strip()}"
 
-                    statement = {
-                        "matchExpression": f"DIMENSION['instance_type'] == '{instance_type}'",
-                        "valueExpression": f"'{gpu_value}'",
-                    }
-                    statements.append(statement)
+                    value_expr = f"'{gpu_value}'"
+                    match_expr = f"DIMENSION['instance_type'] == '{instance_type}'"
+
+                    if value_expr not in value_to_instances:
+                        value_to_instances[value_expr] = []
+                    value_to_instances[value_expr].append(match_expr)
                     rows_with_gpu += 1
+
+        # Build statements with combined match expressions
+        statements = []
+        for value_expr, match_exprs in value_to_instances.items():
+            statement = {
+                "matchExpression": " || ".join(match_exprs),
+                "valueExpression": value_expr,
+            }
+            statements.append(statement)
     except KeyError as e:
         print(f"Error: Required column not found in CSV: {e}")
         return False
