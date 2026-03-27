@@ -8,9 +8,9 @@ import streamlit as st
 from config import settings
 
 PHASE_DISPLAY = {
-    "Active": {"label": "\u2705 Active", "color": "background-color: #b6e2b6"},
-    "Terminating": {"label": "\u23f3 Terminating", "color": "background-color: #f5c6a1"},
-    "Terminated": {"label": "\u26d4 Terminated", "color": "background-color: #d3d3d3"},
+    "Active": {"icon": "\u2705", "color": "background-color: #b6e2b6"},
+    "Terminating": {"icon": "\u23f3", "color": "background-color: #f5c6a1"},
+    "Terminated": {"icon": "\u26d4", "color": "background-color: #d3d3d3"},
 }
 
 
@@ -182,9 +182,6 @@ def render_html_table(sorted_pairs, rows):
     html.append(
         '<th rowspan="2" style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>'
     )
-    html.append(
-        '<th rowspan="2" style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Phase</th>'
-    )
     for cq, lqs in cq_groups.items():
         html.append(
             f'<th colspan="{len(lqs)}" style="border:1px solid #ddd;padding:8px;'
@@ -207,13 +204,12 @@ def render_html_table(sorted_pairs, rows):
     for row in rows:
         ns = row["namespace"]
         phase = row["phase"]
-        phase_info = PHASE_DISPLAY.get(phase, {"label": phase, "color": ""})
+        phase_info = PHASE_DISPLAY.get(phase, {"icon": "", "color": ""})
 
         html.append("<tr>")
-        html.append(f'<td style="border:1px solid #ddd;padding:8px">{ns}</td>')
         html.append(
             f'<td style="border:1px solid #ddd;padding:8px;{phase_info["color"]}">'
-            f'{phase_info["label"]}</td>'
+            f'{ns} {phase_info["icon"]}</td>'
         )
         for cq, lq in sorted_pairs:
             counts = row["queues"].get((cq, lq), {})
