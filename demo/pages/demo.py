@@ -7,6 +7,12 @@ import streamlit as st
 
 from config import settings
 
+PHASE_DISPLAY = {
+    "Active": {"label": "\u2705 Active", "color": "background-color: #b6e2b6"},
+    "Terminating": {"label": "\u23f3 Terminating", "color": "background-color: #f5c6a1"},
+    "Terminated": {"label": "\u26d4 Terminated", "color": "background-color: #d3d3d3"},
+}
+
 
 def query_thanos_range(query: str, ageSeconds: int = 600, step: str = "60s") -> dict:
     """Execute a range query against the Thanos API over the last N hours."""
@@ -68,12 +74,28 @@ def get_namespace_events() -> pd.DataFrame:
         .reset_index(drop=True)
     )
 
-    phase_emojis = {
-        "Active": "\u2705 Active",
-        "Terminating": "\u23f3 Terminating",
-        "Terminated": "\u26d4 Terminated",
+    # Fetch workload metrics per namespace
+    namespaces = df["Namespace"].unique().tolist()
+    ns_regex = "|".join(namespaces)
+
+    workload_metrics = {
+        "Admitted Workloads": "kube_customresource_kueue_localqueue_admitted_workloads",
+        "Pending Workloads": "kube_customresource_kueue_localqueue_pending_workloads",
+        "Reserving Workloads": "kube_customresource_kueue_localqueue_reserving_workloads",
     }
-    df["Phase"] = df["Phase"].map(lambda p: phase_emojis.get(p, p))
+
+    for col_name, metric_name in workload_metrics.items():
+        by_ns = {}
+        result = query_thanos_range(f'{metric_name}{{exported_namespace=~"{ns_regex}"}}')
+        if result.get("status") == "success":
+            for series in result["data"]["result"]:
+                ns = series["metric"].get("namespace", "unknown")
+                if series["values"]:
+                    latest_value = float(series["values"][-1][1])
+                    by_ns[ns] = by_ns.get(ns, 0) + latest_value
+        df[col_name] = df["Namespace"].map(lambda ns, d=by_ns: int(d.get(ns, 0)))
+
+    df["Phase"] = df["Phase"].map(lambda p: PHASE_DISPLAY[p]["label"] if p in PHASE_DISPLAY else p)
     df = df.drop(columns=["Timestamp"])
     return df
 
@@ -81,25 +103,48 @@ def get_namespace_events() -> pd.DataFrame:
 st.title("Demo")
 st.subheader("Namespace Events")
 
-try:
-    df = get_namespace_events()
-    if df.empty:
-        st.info("No namespace events found.")
-    else:
-        phase_colors = {
-            "\u2705 Active": "background-color: #b6e2b6",
-            "\u23f3 Terminating": "background-color: #f5c6a1",
-            "\u26d4 Terminated": "background-color: #d3d3d3",
-        }
+# Disable the fade effect during fragment re-runs
+st.markdown(
+    """
+    <style>
+    [data-testid="stElementContainer"] { transition: none !important; opacity: 1 !important; }
+    .stale-element { opacity: 1 !important; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-        def color_phase(val):
-            return phase_colors.get(val, "")
+@st.fragment(run_every=5)
+def namespace_table():
+    try:
+        df = get_namespace_events()
+        if df.empty:
+            st.info("No namespace events found.")
+        else:
+            label_to_color = {v["label"]: v["color"] for v in PHASE_DISPLAY.values()}
 
-        styled = df.style.map(color_phase, subset=["Phase"])
-        st.dataframe(styled, use_container_width=True)
-except httpx.HTTPStatusError as e:
-    st.error(f"API error: {e.response.status_code} — {e.response.text}")
-except httpx.ConnectError:
-    st.error(f"Cannot connect to Thanos at {settings.THANOS_URL}")
-except Exception as e:
-    st.error(f"Error fetching namespace events: {e}")
+            def color_phase(val):
+                return label_to_color.get(val, "")
+
+            workload_cols = [
+                "Admitted Workloads",
+                "Pending Workloads",
+                "Reserving Workloads",
+            ]
+
+            def bold_nonzero(val):
+                return "font-weight: bold" if val > 0 else ""
+
+            styled = df.style.map(color_phase, subset=["Phase"]).map(
+                bold_nonzero, subset=workload_cols
+            )
+            st.dataframe(styled, use_container_width=True)
+    except httpx.HTTPStatusError as e:
+        st.error(f"API error: {e.response.status_code} — {e.response.text}")
+    except httpx.ConnectError:
+        st.error(f"Cannot connect to Thanos at {settings.THANOS_URL}")
+    except Exception as e:
+        st.error(f"Error fetching namespace events: {e}")
+
+
+namespace_table()
