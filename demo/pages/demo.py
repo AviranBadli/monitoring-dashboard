@@ -78,26 +78,57 @@ def get_namespace_events() -> pd.DataFrame:
     namespaces = df["Namespace"].unique().tolist()
     ns_regex = "|".join(namespaces)
 
-    workload_metrics = {
-        "Admitted Workloads": "kube_customresource_kueue_localqueue_admitted_workloads",
-        "Pending Workloads": "kube_customresource_kueue_localqueue_pending_workloads",
-        "Reserving Workloads": "kube_customresource_kueue_localqueue_reserving_workloads",
-    }
+    workload_metrics = [
+        ("pending", "kube_customresource_kueue_localqueue_pending_workloads"),
+        ("admitted", "kube_customresource_kueue_localqueue_admitted_workloads"),
+        ("reserving", "kube_customresource_kueue_localqueue_reserving_workloads"),
+    ]
 
-    for col_name, metric_name in workload_metrics.items():
-        by_ns = {}
+    # Collect data keyed by (namespace, cluster_queue, localqueue)
+    all_queue_pairs = set()  # (cluster_queue, localqueue)
+    workload_data = {}  # {(namespace, cluster_queue, localqueue): {metric_key: value}}
+    for key, metric_name in workload_metrics:
         result = query_thanos_range(f'{metric_name}{{exported_namespace=~"{ns_regex}"}}')
         if result.get("status") == "success":
             for series in result["data"]["result"]:
                 ns = series["metric"].get("namespace", "unknown")
+                cq = series["metric"].get("cluster_queue", "unknown")
+                lq = series["metric"].get("localqueue", "unknown")
+                all_queue_pairs.add((cq, lq))
                 if series["values"]:
                     latest_value = float(series["values"][-1][1])
-                    by_ns[ns] = by_ns.get(ns, 0) + latest_value
-        df[col_name] = df["Namespace"].map(lambda ns, d=by_ns: int(d.get(ns, 0)))
+                    combo = (ns, cq, lq)
+                    if combo not in workload_data:
+                        workload_data[combo] = {}
+                    workload_data[combo][key] = (
+                        workload_data[combo].get(key, 0) + latest_value
+                    )
 
-    df["Phase"] = df["Phase"].map(lambda p: PHASE_DISPLAY[p]["label"] if p in PHASE_DISPLAY else p)
-    df = df.drop(columns=["Timestamp"])
-    return df
+    # Build MultiIndex columns: (cluster_queue, localqueue) for each queue pair
+    sorted_pairs = sorted(all_queue_pairs)
+    multi_cols = [("", "Namespace"), ("", "Phase")]
+    for cq, lq in sorted_pairs:
+        multi_cols.append((cq, lq))
+
+    # Build rows with multi-level column data
+    result_rows = []
+    for _, row in df.iterrows():
+        ns = row["Namespace"]
+        phase = PHASE_DISPLAY[row["Phase"]]["label"] if row["Phase"] in PHASE_DISPLAY else row["Phase"]
+        values = [ns, phase]
+        for cq, lq in sorted_pairs:
+            data = workload_data.get((ns, cq, lq), {})
+            values.append(
+                "{}/{}/{}".format(
+                    int(data.get("pending", 0)),
+                    int(data.get("admitted", 0)),
+                    int(data.get("reserving", 0)),
+                )
+            )
+        result_rows.append(values)
+
+    multi_index = pd.MultiIndex.from_tuples(multi_cols)
+    return pd.DataFrame(result_rows, columns=multi_index)
 
 
 st.title("Demo")
@@ -126,18 +157,14 @@ def namespace_table():
             def color_phase(val):
                 return label_to_color.get(val, "")
 
-            workload_cols = [
-                "Admitted Workloads",
-                "Pending Workloads",
-                "Reserving Workloads",
-            ]
+            def bold_workloads(val):
+                return "font-weight: bold" if val != "0/0/0" else ""
 
-            def bold_nonzero(val):
-                return "font-weight: bold" if val > 0 else ""
-
-            styled = df.style.map(color_phase, subset=["Phase"]).map(
-                bold_nonzero, subset=workload_cols
-            )
+            phase_col = ("", "Phase")
+            workload_cols = [c for c in df.columns if c[0] != ""]
+            styled = df.style.map(color_phase, subset=[phase_col])
+            if workload_cols:
+                styled = styled.map(bold_workloads, subset=workload_cols)
             st.dataframe(styled, use_container_width=True)
     except httpx.HTTPStatusError as e:
         st.error(f"API error: {e.response.status_code} — {e.response.text}")
