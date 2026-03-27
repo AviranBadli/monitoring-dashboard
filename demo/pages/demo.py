@@ -39,7 +39,7 @@ def get_namespace_events() -> pd.DataFrame:
     rows = []
 
     result = query_thanos_range(
-        'kube_namespace_status_phase{namespace!~"openshift.*|kube.*|redhat.*|cert.*|default.*|nvidia.*|rh.*|gpu.*|grafana.*"}'
+        'kube_namespace_status_phase{namespace!~"openshift.*|kube.*"}'
     )
     if result.get("status") == "success":
         for series in result["data"]["result"]:
