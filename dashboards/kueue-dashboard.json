@@ -1,0 +1,541 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Kueue Scheduling Metrics Dashboard",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 100,
+      "title": "Queue Status Overview",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "green", "value": 1 }
+            ]
+          },
+          "mappings": [
+            { "options": { "0": { "text": "Inactive" }, "1": { "text": "Active" } }, "type": "value" }
+          ]
+        }
+      },
+      "gridPos": { "h": 5, "w": 6, "x": 0, "y": 1 },
+      "id": 1,
+      "options": { "colorMode": "background", "graphMode": "none", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Queue Status",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "kueue_cluster_queue_status{cluster_queue=~\"$cluster_queue\", status=\"active\"}",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 1 },
+              { "color": "red", "value": 5 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 5, "w": 6, "x": 6, "y": 1 },
+      "id": 2,
+      "options": { "colorMode": "background", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Pending Workloads (Active)",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "kueue_pending_workloads{cluster_queue=~\"$cluster_queue\", status=\"active\"}",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 1 },
+              { "color": "red", "value": 5 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 5, "w": 6, "x": 12, "y": 1 },
+      "id": 3,
+      "options": { "colorMode": "background", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Pending Workloads (Inadmissible)",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "kueue_pending_workloads{cluster_queue=~\"$cluster_queue\", status=\"inadmissible\"}",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "blue", "value": null }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 5, "w": 6, "x": 18, "y": 1 },
+      "id": 4,
+      "options": { "colorMode": "background", "graphMode": "area", "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "title": "Admitted Active Workloads",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "kueue_admitted_active_workloads{cluster_queue=~\"$cluster_queue\"}",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 6 },
+      "id": 101,
+      "title": "Workload Trends",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true }
+        }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 7 },
+      "id": 5,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Pending Workloads Over Time",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "kueue_pending_workloads{cluster_queue=~\"$cluster_queue\", status=\"active\"}",
+          "legendFormat": "{{cluster_queue}} (active)"
+        },
+        {
+          "expr": "kueue_pending_workloads{cluster_queue=~\"$cluster_queue\", status=\"inadmissible\"}",
+          "legendFormat": "{{cluster_queue}} (inadmissible)"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true }
+        }
+      },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 7 },
+      "id": 6,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Admitted Active Workloads Over Time",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "kueue_admitted_active_workloads{cluster_queue=~\"$cluster_queue\"}",
+          "legendFormat": "{{cluster_queue}}"
+        },
+        {
+          "expr": "kueue_reserving_active_workloads{cluster_queue=~\"$cluster_queue\"}",
+          "legendFormat": "{{cluster_queue}} (reserving)"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 15 },
+      "id": 102,
+      "title": "Quota & Resource Usage",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true },
+          "unit": "short"
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 16 },
+      "id": 7,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "CPU Quota vs Usage",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "kueue_cluster_queue_nominal_quota{cluster_queue=~\"$cluster_queue\", resource=\"cpu\"}",
+          "legendFormat": "{{cluster_queue}} quota"
+        },
+        {
+          "expr": "kueue_cluster_queue_resource_usage{cluster_queue=~\"$cluster_queue\", resource=\"cpu\"}",
+          "legendFormat": "{{cluster_queue}} usage"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true },
+          "unit": "bytes"
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 16 },
+      "id": 8,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Memory Quota vs Usage",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "kueue_cluster_queue_nominal_quota{cluster_queue=~\"$cluster_queue\", resource=\"memory\"}",
+          "legendFormat": "{{cluster_queue}} quota"
+        },
+        {
+          "expr": "kueue_cluster_queue_resource_usage{cluster_queue=~\"$cluster_queue\", resource=\"memory\"}",
+          "legendFormat": "{{cluster_queue}} usage"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true },
+          "unit": "short"
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 16 },
+      "id": 9,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "GPU Quota vs Usage",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "kueue_cluster_queue_nominal_quota{cluster_queue=~\"$cluster_queue\", resource=\"nvidia.com/gpu\"}",
+          "legendFormat": "{{cluster_queue}} quota"
+        },
+        {
+          "expr": "kueue_cluster_queue_resource_usage{cluster_queue=~\"$cluster_queue\", resource=\"nvidia.com/gpu\"}",
+          "legendFormat": "{{cluster_queue}} usage"
+        },
+        {
+          "expr": "kueue_cluster_queue_resource_reservation{cluster_queue=~\"$cluster_queue\", resource=\"nvidia.com/gpu\"}",
+          "legendFormat": "{{cluster_queue}} reserved"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 24 },
+      "id": 103,
+      "title": "Resource Utilization (%)",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "percentunit",
+          "min": 0,
+          "max": 1,
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 0.7 },
+              { "color": "red", "value": 0.9 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 25 },
+      "id": 10,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "orientation": "horizontal", "showThresholdLabels": false },
+      "title": "CPU Utilization",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "kueue_cluster_queue_resource_usage{cluster_queue=~\"$cluster_queue\", resource=\"cpu\"} / kueue_cluster_queue_nominal_quota{cluster_queue=~\"$cluster_queue\", resource=\"cpu\"}",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "percentunit",
+          "min": 0,
+          "max": 1,
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 0.7 },
+              { "color": "red", "value": 0.9 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 6, "w": 8, "x": 8, "y": 25 },
+      "id": 11,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "orientation": "horizontal", "showThresholdLabels": false },
+      "title": "Memory Utilization",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "kueue_cluster_queue_resource_usage{cluster_queue=~\"$cluster_queue\", resource=\"memory\"} / kueue_cluster_queue_nominal_quota{cluster_queue=~\"$cluster_queue\", resource=\"memory\"}",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "percentunit",
+          "min": 0,
+          "max": 1,
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 0.7 },
+              { "color": "red", "value": 0.9 }
+            ]
+          }
+        }
+      },
+      "gridPos": { "h": 6, "w": 8, "x": 16, "y": 25 },
+      "id": 12,
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "orientation": "horizontal", "showThresholdLabels": false },
+      "title": "GPU Utilization",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "kueue_cluster_queue_resource_usage{cluster_queue=~\"$cluster_queue\", resource=\"nvidia.com/gpu\"} / kueue_cluster_queue_nominal_quota{cluster_queue=~\"$cluster_queue\", resource=\"nvidia.com/gpu\"}",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 31 },
+      "id": 104,
+      "title": "Admission Performance",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true, "stacking": { "mode": "normal" } }
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 32 },
+      "id": 13,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Admission Attempts (rate/min)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(kueue_admission_attempts_total{result=\"success\"}[5m]) * 60",
+          "legendFormat": "success"
+        },
+        {
+          "expr": "rate(kueue_admission_attempts_total{result=\"inadmissible\"}[5m]) * 60",
+          "legendFormat": "inadmissible"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true },
+          "unit": "s"
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 32 },
+      "id": 14,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Admission Attempt Duration (p50 / p95 / p99)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, rate(kueue_admission_attempt_duration_seconds_bucket[5m]))",
+          "legendFormat": "p50"
+        },
+        {
+          "expr": "histogram_quantile(0.95, rate(kueue_admission_attempt_duration_seconds_bucket[5m]))",
+          "legendFormat": "p95"
+        },
+        {
+          "expr": "histogram_quantile(0.99, rate(kueue_admission_attempt_duration_seconds_bucket[5m]))",
+          "legendFormat": "p99"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true },
+          "unit": "s"
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 32 },
+      "id": 15,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Admission Wait Time (p50 / p95 / p99)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, rate(kueue_admission_wait_time_seconds_bucket[5m]))",
+          "legendFormat": "p50"
+        },
+        {
+          "expr": "histogram_quantile(0.95, rate(kueue_admission_wait_time_seconds_bucket[5m]))",
+          "legendFormat": "p95"
+        },
+        {
+          "expr": "histogram_quantile(0.99, rate(kueue_admission_wait_time_seconds_bucket[5m]))",
+          "legendFormat": "p99"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 40 },
+      "id": 105,
+      "title": "Eviction & Preemption",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true }
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 41 },
+      "id": 16,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Total Admitted Workloads (rate/min)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(kueue_admitted_workloads_total{cluster_queue=~\"$cluster_queue\"}[5m]) * 60",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true }
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 41 },
+      "id": 17,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Evicted Workloads (rate/min)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(kueue_evicted_workloads_total{cluster_queue=~\"$cluster_queue\"}[5m]) * 60",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "${datasource}" },
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "spanNulls": true }
+        }
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 41 },
+      "id": 18,
+      "options": { "tooltip": { "mode": "multi" } },
+      "title": "Preempted Workloads (rate/min)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(kueue_preempted_workloads_total{cluster_queue=~\"$cluster_queue\"}[5m]) * 60",
+          "legendFormat": "{{cluster_queue}}"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["kueue", "scheduling", "gpu"],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "type": "datasource"
+      },
+      {
+        "current": {},
+        "datasource": { "type": "prometheus", "uid": "${datasource}" },
+        "definition": "label_values(kueue_cluster_queue_status, cluster_queue)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Cluster Queue",
+        "multi": true,
+        "name": "cluster_queue",
+        "query": "label_values(kueue_cluster_queue_status, cluster_queue)",
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": { "from": "now-1h", "to": "now" },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Kueue Scheduling Metrics",
+  "uid": "kueue-scheduling-metrics",
+  "version": 1
+}
