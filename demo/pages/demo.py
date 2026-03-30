@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from time import time
 
 import httpx
@@ -38,27 +38,23 @@ def get_namespace_events() -> pd.DataFrame:
     """Fetch namespace phase events from the last hour."""
     rows = []
 
-    result = query_thanos_range(
-        'kube_namespace_status_phase{namespace!~"openshift.*|kube.*"}'
-    )
+    result = query_thanos_range('kube_namespace_status_phase{namespace!~"openshift.*|kube.*"}')
     if result.get("status") == "success":
         for series in result["data"]["result"]:
             namespace = series["metric"].get("namespace", "unknown")
             phase = series["metric"].get("phase", "unknown")
 
             # Take only the last data point for this namespace+phase
-            active_values = [
-                (ts, v) for ts, v in series["values"] if float(v) == 1
-            ]
+            active_values = [(ts, v) for ts, v in series["values"] if float(v) == 1]
             if active_values:
                 timestamp, _ = active_values[-1]
                 rows.append(
                     {
                         "Namespace": namespace,
                         "Phase": phase,
-                        "Timestamp": datetime.fromtimestamp(
-                            timestamp, tz=timezone.utc
-                        ).strftime("%Y-%m-%d %H:%M:%S"),
+                        "Timestamp": datetime.fromtimestamp(timestamp, tz=timezone.utc).strftime(
+                            "%Y-%m-%d %H:%M:%S"
+                        ),
                     }
                 )
 
@@ -100,9 +96,7 @@ def get_namespace_events() -> pd.DataFrame:
                     combo = (ns, cq, lq)
                     if combo not in workload_data:
                         workload_data[combo] = {}
-                    workload_data[combo][key] = (
-                        workload_data[combo].get(key, 0) + latest_value
-                    )
+                    workload_data[combo][key] = workload_data[combo].get(key, 0) + latest_value
 
     sorted_pairs = sorted(all_queue_pairs)
 
@@ -159,7 +153,7 @@ def render_workload_cell(counts: dict) -> str:
         for _ in range(count):
             spans.append(
                 f'<span style="background-color:{color};padding:2px 6px;'
-                f'margin:1px;border-radius:3px;font-weight:bold;'
+                f"margin:1px;border-radius:3px;font-weight:bold;"
                 f'font-size:0.85em;display:inline-block">{letter}</span>'
             )
     return "".join(spans)

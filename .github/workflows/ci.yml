@@ -134,3 +134,45 @@ jobs:
 
     - name: Run tests with pytest
       run: poetry run pytest -v
+
+  lint-demo:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./demo
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Cache Poetry dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/pypoetry
+          demo/.venv
+        key: ${{ runner.os }}-poetry-demo-${{ hashFiles('demo/poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-poetry-demo-
+
+    - name: Install dependencies
+      run: |
+        poetry config virtualenvs.in-project true
+        poetry install --no-interaction
+
+    - name: Run Black formatting check
+      run: poetry run black --check .
+
+    - name: Run Ruff linting
+      run: poetry run ruff check .
