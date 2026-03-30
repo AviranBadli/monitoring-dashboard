@@ -1,13 +1,63 @@
 import httpx
 import streamlit as st
 
-from config import settings
+from config import batch_api, k8s_api, settings
 
 PHASE_DISPLAY = {
     "Active": {"icon": "\u2705", "color": "background-color: #b6e2b6"},
     "Terminating": {"icon": "\u23f3", "color": "background-color: #f5c6a1"},
     "Terminated": {"icon": "\u26d4", "color": "background-color: #d3d3d3"},
 }
+
+
+def get_cluster_queue_flavors(cq_name: str) -> list[dict]:
+    """Fetch resource flavor names and nominalQuotas from a ClusterQueue spec."""
+    try:
+        cq = k8s_api.get_cluster_custom_object(
+            group="kueue.x-k8s.io",
+            version="v1beta1",
+            plural="clusterqueues",
+            name=cq_name,
+        )
+        flavors = []
+        seen = set()
+        for rg in cq.get("spec", {}).get("resourceGroups", []):
+            for fq in rg.get("flavors", []):
+                name = fq.get("name", "")
+                if name and name not in seen:
+                    seen.add(name)
+                    quotas = {}
+                    for res in fq.get("resources", []):
+                        res_name = res.get("name", "")
+                        quota = res.get("nominalQuota")
+                        if res_name and quota is not None:
+                            quotas[res_name] = quota
+                    flavors.append({"name": name, "quotas": quotas})
+        return flavors
+    except Exception:
+        return []
+
+
+def get_jobs_by_localqueue(namespaces: set) -> dict:
+    """Fetch jobs labeled with a local queue, grouped by (namespace, localqueue)."""
+    jobs_map = {}  # {(namespace, localqueue): [(job_name, priority_class), ...]}
+    for ns in namespaces:
+        try:
+            jobs = batch_api.list_namespaced_job(
+                namespace=ns,
+                label_selector="kueue.x-k8s.io/queue-name",
+            )
+            for job in jobs.items:
+                labels = job.metadata.labels or {}
+                lq = labels.get("kueue.x-k8s.io/queue-name", "")
+                priority_class = labels.get("kueue.x-k8s.io/priority-class", "")
+                if lq:
+                    jobs_map.setdefault((ns, lq), []).append(
+                        (job.metadata.name, priority_class)
+                    )
+        except Exception:
+            continue
+    return jobs_map
 
 
 def query_thanos(query: str) -> dict:
@@ -54,7 +104,10 @@ def get_localqueue_events():
     sorted_pairs = sorted(all_queue_pairs)
     sorted_namespaces = sorted(all_namespaces)
 
-    # Build row data with raw counts
+    # Fetch jobs labeled with local queues
+    jobs_map = get_jobs_by_localqueue(all_namespaces)
+
+    # Build row data with raw counts and job names
     result_rows = []
     for ns in sorted_namespaces:
         queue_data = {}
@@ -64,6 +117,7 @@ def get_localqueue_events():
                 "pending": int(data.get("pending", 0)),
                 "admitted": int(data.get("admitted", 0)),
                 "reserving": int(data.get("reserving", 0)),
+                "jobs": jobs_map.get((ns, lq), []),
             }
         result_rows.append({"namespace": ns, "phase": "Active", "queues": queue_data})
 
@@ -93,7 +147,7 @@ WORKLOAD_COLORS = {
 
 
 def render_workload_cell(counts: dict) -> str:
-    """Render pending/admitted/reserving as individually colored HTML spans."""
+    """Render pending/admitted/reserving badges and job names."""
     spans = []
     for letter, key in [("P", "pending"), ("A", "admitted"), ("R", "reserving")]:
         count = counts.get(key, 0)
@@ -104,6 +158,15 @@ def render_workload_cell(counts: dict) -> str:
                 f"margin:1px;border-radius:3px;font-weight:bold;"
                 f'font-size:0.85em;display:inline-block">{letter}</span>'
             )
+    jobs = counts.get("jobs", [])
+    if jobs:
+        job_lines = "".join(
+            f'<div style="font-size:0.75em;color:#555;margin-top:2px">'
+            f"{name} ({pc})</div>" if pc else
+            f'<div style="font-size:0.75em;color:#555;margin-top:2px">{name}</div>'
+            for name, pc in jobs
+        )
+        spans.append(job_lines)
     return "".join(spans)
 
 
@@ -125,9 +188,24 @@ def render_html_table(sorted_pairs, rows):
         '<th rowspan="2" style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>'
     )
     for cq, lqs in cq_groups.items():
+        flavors = get_cluster_queue_flavors(cq)
+        flavor_html = ""
+        if flavors:
+            parts = []
+            for f in flavors:
+                gpu_quota = f["quotas"].get("nvidia.com/gpu")
+                if gpu_quota is not None:
+                    parts.append(f'{f["name"]} ({gpu_quota})')
+                else:
+                    parts.append(f["name"])
+            flavor_html = (
+                '<br><span style="font-size:0.75em;font-weight:normal;color:#555">'
+                + ", ".join(parts)
+                + "</span>"
+            )
         html.append(
             f'<th colspan="{len(lqs)}" style="border:1px solid #ddd;padding:8px;'
-            f'background:#e8e8e8;text-align:center">{cq}</th>'
+            f'background:#e8e8e8;text-align:center">{cq}{flavor_html}</th>'
         )
     html.append("</tr>")
 
