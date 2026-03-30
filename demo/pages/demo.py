@@ -66,8 +66,7 @@ def get_workloads_by_localqueue(namespaces: set) -> dict:
 
                 # Derive state from conditions
                 conditions = {
-                    c["type"]: c["status"]
-                    for c in wl.get("status", {}).get("conditions", [])
+                    c["type"]: c["status"] for c in wl.get("status", {}).get("conditions", [])
                 }
                 if conditions.get("Finished") == "True":
                     state = "F"
@@ -222,9 +221,7 @@ def render_html_table(sorted_pairs, rows):
         ns = row["namespace"]
 
         html.append("<tr>")
-        html.append(
-            f'<td style="border:1px solid #ddd;padding:8px">{ns}</td>'
-        )
+        html.append(f'<td style="border:1px solid #ddd;padding:8px">{ns}</td>')
         for cq, lq in sorted_pairs:
             counts = row["queues"].get((cq, lq), {})
             cell_html = render_workload_cell(counts)
