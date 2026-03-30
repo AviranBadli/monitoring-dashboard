@@ -1,8 +1,4 @@
-from datetime import datetime, timezone
-from time import time
-
 import httpx
-import pandas as pd
 import streamlit as st
 
 from config import settings
@@ -14,18 +10,11 @@ PHASE_DISPLAY = {
 }
 
 
-def query_thanos_range(query: str, ageSeconds: int = 600, step: str = "60s") -> dict:
-    """Execute a range query against the Thanos API over the last N hours."""
-    now = time()
-    start = now - (ageSeconds)
+def query_thanos(query: str) -> dict:
+    """Execute an instant query against the Thanos API."""
     response = httpx.get(
-        f"{settings.THANOS_URL}/api/v1/query_range",
-        params={
-            "query": query,
-            "start": start,
-            "end": now,
-            "step": step,
-        },
+        f"{settings.THANOS_URL}/api/v1/query",
+        params={"query": query},
         headers={"Authorization": f"Bearer {settings.THANOS_TOKEN}"},
         verify=False,
         timeout=30,
@@ -34,46 +23,8 @@ def query_thanos_range(query: str, ageSeconds: int = 600, step: str = "60s") -> 
     return response.json()
 
 
-def get_namespace_events() -> pd.DataFrame:
-    """Fetch namespace phase events from the last hour."""
-    rows = []
-
-    result = query_thanos_range('kube_namespace_status_phase{namespace!~"openshift.*|kube.*"}')
-    if result.get("status") == "success":
-        for series in result["data"]["result"]:
-            namespace = series["metric"].get("namespace", "unknown")
-            phase = series["metric"].get("phase", "unknown")
-
-            # Take only the last data point for this namespace+phase
-            active_values = [(ts, v) for ts, v in series["values"] if float(v) == 1]
-            if active_values:
-                timestamp, _ = active_values[-1]
-                rows.append(
-                    {
-                        "Namespace": namespace,
-                        "Phase": phase,
-                        "Timestamp": datetime.fromtimestamp(timestamp, tz=timezone.utc).strftime(
-                            "%Y-%m-%d %H:%M:%S"
-                        ),
-                    }
-                )
-
-    if not rows:
-        return [], []
-
-    df = pd.DataFrame(rows)
-    # Keep only the latest phase per namespace
-    df = (
-        df.sort_values("Timestamp", ascending=False)
-        .drop_duplicates(subset="Namespace", keep="first")
-        .sort_values("Namespace")
-        .reset_index(drop=True)
-    )
-
-    # Fetch workload metrics per namespace
-    namespaces = df["Namespace"].unique().tolist()
-    ns_regex = "|".join(namespaces)
-
+def get_localqueue_events():
+    """Fetch kueue workload metrics and derive namespaces from them."""
     workload_metrics = [
         ("pending", "kube_customresource_kueue_localqueue_pending_workloads"),
         ("admitted", "kube_customresource_kueue_localqueue_admitted_workloads"),
@@ -82,33 +33,30 @@ def get_namespace_events() -> pd.DataFrame:
 
     # Collect data keyed by (namespace, cluster_queue, localqueue)
     all_queue_pairs = set()  # (cluster_queue, localqueue)
+    all_namespaces = set()
     workload_data = {}  # {(namespace, cluster_queue, localqueue): {metric_key: value}}
     for key, metric_name in workload_metrics:
-        result = query_thanos_range(f'{metric_name}{{exported_namespace=~"{ns_regex}"}}')
+        result = query_thanos(metric_name)
         if result.get("status") == "success":
             for series in result["data"]["result"]:
                 ns = series["metric"].get("exported_namespace", "unknown")
                 cq = series["metric"].get("cluster_queue", "unknown")
                 lq = series["metric"].get("localqueue", "unknown")
+                all_namespaces.add(ns)
                 all_queue_pairs.add((cq, lq))
-                if series["values"]:
-                    latest_value = float(series["values"][-1][1])
+                if series["value"]:
+                    latest_value = float(series["value"][1])
                     combo = (ns, cq, lq)
                     if combo not in workload_data:
                         workload_data[combo] = {}
                     workload_data[combo][key] = workload_data[combo].get(key, 0) + latest_value
 
     sorted_pairs = sorted(all_queue_pairs)
-
-    # Filter to only namespaces that have kueue metrics
-    namespaces_with_kueue = {combo[0] for combo in workload_data}
-    df = df[df["Namespace"].isin(namespaces_with_kueue)].reset_index(drop=True)
+    sorted_namespaces = sorted(all_namespaces)
 
     # Build row data with raw counts
     result_rows = []
-    for _, row in df.iterrows():
-        ns = row["Namespace"]
-        phase = row["Phase"]
+    for ns in sorted_namespaces:
         queue_data = {}
         for cq, lq in sorted_pairs:
             data = workload_data.get((ns, cq, lq), {})
@@ -117,7 +65,7 @@ def get_namespace_events() -> pd.DataFrame:
                 "admitted": int(data.get("admitted", 0)),
                 "reserving": int(data.get("reserving", 0)),
             }
-        result_rows.append({"namespace": ns, "phase": phase, "queues": queue_data})
+        result_rows.append({"namespace": ns, "phase": "Active", "queues": queue_data})
 
     # Test row — set TEST_ROW = True to add a dummy row with sample workload values
     TEST_ROW = settings.TEST_ROW
@@ -235,7 +183,7 @@ st.markdown(
 @st.fragment(run_every=5)
 def namespace_table():
     try:
-        sorted_pairs, rows = get_namespace_events()
+        sorted_pairs, rows = get_localqueue_events()
         if not rows:
             st.info("No namespace events found.")
         else:
