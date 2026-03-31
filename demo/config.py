@@ -10,7 +10,10 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
-# Initialize Kubernetes client
-k8s_config.load_kube_config()
+# Initialize Kubernetes client — use in-cluster config when available, fall back to kubeconfig
+try:
+    k8s_config.load_incluster_config()
+except k8s_config.ConfigException:
+    k8s_config.load_kube_config()
 k8s_api = client.CustomObjectsApi()
 core_api = client.CoreV1Api()

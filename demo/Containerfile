@@ -1,0 +1,26 @@
+FROM registry.access.redhat.com/ubi9/python-312:9.7 AS builder
+
+USER 0
+WORKDIR /build
+
+RUN pip install --no-cache-dir poetry==1.8.5
+COPY pyproject.toml poetry.lock ./
+RUN poetry export --without dev -f requirements.txt -o requirements.txt
+
+FROM registry.access.redhat.com/ubi9/python-312-minimal:9.7
+
+USER 0
+WORKDIR /app
+
+# Install dependencies from exported requirements
+COPY --from=builder /build/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt && rm requirements.txt
+
+# Copy application code
+COPY --chown=1001:0 . .
+
+USER 1001
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "main.py", "--server.port", "8501", "--server.address", "0.0.0.0", "--server.headless", "true"]

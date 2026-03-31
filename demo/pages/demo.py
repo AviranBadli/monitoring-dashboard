@@ -122,7 +122,8 @@ def get_workloads_by_localqueue(namespaces: set) -> dict:
                 workloads_map.setdefault((ns, lq), []).append(
                     (job_name, priority_class, state, gpu_count)
                 )
-        except Exception:
+        except Exception as e:
+            st.warning(f"Failed to fetch workloads in namespace '{ns}': {e}")
             continue
     return workloads_map
 
