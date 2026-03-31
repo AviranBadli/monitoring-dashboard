@@ -1,213 +1,286 @@
-from datetime import datetime, timezone
-from time import time
-
-import httpx
-import pandas as pd
 import streamlit as st
 
-from config import settings
-
-PHASE_DISPLAY = {
-    "Active": {"icon": "\u2705", "color": "background-color: #b6e2b6"},
-    "Terminating": {"icon": "\u23f3", "color": "background-color: #f5c6a1"},
-    "Terminated": {"icon": "\u26d4", "color": "background-color: #d3d3d3"},
-}
+from config import core_api, k8s_api, settings
 
 
-def query_thanos_range(query: str, ageSeconds: int = 600, step: str = "60s") -> dict:
-    """Execute a range query against the Thanos API over the last N hours."""
-    now = time()
-    start = now - (ageSeconds)
-    response = httpx.get(
-        f"{settings.THANOS_URL}/api/v1/query_range",
-        params={
-            "query": query,
-            "start": start,
-            "end": now,
-            "step": step,
-        },
-        headers={"Authorization": f"Bearer {settings.THANOS_TOKEN}"},
-        verify=False,
-        timeout=30,
-    )
-    response.raise_for_status()
-    return response.json()
+def get_gpu_nodes() -> list[dict]:
+    """Fetch nodes that have nvidia.com/gpu resources."""
+    nodes = core_api.list_node()
+    gpu_nodes = []
+    for node in nodes.items:
+        capacity = node.status.capacity or {}
+        gpu_count = int(capacity.get("nvidia.com/gpu", 0))
+        if gpu_count > 0:
+            labels = node.metadata.labels or {}
+            gpu_type = labels.get("nvidia.com/gpu.product", "unknown")
+            gpu_nodes.append(
+                {
+                    "name": node.metadata.name,
+                    "gpu_count": gpu_count,
+                    "gpu_type": gpu_type,
+                }
+            )
+    return gpu_nodes
 
 
-def get_namespace_events() -> pd.DataFrame:
-    """Fetch namespace phase events from the last hour."""
-    rows = []
-
-    result = query_thanos_range('kube_namespace_status_phase{namespace!~"openshift.*|kube.*"}')
-    if result.get("status") == "success":
-        for series in result["data"]["result"]:
-            namespace = series["metric"].get("namespace", "unknown")
-            phase = series["metric"].get("phase", "unknown")
-
-            # Take only the last data point for this namespace+phase
-            active_values = [(ts, v) for ts, v in series["values"] if float(v) == 1]
-            if active_values:
-                timestamp, _ = active_values[-1]
-                rows.append(
-                    {
-                        "Namespace": namespace,
-                        "Phase": phase,
-                        "Timestamp": datetime.fromtimestamp(timestamp, tz=timezone.utc).strftime(
-                            "%Y-%m-%d %H:%M:%S"
-                        ),
-                    }
-                )
-
-    if not rows:
-        return [], []
-
-    df = pd.DataFrame(rows)
-    # Keep only the latest phase per namespace
-    df = (
-        df.sort_values("Timestamp", ascending=False)
-        .drop_duplicates(subset="Namespace", keep="first")
-        .sort_values("Namespace")
-        .reset_index(drop=True)
-    )
-
-    # Fetch workload metrics per namespace
-    namespaces = df["Namespace"].unique().tolist()
-    ns_regex = "|".join(namespaces)
-
-    workload_metrics = [
-        ("pending", "kube_customresource_kueue_localqueue_pending_workloads"),
-        ("admitted", "kube_customresource_kueue_localqueue_admitted_workloads"),
-        ("reserving", "kube_customresource_kueue_localqueue_reserving_workloads"),
+def render_gpu_nodes_table(gpu_nodes: list[dict]) -> str:
+    """Build an HTML table showing GPU nodes."""
+    html = [
+        '<table style="width:100%;border-collapse:collapse;font-family:sans-serif;font-size:0.9em">',
+        "<thead><tr>",
+        '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">Node</th>',
+        '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:center">GPUs</th>',
+        '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">GPU Type</th>',
+        "</tr></thead><tbody>",
     ]
+    for node in gpu_nodes:
+        html.append(
+            f"<tr>"
+            f'<td style="border:1px solid #ddd;padding:8px">{node["name"]}</td>'
+            f'<td style="border:1px solid #ddd;padding:8px;text-align:center">{node["gpu_count"]}</td>'
+            f'<td style="border:1px solid #ddd;padding:8px">{node["gpu_type"]}</td>'
+            f"</tr>"
+        )
+    html.append("</tbody></table>")
+    return "\n".join(html)
 
-    # Collect data keyed by (namespace, cluster_queue, localqueue)
-    all_queue_pairs = set()  # (cluster_queue, localqueue)
-    workload_data = {}  # {(namespace, cluster_queue, localqueue): {metric_key: value}}
-    for key, metric_name in workload_metrics:
-        result = query_thanos_range(f'{metric_name}{{exported_namespace=~"{ns_regex}"}}')
-        if result.get("status") == "success":
-            for series in result["data"]["result"]:
-                ns = series["metric"].get("exported_namespace", "unknown")
-                cq = series["metric"].get("cluster_queue", "unknown")
-                lq = series["metric"].get("localqueue", "unknown")
-                all_queue_pairs.add((cq, lq))
-                if series["values"]:
-                    latest_value = float(series["values"][-1][1])
-                    combo = (ns, cq, lq)
-                    if combo not in workload_data:
-                        workload_data[combo] = {}
-                    workload_data[combo][key] = workload_data[combo].get(key, 0) + latest_value
 
-    sorted_pairs = sorted(all_queue_pairs)
+def get_cluster_queue_flavors(cq_name: str) -> list[dict]:
+    """Fetch resource flavor names and nominalQuotas from a ClusterQueue spec."""
+    try:
+        cq = k8s_api.get_cluster_custom_object(
+            group="kueue.x-k8s.io",
+            version="v1beta1",
+            plural="clusterqueues",
+            name=cq_name,
+        )
+        flavors = []
+        seen = set()
+        for rg in cq.get("spec", {}).get("resourceGroups", []):
+            for fq in rg.get("flavors", []):
+                name = fq.get("name", "")
+                if name and name not in seen:
+                    seen.add(name)
+                    quotas = {}
+                    for res in fq.get("resources", []):
+                        res_name = res.get("name", "")
+                        quota = res.get("nominalQuota")
+                        if res_name and quota is not None:
+                            quotas[res_name] = quota
+                    flavors.append({"name": name, "quotas": quotas})
+        return flavors
+    except Exception:
+        return []
 
-    # Filter to only namespaces that have kueue metrics
-    namespaces_with_kueue = {combo[0] for combo in workload_data}
-    df = df[df["Namespace"].isin(namespaces_with_kueue)].reset_index(drop=True)
 
-    # Build row data with raw counts
-    result_rows = []
-    for _, row in df.iterrows():
-        ns = row["Namespace"]
-        phase = row["Phase"]
-        queue_data = {}
-        for cq, lq in sorted_pairs:
-            data = workload_data.get((ns, cq, lq), {})
-            queue_data[(cq, lq)] = {
-                "pending": int(data.get("pending", 0)),
-                "admitted": int(data.get("admitted", 0)),
-                "reserving": int(data.get("reserving", 0)),
+def get_workloads_by_localqueue(namespaces: set) -> dict:
+    """Fetch Kueue Workloads and derive per-job queue state, grouped by (namespace, localqueue)."""
+    workloads_map = {}  # {(namespace, localqueue): [(job_name, priority_class, state), ...]}
+    for ns in namespaces:
+        try:
+            wl_list = k8s_api.list_namespaced_custom_object(
+                group="kueue.x-k8s.io",
+                version="v1beta1",
+                plural="workloads",
+                namespace=ns,
+            )
+            for wl in wl_list.get("items", []):
+                lq = wl.get("spec", {}).get("queueName", "")
+                if not lq:
+                    continue
+
+                # Get job name from owner reference
+                job_name = wl.get("metadata", {}).get("name", "unknown")
+                for ref in wl.get("metadata", {}).get("ownerReferences", []):
+                    if ref.get("kind") == "Job":
+                        job_name = ref.get("name", job_name)
+                        break
+
+                priority_class = wl.get("spec", {}).get("priorityClassName", "")
+
+                # Sum nvidia.com/gpu requests across all podSets and containers
+                gpu_count = 0
+                for pod_set in wl.get("spec", {}).get("podSets", []):
+                    containers = pod_set.get("template", {}).get("spec", {}).get("containers", [])
+                    for container in containers:
+                        requests = container.get("resources", {}).get("requests", {})
+                        gpu_count += int(requests.get("nvidia.com/gpu", 0))
+
+                # Derive state from conditions
+                conditions = {
+                    c["type"]: c["status"] for c in wl.get("status", {}).get("conditions", [])
+                }
+                if conditions.get("Finished") == "True":
+                    state = "F"
+                elif conditions.get("Admitted") == "True":
+                    state = "A"
+                elif conditions.get("QuotaReserved") == "True":
+                    state = "R"
+                else:
+                    state = "P"
+
+                workloads_map.setdefault((ns, lq), []).append(
+                    (job_name, priority_class, state, gpu_count)
+                )
+        except Exception:
+            continue
+    return workloads_map
+
+
+def get_localqueue_events():
+    """Fetch LocalQueue status from the Kubernetes API."""
+    lq_list = k8s_api.list_cluster_custom_object(
+        group="kueue.x-k8s.io",
+        version="v1beta1",
+        plural="localqueues",
+    )
+
+    # Collect all localqueue entries
+    all_namespaces = set()
+    all_cluster_queues = set()
+    lq_entries = []
+    for item in lq_list.get("items", []):
+        ns = item.get("metadata", {}).get("namespace", "unknown")
+        lq = item.get("metadata", {}).get("name", "unknown")
+        cq = item.get("spec", {}).get("clusterQueue", "unknown")
+        all_namespaces.add(ns)
+        all_cluster_queues.add(cq)
+        lq_entries.append(
+            {
+                "namespace": ns,
+                "localqueue": lq,
+                "cluster_queue": cq,
             }
-        result_rows.append({"namespace": ns, "phase": phase, "queues": queue_data})
-
-    # Test row — set TEST_ROW = True to add a dummy row with sample workload values
-    TEST_ROW = settings.TEST_ROW
-    if TEST_ROW and sorted_pairs:
-        samples = [
-            {"pending": 1, "admitted": 2, "reserving": 0},
-            {"pending": 0, "admitted": 4, "reserving": 0},
-            {"pending": 2, "admitted": 1, "reserving": 1},
-        ]
-        test_queues = {}
-        for i, (cq, lq) in enumerate(sorted_pairs):
-            test_queues[(cq, lq)] = samples[i % len(samples)]
-        result_rows.append(
-            {"namespace": "\u26a0\ufe0f test-namespace", "phase": "Active", "queues": test_queues}
         )
 
-    return sorted_pairs, result_rows
+    # Fetch workloads with per-job queue state
+    workloads_map = get_workloads_by_localqueue(all_namespaces)
+
+    # Build one row per localqueue with workloads
+    result_rows = []
+    for entry in sorted(lq_entries, key=lambda e: (e["namespace"], e["localqueue"])):
+        ns = entry["namespace"]
+        lq = entry["localqueue"]
+        entry["workloads"] = workloads_map.get((ns, lq), [])
+        result_rows.append(entry)
+
+    # Test rows — add a dummy namespace with 2 local queues
+    if settings.TEST_ROW and all_cluster_queues:
+        test_cq = sorted(all_cluster_queues)[0]
+        result_rows.append(
+            {
+                "namespace": "test-namespace",
+                "localqueue": "test-lq-training",
+                "cluster_queue": test_cq,
+                "workloads": [
+                    ("test-train-job-1", "high-priority", "A", 4),
+                    ("test-train-job-2", "low-priority", "P", 2),
+                ],
+            }
+        )
+        result_rows.append(
+            {
+                "namespace": "test-namespace",
+                "localqueue": "test-lq-inference",
+                "cluster_queue": test_cq,
+                "workloads": [
+                    ("test-infer-job-1", "high-priority", "A", 1),
+                    ("test-infer-job-2", "", "F", 1),
+                ],
+            }
+        )
+
+    return sorted(all_cluster_queues), result_rows
 
 
 WORKLOAD_COLORS = {
     "P": "#aed6f1",  # pastel blue
     "A": "#abebc6",  # pastel green
     "R": "#f5b7b1",  # pastel red
+    "F": "#d3d3d3",  # light grey
 }
 
 
-def render_workload_cell(counts: dict) -> str:
-    """Render pending/admitted/reserving as individually colored HTML spans."""
-    spans = []
-    for letter, key in [("P", "pending"), ("A", "admitted"), ("R", "reserving")]:
-        count = counts.get(key, 0)
-        color = WORKLOAD_COLORS[letter]
-        for _ in range(count):
-            spans.append(
-                f'<span style="background-color:{color};padding:2px 6px;'
-                f"margin:1px;border-radius:3px;font-weight:bold;"
-                f'font-size:0.85em;display:inline-block">{letter}</span>'
-            )
-    return "".join(spans)
+def render_workload_cell(workloads: list) -> str:
+    """Render per-job state badges with job name and priority class."""
+    if not workloads:
+        return ""
+    lines = []
+    for name, pc, state, gpu_count in workloads:
+        color = WORKLOAD_COLORS.get(state, "#ddd")
+        badge = (
+            f'<span style="background-color:{color};padding:2px 6px;'
+            f"margin-right:4px;border-radius:3px;font-weight:bold;"
+            f'font-size:0.85em;display:inline-block">{state}</span>'
+        )
+        label = f"{name} ({pc})" if pc else name
+        gpu_str = f" [{gpu_count} GPU]" if gpu_count else ""
+        lines.append(
+            f'<div style="margin:2px 0;font-size:0.8em">'
+            f"{badge}"
+            f'<span style="color:#555">{label}{gpu_str}</span></div>'
+        )
+    return "".join(lines)
 
 
-def render_html_table(sorted_pairs, rows):
-    """Build an HTML table with two-level headers and colored workload badges."""
-    # Group queue pairs by cluster_queue for colspan
-    cq_groups = {}
-    for cq, lq in sorted_pairs:
-        cq_groups.setdefault(cq, []).append(lq)
-
+def render_html_table(cluster_queues, rows):
+    """Build an HTML table with one row per localqueue and one column per cluster queue."""
     html = []
     html.append(
         '<table style="width:100%;border-collapse:collapse;font-family:sans-serif;font-size:0.9em">'
     )
 
-    # Top header row: cluster_queue names with colspan
+    # Header row
     html.append("<thead><tr>")
-    html.append(
-        '<th rowspan="2" style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>'
-    )
-    for cq, lqs in cq_groups.items():
-        html.append(
-            f'<th colspan="{len(lqs)}" style="border:1px solid #ddd;padding:8px;'
-            f'background:#e8e8e8;text-align:center">{cq}</th>'
-        )
-    html.append("</tr>")
-
-    # Second header row: localqueue names
-    html.append("<tr>")
-    for cq, lqs in cq_groups.items():
-        for lq in lqs:
-            html.append(
-                f'<th style="border:1px solid #ddd;padding:8px;background:#f0f0f0;'
-                f'text-align:center;font-size:0.85em">{lq}</th>'
+    html.append('<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>')
+    html.append('<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">LocalQueue</th>')
+    for cq in cluster_queues:
+        flavors = get_cluster_queue_flavors(cq)
+        flavor_html = ""
+        if flavors:
+            parts = []
+            for f in flavors:
+                gpu_quota = f["quotas"].get("nvidia.com/gpu")
+                if gpu_quota is not None:
+                    parts.append(f'{f["name"]} ({gpu_quota} GPU)')
+                else:
+                    parts.append(f["name"])
+            flavor_html = (
+                '<br><span style="font-size:0.75em;font-weight:normal;color:#555">'
+                + ", ".join(parts)
+                + "</span>"
             )
+        html.append(
+            f'<th style="border:1px solid #ddd;padding:8px;'
+            f'background:#e8e8e8;text-align:center">{cq}{flavor_html}</th>'
+        )
     html.append("</tr></thead>")
 
-    # Data rows
+    # Count rows per namespace for rowspan
+    ns_counts = {}
+    for row in rows:
+        ns_counts[row["namespace"]] = ns_counts.get(row["namespace"], 0) + 1
+
+    # Data rows — one per localqueue, with merged namespace cells
     html.append("<tbody>")
+    ns_seen = set()
     for row in rows:
         ns = row["namespace"]
-        phase = row["phase"]
-        phase_info = PHASE_DISPLAY.get(phase, {"icon": "", "color": ""})
-
         html.append("<tr>")
-        html.append(
-            f'<td style="border:1px solid #ddd;padding:8px;{phase_info["color"]}">'
-            f'{ns} {phase_info["icon"]}</td>'
-        )
-        for cq, lq in sorted_pairs:
-            counts = row["queues"].get((cq, lq), {})
-            cell_html = render_workload_cell(counts)
+        if ns not in ns_seen:
+            ns_seen.add(ns)
+            count = ns_counts[ns]
+            rowspan = f' rowspan="{count}"' if count > 1 else ""
+            html.append(
+                f'<td{rowspan} style="border:1px solid #ddd;padding:8px;'
+                f'vertical-align:top">{ns}</td>'
+            )
+        html.append(f'<td style="border:1px solid #ddd;padding:8px">{row["localqueue"]}</td>')
+        for cq in cluster_queues:
+            if row["cluster_queue"] == cq:
+                cell_html = render_workload_cell(row.get("workloads", []))
+            else:
+                cell_html = ""
             html.append(
                 f'<td style="border:1px solid #ddd;padding:6px;text-align:center">{cell_html}</td>'
             )
@@ -217,8 +290,21 @@ def render_html_table(sorted_pairs, rows):
     return "\n".join(html)
 
 
-st.title("GPUaaS Kueue Activity")
-st.subheader("Workflow activity: Pending/Admitted/Reserving")
+st.title("Kueue Activity Dashboard")
+st.text("This dashboard shows the activity of the Kueue scheduler across the cluster.")
+
+st.subheader("Cluster Nodes")
+
+try:
+    gpu_nodes = get_gpu_nodes()
+    if gpu_nodes:
+        st.markdown(render_gpu_nodes_table(gpu_nodes), unsafe_allow_html=True)
+    else:
+        st.info("No GPU nodes found.")
+except Exception as e:
+    st.error(f"Error fetching GPU nodes: {e}")
+
+st.subheader("Workflow activity: Pending/Admitted/Finished")
 
 # Disable the fade effect during fragment re-runs
 st.markdown(
@@ -235,18 +321,14 @@ st.markdown(
 @st.fragment(run_every=5)
 def namespace_table():
     try:
-        sorted_pairs, rows = get_namespace_events()
+        cluster_queues, rows = get_localqueue_events()
         if not rows:
-            st.info("No namespace events found.")
+            st.info("No localqueue events found.")
         else:
-            table_html = render_html_table(sorted_pairs, rows)
+            table_html = render_html_table(cluster_queues, rows)
             st.markdown(table_html, unsafe_allow_html=True)
-    except httpx.HTTPStatusError as e:
-        st.error(f"API error: {e.response.status_code} — {e.response.text}")
-    except httpx.ConnectError:
-        st.error(f"Cannot connect to Thanos at {settings.THANOS_URL}")
     except Exception as e:
-        st.error(f"Error fetching namespace events: {e}")
+        st.error(f"Error fetching localqueue events: {e}")
 
 
 namespace_table()

@@ -1,12 +1,16 @@
+from kubernetes import client, config as k8s_config
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    THANOS_URL: str = "http://localhost:9091"
-    THANOS_TOKEN: str = ""
     TEST_ROW: bool = False
 
-    model_config = {"env_file": ".env"}
+    model_config = {"env_file": ".env", "extra": "ignore"}
 
 
 settings = Settings()
+
+# Initialize Kubernetes client
+k8s_config.load_kube_config()
+k8s_api = client.CustomObjectsApi()
+core_api = client.CoreV1Api()
