@@ -13,3 +13,4 @@ settings = Settings()
 # Initialize Kubernetes client
 k8s_config.load_kube_config()
 k8s_api = client.CustomObjectsApi()
+core_api = client.CoreV1Api()
