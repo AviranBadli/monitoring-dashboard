@@ -135,7 +135,7 @@ jobs:
     - name: Run tests with pytest
       run: poetry run pytest -v
 
-  lint-demo:
+  test-demo:
     runs-on: ubuntu-latest
 
     defaults:
@@ -176,3 +176,6 @@ jobs:
 
     - name: Run Ruff linting
       run: poetry run ruff check .
+
+    - name: Run tests with pytest
+      run: poetry run pytest -v

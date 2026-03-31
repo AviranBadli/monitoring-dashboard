@@ -13,11 +13,13 @@ def get_gpu_nodes() -> list[dict]:
         if gpu_count > 0:
             labels = node.metadata.labels or {}
             gpu_type = labels.get("nvidia.com/gpu.product", "unknown")
-            gpu_nodes.append({
-                "name": node.metadata.name,
-                "gpu_count": gpu_count,
-                "gpu_type": gpu_type,
-            })
+            gpu_nodes.append(
+                {
+                    "name": node.metadata.name,
+                    "gpu_count": gpu_count,
+                    "gpu_type": gpu_type,
+                }
+            )
     return gpu_nodes
 
 
@@ -33,11 +35,11 @@ def render_gpu_nodes_table(gpu_nodes: list[dict]) -> str:
     ]
     for node in gpu_nodes:
         html.append(
-            f'<tr>'
+            f"<tr>"
             f'<td style="border:1px solid #ddd;padding:8px">{node["name"]}</td>'
             f'<td style="border:1px solid #ddd;padding:8px;text-align:center">{node["gpu_count"]}</td>'
             f'<td style="border:1px solid #ddd;padding:8px">{node["gpu_type"]}</td>'
-            f'</tr>'
+            f"</tr>"
         )
     html.append("</tbody></table>")
     return "\n".join(html)
@@ -143,11 +145,13 @@ def get_localqueue_events():
         cq = item.get("spec", {}).get("clusterQueue", "unknown")
         all_namespaces.add(ns)
         all_cluster_queues.add(cq)
-        lq_entries.append({
-            "namespace": ns,
-            "localqueue": lq,
-            "cluster_queue": cq,
-        })
+        lq_entries.append(
+            {
+                "namespace": ns,
+                "localqueue": lq,
+                "cluster_queue": cq,
+            }
+        )
 
     # Fetch workloads with per-job queue state
     workloads_map = get_workloads_by_localqueue(all_namespaces)
@@ -163,24 +167,28 @@ def get_localqueue_events():
     # Test rows — add a dummy namespace with 2 local queues
     if settings.TEST_ROW and all_cluster_queues:
         test_cq = sorted(all_cluster_queues)[0]
-        result_rows.append({
-            "namespace": "test-namespace",
-            "localqueue": "test-lq-training",
-            "cluster_queue": test_cq,
-            "workloads": [
-                ("test-train-job-1", "high-priority", "A", 4),
-                ("test-train-job-2", "low-priority", "P", 2),
-            ],
-        })
-        result_rows.append({
-            "namespace": "test-namespace",
-            "localqueue": "test-lq-inference",
-            "cluster_queue": test_cq,
-            "workloads": [
-                ("test-infer-job-1", "high-priority", "A", 1),
-                ("test-infer-job-2", "", "F", 1),
-            ],
-        })
+        result_rows.append(
+            {
+                "namespace": "test-namespace",
+                "localqueue": "test-lq-training",
+                "cluster_queue": test_cq,
+                "workloads": [
+                    ("test-train-job-1", "high-priority", "A", 4),
+                    ("test-train-job-2", "low-priority", "P", 2),
+                ],
+            }
+        )
+        result_rows.append(
+            {
+                "namespace": "test-namespace",
+                "localqueue": "test-lq-inference",
+                "cluster_queue": test_cq,
+                "workloads": [
+                    ("test-infer-job-1", "high-priority", "A", 1),
+                    ("test-infer-job-2", "", "F", 1),
+                ],
+            }
+        )
 
     return sorted(all_cluster_queues), result_rows
 
@@ -224,12 +232,8 @@ def render_html_table(cluster_queues, rows):
 
     # Header row
     html.append("<thead><tr>")
-    html.append(
-        '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>'
-    )
-    html.append(
-        '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">LocalQueue</th>'
-    )
+    html.append('<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>')
+    html.append('<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">LocalQueue</th>')
     for cq in cluster_queues:
         flavors = get_cluster_queue_flavors(cq)
         flavor_html = ""
@@ -265,8 +269,10 @@ def render_html_table(cluster_queues, rows):
         html.append("<tr>")
         if ns not in ns_seen:
             ns_seen.add(ns)
+            count = ns_counts[ns]
+            rowspan = f' rowspan="{count}"' if count > 1 else ""
             html.append(
-                f'<td rowspan="{ns_counts[ns]}" style="border:1px solid #ddd;padding:8px;'
+                f'<td{rowspan} style="border:1px solid #ddd;padding:8px;'
                 f'vertical-align:top">{ns}</td>'
             )
         html.append(f'<td style="border:1px solid #ddd;padding:8px">{row["localqueue"]}</td>')
