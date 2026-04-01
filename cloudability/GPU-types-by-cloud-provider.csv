@@ -1,156 +1,158 @@
-Instance Type,Instance Family,Cloud Provider,GPU Count,GPU Type,GPU Memory (GB),GPU Variant
-Standard_ND96is_MI300X_v5,ND,Azure,8,AMD MI300X,192,OAM
-Standard_ND96isr_MI300X_v5,ND,Azure,8,AMD MI300X,192,OAM
-gx3d-208x1792x8mi300x,gx3d,IBM,8,AMD MI300X,192,OAM
-g4ad.2xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,PCIe
-g4ad.4xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,PCIe
-g4ad.xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,PCIe
-g4ad.8xlarge,g4ad,AWS,2,AMD Radeon Pro V520,8,PCIe
-g4ad.16xlarge,g4ad,AWS,4,AMD Radeon Pro V520,8,PCIe
-Standard_NV4as_v4,NV,Azure,1/8,AMD Radeon Pro V520,8,PCIe
-f2.6xlarge,f2,AWS,1,AMD Virtex,16,PCIe
-f2.12xlarge,f2,AWS,2,AMD Virtex,16,PCIe
-f2.48xlarge,f2,AWS,8,AMD Virtex,16,PCIe
-inf1.xlarge,inf1,AWS,1,Inferentia 1,8,
-inf1.2xlarge,inf1,AWS,1,Inferentia 1,8,
-inf1.6xlarge,inf1,AWS,4,Inferentia 1,8,
-inf1.24xlarge,inf1,AWS,16,Inferentia 1,8,
-inf2.8xlarge,inf2,AWS,1,Inferentia 2,32,
-inf2.xlarge,inf2,AWS,1,Inferentia 2,32,
-inf2.24xlarge,inf2,AWS,6,Inferentia 2,32,
-inf2.48xlarge,inf2,AWS,12,Inferentia 2,32,
-dl1.24xlarge,dl1,AWS,8,Intel Gaudi 1,32,PCIe
-gx3d-160x1792x8gaudi3,gx3d,IBM,8,Intel Gaudi 3,128,PCIe
-gx3d-160x1792x8gaudi3-internal,gx3d,IBM,8,Intel Gaudi 3,128,PCIe
-Standard_NV36ads_A10_v5,NV,Azure,1,NVIDIA A10,24,PCIe
-Standard_NV72ads_A10_v5,NV,Azure,2,NVIDIA A10,24,PCIe
-Standard_NV12ads_A10_v5,NV,Azure,1/3,NVIDIA A10,24,PCIe
-Standard_NV6ads_A10_v5,NV,Azure,1/6,NVIDIA A10,24,PCIe
-highgpu.a2-1g-vcpu,highgpu,GCP,1,NVIDIA A100,40,SXM4
-ultragpu.a2-1g-vcpu,ultragpu,GCP,1,NVIDIA A100,40,SXM4
-highgpu.a2-2g-vcpu,highgpu,GCP,2,NVIDIA A100,40,SXM4
-ultragpu.a2-2g-vcpu,ultragpu,GCP,2,NVIDIA A100,40,SXM4
-ultragpu.a2-4g-vcpu,ultragpu,GCP,4,NVIDIA A100,40,SXM4
-highgpu.a2-4g-vcpu,highgpu,GCP,4,NVIDIA A100,40,SXM4
-p4d.24xlarge,p4d,AWS,8,NVIDIA A100,40,SXM4
-ultragpu.a2-8g-vcpu,ultragpu,GCP,8,NVIDIA A100,40,SXM4
-highgpu.a2-8g-vcpu,highgpu,GCP,8,NVIDIA A100,40,SXM4
-megagpu.a2-16g-vcpu,megagpu,GCP,16,NVIDIA A100,40,SXM4
-Standard_NC24ads_A100_v4,NC,Azure,1,NVIDIA A100,80,PCIe
-gx3d-24x120x1a100p,gx3d,IBM,1,NVIDIA A100,80,SXM4
-Standard_NC48ads_A100_v4,NC,Azure,2,NVIDIA A100,80,PCIe
-gx3d-48x240x2a100p,gx3d,IBM,2,NVIDIA A100,80,SXM4
-p4de.24xlarge,p4de,AWS,8,NVIDIA A100,80,SXM4
-highgpu.a4-8g-vcpu,highgpu,GCP,8,NVIDIA A100,80,SXM4
-gx2-80x1280x8a100,gx2,IBM,8,NVIDIA A100,80,SXM4
-g5.16xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe
-g5.2xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe
-g5.4xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe
-g5.8xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe
-g5.xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe
-g5.12xlarge,g5,AWS,4,NVIDIA A10G,24,PCIe
-g5.24xlarge,g5,AWS,4,NVIDIA A10G,24,PCIe
-g5.48xlarge,g5,AWS,8,NVIDIA A10G,24,PCIe
-p6-b200.48xlarge,p6-b200,AWS,8,NVIDIA B200,180,SXM5
-p6-b300.48xlarge,p6-b300,AWS,8,NVIDIA B300,268,SXM5
-p6e-gb200.36xlarge,p6e-gb200,AWS,4,NVIDIA GB200,186,NVL
-highgpu.a4x-4g-vcpu,highgpu,GCP,4,NVIDIA GB200,186,NVL
-u-p6e-gb200x36,p6e-gb200x36,AWS,36,NVIDIA GB200,186,NVL
-u-p6e-gb200x72,p6e-gb200x72,AWS,72,NVIDIA GB200,186,NVL
-maxgpu.a4x-4g-metal-vcpu,maxgpu,GCP,4,NVIDIA GB300,279,NVL
-p5.4xlarge,p5,AWS,1,NVIDIA H100,80,SXM5
-highgpu.a3-1g-vcpu,highgpu,GCP,1,NVIDIA H100,80,SXM5
-highgpu.a3-2g-vcpu,highgpu,GCP,2,NVIDIA H100,80,SXM5
-highgpu.a3-4g-vcpu,highgpu,GCP,4,NVIDIA H100,80,SXM5
-p5.48xlarge,p5,AWS,8,NVIDIA H100,80,SXM5
-highgpu.a3-8g-vcpu,highgpu,GCP,8,NVIDIA H100,80,SXM5
-ultragpu.a3-8g-vcpu,ultragpu,GCP,8,NVIDIA H100,80,SXM5
-edgegpu.a3-8g-vcpu,edgegpu,GCP,8,NVIDIA H100,80,SXM5
-megagpu.a3-8g-vcpu,megagpu,GCP,8,NVIDIA H100,80,SXM5
-gx3d-160x1792x8h100,gx3d,IBM,8,NVIDIA H100,80,SXM5
-Standard_NC40ads_H100_v5,NC,Azure,1,NVIDIA H100,94,PCIe
-Standard_NC80adis_H100_v5,NC,Azure,2,NVIDIA H100,94,PCIe
-p5e.48xlarge,p5e,AWS,8,NVIDIA H200,141,SXM5
-p5en.48xlarge,p5en,AWS,8,NVIDIA H200,141,SXM5
-gx3d-160x1792x8h200,gx3d,IBM,8,NVIDIA H200,141,SXM5
-gr6.8xlarge,gr6,AWS,1,NVIDIA L4,24,PCIe
-gr6f.4xlarge,gr6f,AWS,0.5,NVIDIA L4,24,PCIe
-g6.16xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
-g6.2xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
-g6.4xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
-g6.8xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
-g6.xlarge,g6,AWS,1,NVIDIA L4,24,PCIe
-g6f.2xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe
-g6f.4xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe
-g6f.large,g6f,AWS,1,NVIDIA L4,24,PCIe
-g6f.xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe
-standard.g2-16-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
-standard.g2-24-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
-standard.g2-4-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
-standard.g2-48-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
-standard.g2-12-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
-standard.g2-32-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
-standard.g2-8-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe
-gx3-16x80x1l4,gx3,IBM,1,NVIDIA L4,24,PCIe
-gx3-24x120x1l40s,gx3,IBM,1,NVIDIA L4,24,PCIe
-gx3-32x160x2l4,gx3,IBM,2,NVIDIA L4,24,PCIe
-gx3-48x240x2l40s,gx3,IBM,2,NVIDIA L4,24,PCIe
-g6.12xlarge,g6,AWS,4,NVIDIA L4,24,PCIe
-g6.24xlarge,g6,AWS,4,NVIDIA L4,24,PCIe
-gx3-64x320x4l4,gx3,IBM,4,NVIDIA L4,24,PCIe
-g6.48xlarge,g6,AWS,8,NVIDIA L4,24,PCIe
-standard.g2-96-vcpu,standard,GCP,8,NVIDIA L4,24,PCIe
-g6e.2xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe
-g6e.4xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe
-g6e.8xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe
-g6e.xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe
-g7e.2xlarge,g7e,AWS,1,NVIDIA L40S,48,PCIe
-g7e.4xlarge,g7e,AWS,1,NVIDIA L40S,48,PCIe
-g7e.8xlarge,g7e,AWS,1,NVIDIA L40S,48,PCIe
-g6e.16xlarge,g6e,AWS,2,NVIDIA L40S,48,PCIe
-g6e.12xlarge,g6e,AWS,4,NVIDIA L40S,48,PCIe
-g6e.24xlarge,g6e,AWS,4,NVIDIA L40S,48,PCIe
-g7e.12xlarge,g7e,AWS,4,NVIDIA L40S,48,PCIe
-g7e.24xlarge,g7e,AWS,4,NVIDIA L40S,48,PCIe
-g6e.48xlarge,g6e,AWS,8,NVIDIA L40S,48,PCIe
-g7e.48xlarge,g7e,AWS,8,NVIDIA L40S,48,PCIe
-g3.4xlarge,g3,AWS,1,NVIDIA M60,8,PCIe
-Standard_NV48s_v3,NV,Azure,4,NVIDIA M60,8,PCIe
-g4dn.16xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe
-g4dn.2xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe
-g4dn.4xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe
-g4dn.8xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe
-g4dn.xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe
-gr6.4xlarge,gr6,AWS,1,NVIDIA T4,16,PCIe
-Standard_NC4as_T4_v3,NC,Azure,1,NVIDIA T4,16,PCIe
-Standard_NC8as_T4_v3,NC,Azure,1,NVIDIA T4,16,PCIe
-g4dn.12xlarge,g4dn,AWS,4,NVIDIA T4,16,PCIe
-Standard_NC64as_T4_v3,NC,Azure,4,NVIDIA T4,16,PCIe
-g4dn.metal,g4dn,AWS,8,NVIDIA T4,16,PCIe
-g5g.2xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe
-g5g.4xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe
-g5g.xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe
-g5g.8xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe
-g5g.16xlarge,g5g,AWS,2,NVIDIA T4G,16,PCIe
-g5g.metal,g5g,AWS,2,NVIDIA T4G,16,PCIe
-p3.2xlarge,p3,AWS,1,NVIDIA V100,16,SXM2
-gx2-16x128x1v100,gx2,IBM,1,NVIDIA V100,16,SXM2
-gx2-8x64x1v100,gx2,IBM,1,NVIDIA V100,16,SXM2
-Standard_NC6s_v3,NC,Azure,1,NVIDIA V100,16,SXM2
-Standard_NC12s_v3,NC,Azure,2,NVIDIA V100,16,SXM2
-gx2-16x128x2v100,gx2,IBM,2,NVIDIA V100,16,SXM2
-gx2-32x256x2v100,gx2,IBM,2,NVIDIA V100,16,SXM2
-dl2q.24xlarge,dl2q,AWS,8,Qualcomm AI 100,16,
-standard.g4-48-vcpu,standard,GCP,1,RTX PRO 6000,96,PCIe
-standard.g4-96-vcpu,standard,GCP,2,RTX PRO 6000,96,PCIe
-standard.g4-192-vcpu,standard,GCP,4,RTX PRO 6000,96,PCIe
-standard.g4-384-vcpu,standard,GCP,8,RTX PRO 6000,96,PCIe
-trn1.2xlarge,trn1,AWS,1,Trainium 1,32,
-trn1.32xlarge,trn1,AWS,16,Trainium 1,32,
-trn1n.32xlarge,trn1n,AWS,16,Trainium 1,32,
-trn2.48xlarge,trn2,AWS,16,Trainium 2,96,
-trn2u.48xlarge,trn2u,AWS,16,Trainium 2,96,
-vt1.3xlarge,vt1,AWS,1,Xilinx U30,,PCIe
-Standard_NP10s,NP,Azure,1,Xilinx U30,,PCIe
-vt1.6xlarge,vt1,AWS,2,Xilinx U30,,PCIe
-vt1.24xlarge,vt1,AWS,8,Xilinx U30,,PCIe
+Instance Type,Instance Family,Cloud Provider,GPU Count,GPU Type,GPU Memory (GB),GPU Variant,Version of list
+Standard_ND96is_MI300X_v5,ND,Azure,8,AMD MI300X,192,OAM,
+Standard_ND96isr_MI300X_v5,ND,Azure,8,AMD MI300X,192,OAM,
+gx3d-208x1792x8mi300x,gx3d,IBM,8,AMD MI300X,192,OAM,
+g4ad.2xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,PCIe,
+g4ad.4xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,PCIe,
+g4ad.xlarge,g4ad,AWS,1,AMD Radeon Pro V520,8,PCIe,
+g4ad.8xlarge,g4ad,AWS,2,AMD Radeon Pro V520,8,PCIe,
+g4ad.16xlarge,g4ad,AWS,4,AMD Radeon Pro V520,8,PCIe,
+Standard_NV4as_v4,NV,Azure,1/8,AMD Radeon Pro V520,8,PCIe,
+f2.6xlarge,f2,AWS,1,AMD Virtex,16,PCIe,
+f2.12xlarge,f2,AWS,2,AMD Virtex,16,PCIe,
+f2.48xlarge,f2,AWS,8,AMD Virtex,16,PCIe,
+inf1.xlarge,inf1,AWS,1,Inferentia 1,8,,
+inf1.2xlarge,inf1,AWS,1,Inferentia 1,8,,
+inf1.6xlarge,inf1,AWS,4,Inferentia 1,8,,
+inf1.24xlarge,inf1,AWS,16,Inferentia 1,8,,
+inf2.8xlarge,inf2,AWS,1,Inferentia 2,32,,
+inf2.xlarge,inf2,AWS,1,Inferentia 2,32,,
+inf2.24xlarge,inf2,AWS,6,Inferentia 2,32,,
+inf2.48xlarge,inf2,AWS,12,Inferentia 2,32,,
+dl1.24xlarge,dl1,AWS,8,Intel Gaudi 1,32,PCIe,
+gx3d-160x1792x8gaudi3,gx3d,IBM,8,Intel Gaudi 3,128,PCIe,
+gx3d-160x1792x8gaudi3-internal,gx3d,IBM,8,Intel Gaudi 3,128,PCIe,
+Standard_NV36ads_A10_v5,NV,Azure,1,NVIDIA A10,24,PCIe,
+Standard_NV72ads_A10_v5,NV,Azure,2,NVIDIA A10,24,PCIe,
+Standard_NV12ads_A10_v5,NV,Azure,1/3,NVIDIA A10,24,PCIe,
+Standard_NV6ads_A10_v5,NV,Azure,1/6,NVIDIA A10,24,PCIe,
+highgpu.a2-1g-vcpu,highgpu,GCP,1,NVIDIA A100,40,SXM4,
+ultragpu.a2-1g-vcpu,ultragpu,GCP,1,NVIDIA A100,40,SXM4,
+highgpu.a2-2g-vcpu,highgpu,GCP,2,NVIDIA A100,40,SXM4,
+ultragpu.a2-2g-vcpu,ultragpu,GCP,2,NVIDIA A100,40,SXM4,
+ultragpu.a2-4g-vcpu,ultragpu,GCP,4,NVIDIA A100,40,SXM4,
+highgpu.a2-4g-vcpu,highgpu,GCP,4,NVIDIA A100,40,SXM4,
+p4d.24xlarge,p4d,AWS,8,NVIDIA A100,40,SXM4,
+ultragpu.a2-8g-vcpu,ultragpu,GCP,8,NVIDIA A100,40,SXM4,
+highgpu.a2-8g-vcpu,highgpu,GCP,8,NVIDIA A100,40,SXM4,
+megagpu.a2-16g-vcpu,megagpu,GCP,16,NVIDIA A100,40,SXM4,
+Standard_NC24ads_A100_v4,NC,Azure,1,NVIDIA A100,80,PCIe,
+gx3d-24x120x1a100p,gx3d,IBM,1,NVIDIA A100,80,SXM4,
+Standard_NC48ads_A100_v4,NC,Azure,2,NVIDIA A100,80,PCIe,
+gx3d-48x240x2a100p,gx3d,IBM,2,NVIDIA A100,80,SXM4,
+p4de.24xlarge,p4de,AWS,8,NVIDIA A100,80,SXM4,
+highgpu.a4-8g-vcpu,highgpu,GCP,8,NVIDIA A100,80,SXM4,
+gx2-80x1280x8a100,gx2,IBM,8,NVIDIA A100,80,SXM4,
+g5.16xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe,
+g5.2xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe,
+g5.4xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe,
+g5.8xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe,
+g5.xlarge,g5,AWS,1,NVIDIA A10G,24,PCIe,
+g5.12xlarge,g5,AWS,4,NVIDIA A10G,24,PCIe,
+g5.24xlarge,g5,AWS,4,NVIDIA A10G,24,PCIe,
+g5.48xlarge,g5,AWS,8,NVIDIA A10G,24,PCIe,
+p6-b200.48xlarge,p6-b200,AWS,8,NVIDIA B200,180,SXM5,
+p6-b300.48xlarge,p6-b300,AWS,8,NVIDIA B300,268,SXM5,
+p6e-gb200.36xlarge,p6e-gb200,AWS,4,NVIDIA GB200,186,NVL,
+highgpu.a4x-4g-vcpu,highgpu,GCP,4,NVIDIA GB200,186,NVL,
+u-p6e-gb200x36,p6e-gb200x36,AWS,36,NVIDIA GB200,186,NVL,
+u-p6e-gb200x72,p6e-gb200x72,AWS,72,NVIDIA GB200,186,NVL,
+maxgpu.a4x-4g-metal-vcpu,maxgpu,GCP,4,NVIDIA GB300,279,NVL,
+p5.4xlarge,p5,AWS,1,NVIDIA H100,80,SXM5,
+highgpu.a3-1g-vcpu,highgpu,GCP,1,NVIDIA H100,80,SXM5,
+highgpu.a3-2g-vcpu,highgpu,GCP,2,NVIDIA H100,80,SXM5,
+highgpu.a3-4g-vcpu,highgpu,GCP,4,NVIDIA H100,80,SXM5,
+p5.48xlarge,p5,AWS,8,NVIDIA H100,80,SXM5,
+highgpu.a3-8g-vcpu,highgpu,GCP,8,NVIDIA H100,80,SXM5,
+ultragpu.a3-8g-vcpu,ultragpu,GCP,8,NVIDIA H100,80,SXM5,
+edgegpu.a3-8g-vcpu,edgegpu,GCP,8,NVIDIA H100,80,SXM5,
+megagpu.a3-8g-vcpu,megagpu,GCP,8,NVIDIA H100,80,SXM5,
+gx3d-160x1792x8h100,gx3d,IBM,8,NVIDIA H100,80,SXM5,
+Standard_NC40ads_H100_v5,NC,Azure,1,NVIDIA H100,94,PCIe,
+Standard_NC80adis_H100_v5,NC,Azure,2,NVIDIA H100,94,PCIe,
+p5e.48xlarge,p5e,AWS,8,NVIDIA H200,141,SXM5,
+p5en.48xlarge,p5en,AWS,8,NVIDIA H200,141,SXM5,
+gx3d-160x1792x8h200,gx3d,IBM,8,NVIDIA H200,141,SXM5,
+gr6.8xlarge,gr6,AWS,1,NVIDIA L4,24,PCIe,
+gr6f.4xlarge,gr6f,AWS,0.5,NVIDIA L4,24,PCIe,
+g6.16xlarge,g6,AWS,1,NVIDIA L4,24,PCIe,
+g6.2xlarge,g6,AWS,1,NVIDIA L4,24,PCIe,
+g6.4xlarge,g6,AWS,1,NVIDIA L4,24,PCIe,
+g6.8xlarge,g6,AWS,1,NVIDIA L4,24,PCIe,
+g6.xlarge,g6,AWS,1,NVIDIA L4,24,PCIe,
+g6f.2xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe,
+g6f.4xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe,
+g6f.large,g6f,AWS,1,NVIDIA L4,24,PCIe,
+g6f.xlarge,g6f,AWS,1,NVIDIA L4,24,PCIe,
+standard.g2-16-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe,
+standard.g2-24-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe,
+standard.g2-4-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe,
+standard.g2-48-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe,
+standard.g2-12-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe,
+standard.g2-32-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe,
+standard.g2-8-vcpu,standard,GCP,1,NVIDIA L4,24,PCIe,
+gx3-16x80x1l4,gx3,IBM,1,NVIDIA L4,24,PCIe,
+gx3-24x120x1l40s,gx3,IBM,1,NVIDIA L4,24,PCIe,
+gx3-32x160x2l4,gx3,IBM,2,NVIDIA L4,24,PCIe,
+gx3-48x240x2l40s,gx3,IBM,2,NVIDIA L4,24,PCIe,
+g6.12xlarge,g6,AWS,4,NVIDIA L4,24,PCIe,
+g6.24xlarge,g6,AWS,4,NVIDIA L4,24,PCIe,
+gx3-64x320x4l4,gx3,IBM,4,NVIDIA L4,24,PCIe,
+g6.48xlarge,g6,AWS,8,NVIDIA L4,24,PCIe,
+standard.g2-96-vcpu,standard,GCP,8,NVIDIA L4,24,PCIe,
+g6e.2xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe,
+g6e.4xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe,
+g6e.8xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe,
+g6e.xlarge,g6e,AWS,1,NVIDIA L40S,48,PCIe,
+g7e.2xlarge,g7e,AWS,1,NVIDIA L40S,48,PCIe,
+g7e.4xlarge,g7e,AWS,1,NVIDIA L40S,48,PCIe,
+g7e.8xlarge,g7e,AWS,1,NVIDIA L40S,48,PCIe,
+g6e.16xlarge,g6e,AWS,2,NVIDIA L40S,48,PCIe,
+g6e.12xlarge,g6e,AWS,4,NVIDIA L40S,48,PCIe,
+g6e.24xlarge,g6e,AWS,4,NVIDIA L40S,48,PCIe,
+g7e.12xlarge,g7e,AWS,4,NVIDIA L40S,48,PCIe,
+g7e.24xlarge,g7e,AWS,4,NVIDIA L40S,48,PCIe,
+g6e.48xlarge,g6e,AWS,8,NVIDIA L40S,48,PCIe,
+g7e.48xlarge,g7e,AWS,8,NVIDIA L40S,48,PCIe,
+g3.4xlarge,g3,AWS,1,NVIDIA M60,8,PCIe,
+Standard_NV48s_v3,NV,Azure,4,NVIDIA M60,8,PCIe,
+g4dn.16xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe,
+g4dn.2xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe,
+g4dn.4xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe,
+g4dn.8xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe,
+g4dn.xlarge,g4dn,AWS,1,NVIDIA T4,16,PCIe,
+gr6.4xlarge,gr6,AWS,1,NVIDIA T4,16,PCIe,
+Standard_NC4as_T4_v3,NC,Azure,1,NVIDIA T4,16,PCIe,
+Standard_NC8as_T4_v3,NC,Azure,1,NVIDIA T4,16,PCIe,
+Standard_NC16as_T4_v3,NC,Azure,1,NVIDIA T4,16,PCIe,2
+g4dn.12xlarge,g4dn,AWS,4,NVIDIA T4,16,PCIe,
+Standard_NC64as_T4_v3,NC,Azure,4,NVIDIA T4,16,PCIe,
+g4dn.metal,g4dn,AWS,8,NVIDIA T4,16,PCIe,
+g5g.2xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe,
+g5g.4xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe,
+g5g.xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe,
+g5g.8xlarge,g5g,AWS,1,NVIDIA T4G,16,PCIe,
+g5g.16xlarge,g5g,AWS,2,NVIDIA T4G,16,PCIe,
+g5g.metal,g5g,AWS,2,NVIDIA T4G,16,PCIe,
+p3.2xlarge,p3,AWS,1,NVIDIA V100,16,SXM2,
+gx2-16x128x1v100,gx2,IBM,1,NVIDIA V100,16,SXM2,
+gx2-8x64x1v100,gx2,IBM,1,NVIDIA V100,16,SXM2,
+Standard_NC6s_v3,NC,Azure,1,NVIDIA V100,16,SXM2,
+Standard_NC12s_v3,NC,Azure,2,NVIDIA V100,16,SXM2,
+gx2-16x128x2v100,gx2,IBM,2,NVIDIA V100,16,SXM2,
+gx2-32x256x2v100,gx2,IBM,2,NVIDIA V100,16,SXM2,
+Standard_ND40rs_v2,NDv2,Azure,8,NVIDIA V100,32,SXM2,2
+dl2q.24xlarge,dl2q,AWS,8,Qualcomm AI 100,16,,
+standard.g4-48-vcpu,standard,GCP,1,RTX PRO 6000,96,PCIe,
+standard.g4-96-vcpu,standard,GCP,2,RTX PRO 6000,96,PCIe,
+standard.g4-192-vcpu,standard,GCP,4,RTX PRO 6000,96,PCIe,
+standard.g4-384-vcpu,standard,GCP,8,RTX PRO 6000,96,PCIe,
+trn1.2xlarge,trn1,AWS,1,Trainium 1,32,,
+trn1.32xlarge,trn1,AWS,16,Trainium 1,32,,
+trn1n.32xlarge,trn1n,AWS,16,Trainium 1,32,,
+trn2.48xlarge,trn2,AWS,16,Trainium 2,96,,
+trn2u.48xlarge,trn2u,AWS,16,Trainium 2,96,,
+vt1.3xlarge,vt1,AWS,1,Xilinx U30,,PCIe,
+Standard_NP10s,NP,Azure,1,Xilinx U30,,PCIe,
+vt1.6xlarge,vt1,AWS,2,Xilinx U30,,PCIe,
+vt1.24xlarge,vt1,AWS,8,Xilinx U30,,PCIe,

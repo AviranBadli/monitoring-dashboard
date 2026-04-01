@@ -158,7 +158,9 @@ class TestRenderHtmlTable:
             },
         ]
         html = render_html_table(cluster_queues, rows)
-        assert "rowspan" not in html
+        # Namespace cells in tbody should not be merged when namespaces differ
+        tbody = html.split("<tbody>")[1]
+        assert "rowspan" not in tbody
         assert "ns-1" in html
         assert "ns-2" in html
 

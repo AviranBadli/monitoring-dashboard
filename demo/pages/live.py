@@ -242,10 +242,20 @@ def render_html_table(cluster_queues, rows):
         '<table style="width:100%;border-collapse:collapse;font-family:sans-serif;font-size:0.9em">'
     )
 
-    # Header row
+    # Header rows
     html.append("<thead><tr>")
-    html.append('<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>')
-    html.append('<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8">LocalQueue</th>')
+    html.append(
+        '<th rowspan="2" style="border:1px solid #ddd;padding:8px;background:#f8f8f8">Namespace</th>'
+    )
+    html.append(
+        '<th rowspan="2" style="border:1px solid #ddd;padding:8px;background:#f8f8f8">LocalQueue</th>'
+    )
+    if cluster_queues:
+        html.append(
+            f'<th colspan="{len(cluster_queues)}" style="border:1px solid #ddd;padding:8px;'
+            f'background:#e0e0e0;text-align:center">Cluster Queues</th>'
+        )
+    html.append("</tr><tr>")
     for cq in cluster_queues:
         flavors = get_cluster_queue_flavors(cq)
         flavor_html = ""

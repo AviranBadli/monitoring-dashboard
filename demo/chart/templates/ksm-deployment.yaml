@@ -43,7 +43,10 @@ kind: Service
 metadata:
   name: {{ include "kueue-dashboard.fullname" . }}-ksm
   labels:
-    {{- include "kueue-dashboard.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ .Chart.Name }}-ksm
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/component: ksm
 spec:
   selector:
