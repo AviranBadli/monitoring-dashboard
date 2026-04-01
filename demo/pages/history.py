@@ -89,6 +89,7 @@ if end_time == datetime.date.today():
     end_dt = datetime.datetime.now(datetime.timezone.utc)
 start_dt = end_dt - datetime.timedelta(minutes=minutes_back)
 
+
 @st.fragment(run_every=10)
 def render_charts():
     # Recalculate end/start on each refresh so the window slides forward
