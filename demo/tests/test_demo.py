@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 from tests.conftest import mock_core_api, mock_k8s_api
 
-from pages.demo import (
+from pages.live import (
     get_cluster_queue_flavors,
     get_gpu_nodes,
     get_localqueue_events,
