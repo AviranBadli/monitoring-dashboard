@@ -1,0 +1,59 @@
+{{- if .Values.kueueKsm.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kueue-dashboard.fullname" . }}-ksm
+  labels:
+    {{- include "kueue-dashboard.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ksm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Chart.Name }}-ksm
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Chart.Name }}-ksm
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ include "kueue-dashboard.fullname" . }}-ksm
+      containers:
+        - name: kube-state-metrics
+          image: "{{ .Values.kueueKsm.image.repository }}:{{ .Values.kueueKsm.image.tag }}"
+          args:
+            - --custom-resource-state-config-file=/config/config.yaml
+            - --custom-resource-state-only=true
+          ports:
+            - name: metrics
+              containerPort: 8080
+            - name: telemetry
+              containerPort: 8081
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "kueue-dashboard.fullname" . }}-ksm-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "kueue-dashboard.fullname" . }}-ksm
+  labels:
+    {{- include "kueue-dashboard.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ksm
+spec:
+  selector:
+    app.kubernetes.io/name: {{ .Chart.Name }}-ksm
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+    - name: metrics
+      port: 8080
+      targetPort: metrics
+    - name: telemetry
+      port: 8081
+      targetPort: telemetry
+{{- end }}

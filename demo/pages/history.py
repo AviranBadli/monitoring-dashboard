@@ -1,4 +1,5 @@
 import datetime
+import logging
 
 import altair as alt
 import httpx
@@ -6,6 +7,10 @@ import pandas as pd
 import streamlit as st
 
 from config import settings
+
+logger = logging.getLogger(__name__)
+logger.setLevel(settings.LOG_LEVEL)
+logger.addHandler(logging.StreamHandler())
 
 METRICS = [
     ("kube_customresource_kueue_localqueue_pending_workloads", "Pending"),
@@ -33,6 +38,7 @@ def query_thanos_range(
         "step": step,
     }
     resp = httpx.get(url, params=params, headers=headers, verify=False, timeout=30)
+    logger.info("Thanos query: %s", resp.request.url)
     resp.raise_for_status()
     data = resp.json()
     if data.get("status") != "success":

@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: quay.io/aicatalyst/kueue-dashboard
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   type: ClusterIP
@@ -25,5 +25,20 @@ serviceAccount:
   create: true
   name: ""
 
+logLevel: INFO
+
+thanos:
+  url: "https://thanos-querier.openshift-monitoring.svc.cluster.local:9091"
+
 rbac:
   create: true
+
+# Kueue Kubernetes State Metrics integration for custom resources
+kueueKsm:
+  enabled: true
+  image:
+    repository: registry.k8s.io/kube-state-metrics/kube-state-metrics
+    tag: v2.13.0
+  serviceMonitor:
+    enabled: true
+    interval: 10s

@@ -6,8 +6,9 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     TEST_ROW: bool = False
-    THANOS_URL: str = "http://thanos-querier.openshift-monitoring.svc.cluster.local:9091"
+    THANOS_URL: str = "https://thanos-querier.openshift-monitoring.svc.cluster.local:9091"
     THANOS_TOKEN: str = ""
+    LOG_LEVEL: str = "INFO"
 
     model_config = {"env_file": ".env", "extra": "ignore"}
 
