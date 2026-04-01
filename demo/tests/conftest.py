@@ -20,6 +20,7 @@ mock_k8s_api = MagicMock()
 mock_core_api = MagicMock()
 mock_settings = MagicMock()
 mock_settings.TEST_ROW = False
+mock_settings.LOG_LEVEL = "INFO"
 
 config_mock = MagicMock()
 config_mock.k8s_api = mock_k8s_api
