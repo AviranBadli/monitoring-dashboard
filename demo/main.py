@@ -1,14 +1,13 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Demo Dashboard",
+    page_title="Kueue Dashboard",
     layout="wide",
 )
 
 pages = [
-    st.Page("pages/home.py", title="Home", default=True),
-    st.Page("pages/live.py", title="Kueue Live View"),
-    st.Page("pages/history.py", title="Kueue History"),
+    st.Page("pages/live.py", title="Kueue Live View", default=True),
+    st.Page("pages/history.py", title="Kueue Historical View"),
 ]
 
 pg = st.navigation(pages)

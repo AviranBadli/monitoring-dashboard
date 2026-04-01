@@ -63,7 +63,7 @@ def build_dataframe(start: datetime.datetime, end: datetime.datetime, step: str)
     return pd.DataFrame(rows)
 
 
-st.title("Kueue Activity History")
+st.title("Kueue Historical View")
 st.text("Historical view of Kueue local queue workload activity from Thanos metrics.")
 
 col1, col2, col3 = st.columns(3)
@@ -122,7 +122,7 @@ chart = (
 
 st.altair_chart(chart, use_container_width=True)
 
-st.subheader("Per-Queue Breakdown")
+st.subheader("Per-LocalQueue Breakdown")
 
 for queue in sorted(df["queue"].unique()):
     q_df = df[df["queue"] == queue].groupby(["time", "state"], as_index=False)["count"].sum()
