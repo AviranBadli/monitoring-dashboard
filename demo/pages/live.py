@@ -302,7 +302,7 @@ def render_html_table(cluster_queues, rows):
     return "\n".join(html)
 
 
-st.title("Kueue Activity Live View Dashboard")
+st.title("Kueue Live View")
 st.text("Activity of the Kueue scheduler across the cluster in real time.")
 
 st.subheader("Cluster Nodes")

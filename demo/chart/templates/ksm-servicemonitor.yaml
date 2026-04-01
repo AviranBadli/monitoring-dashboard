@@ -1,0 +1,17 @@
+{{- if and .Values.kueueKsm.enabled .Values.kueueKsm.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "kueue-dashboard.fullname" . }}-ksm
+  labels:
+    {{- include "kueue-dashboard.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ksm
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Chart.Name }}-ksm
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  endpoints:
+    - port: metrics
+      interval: {{ .Values.kueueKsm.serviceMonitor.interval }}
+{{- end }}

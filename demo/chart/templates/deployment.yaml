@@ -33,6 +33,11 @@ spec:
             - "false"
             - "--server.enableXsrfProtection"
             - "false"
+          env:
+            - name: LOG_LEVEL
+              value: {{ .Values.logLevel | quote }}
+            - name: THANOS_URL
+              value: {{ .Values.thanos.url | quote }}
           ports:
             - containerPort: 8501
               protocol: TCP

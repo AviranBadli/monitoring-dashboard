@@ -1,0 +1,83 @@
+{{- if .Values.kueueKsm.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "kueue-dashboard.fullname" . }}-ksm-config
+  labels:
+    {{- include "kueue-dashboard.labels" . | nindent 4 }}
+data:
+  config.yaml: |
+    kind: CustomResourceStateMetrics
+    spec:
+      resources:
+      - groupVersionKind:
+          group: kueue.x-k8s.io
+          kind: LocalQueue
+          version: v1beta1
+        metrics:
+        - name: kueue_localqueue_pending_workloads
+          help: "Number of pending workloads in the LocalQueue"
+          each:
+            type: Gauge
+            gauge:
+              path: [status, pendingWorkloads]
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            localqueue: [metadata, name]
+            cluster_queue: [spec, clusterQueue]
+        - name: kueue_localqueue_admitted_workloads
+          help: "Number of admitted workloads in the LocalQueue"
+          each:
+            type: Gauge
+            gauge:
+              path: [status, admittedWorkloads]
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            localqueue: [metadata, name]
+            cluster_queue: [spec, clusterQueue]
+        - name: kueue_localqueue_reserving_workloads
+          help: "Number of reserving workloads in the LocalQueue"
+          each:
+            type: Gauge
+            gauge:
+              path: [status, reservingWorkloads]
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            localqueue: [metadata, name]
+            cluster_queue: [spec, clusterQueue]
+      - groupVersionKind:
+          group: kueue.x-k8s.io
+          kind: LocalQueue
+          version: v1beta2
+        metrics:
+        - name: kueue_localqueue_pending_workloads
+          help: "Number of pending workloads in the LocalQueue"
+          each:
+            type: Gauge
+            gauge:
+              path: [status, pendingWorkloads]
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            localqueue: [metadata, name]
+            cluster_queue: [spec, clusterQueue]
+        - name: kueue_localqueue_admitted_workloads
+          help: "Number of admitted workloads in the LocalQueue"
+          each:
+            type: Gauge
+            gauge:
+              path: [status, admittedWorkloads]
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            localqueue: [metadata, name]
+            cluster_queue: [spec, clusterQueue]
+        - name: kueue_localqueue_reserving_workloads
+          help: "Number of reserving workloads in the LocalQueue"
+          each:
+            type: Gauge
+            gauge:
+              path: [status, reservingWorkloads]
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            localqueue: [metadata, name]
+            cluster_queue: [spec, clusterQueue]
+{{- end }}
