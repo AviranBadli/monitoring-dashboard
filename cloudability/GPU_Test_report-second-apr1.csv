@@ -1,0 +1,634 @@
+Vendor,DoNotUse - GPU,Instance Type,Cost (Total)
+Amazon,not gpu,(not set),1145937.0585945223
+GCP,not gpu,(not set),419646.082716
+IBM,not gpu,(not set),341986.14107541926
+Azure,not gpu,(not set),20448.18966856674
+Amazon,nvidia a100 40 sxm4 x 8,p4d.24xlarge,16408.896672664105
+Amazon,not gpu,ra3.16xlarge,16233.235199999994
+Azure,not gpu,Standard_D8s_v3,15333.4613286722
+Amazon,not gpu,m5.2xlarge,13519.607602363021
+Amazon,not gpu,m5.4xlarge,10068.051821428428
+Amazon,not gpu,m6i.xlarge,9649.3706584795
+Amazon,not gpu,m6a.8xlarge,9636.019840049707
+Azure,not gpu,Standard_D4s_v3,7851.898627369234
+GCP,not gpu,standard.n2-16-vcpu,7797.231764
+Amazon,not gpu,m5.xlarge,7442.498937603241
+GCP,not gpu,standard.n2-8-vcpu,7285.241517
+Amazon,not gpu,m6a.xlarge,7080.222758423302
+GCP,not gpu,custom.e2-6-vcpu,6841.65866
+Amazon,not gpu,m5.8xlarge,5989.426453455004
+Amazon,nvidia l40s 48 pcie x 4,g6e.12xlarge,5383.089559332
+Azure,not gpu,Standard_D14_v2,5369.907200365499
+Amazon,nvidia a10g 24 pcie x 1,g5.4xlarge,4818.869472922101
+GCP,not gpu,standard.n2-4-vcpu,4804.730141
+GCP,not gpu,standard.e2-8-vcpu,4699.136209
+Azure,not gpu,Standard_D16_v3,4468.828470048
+Amazon,nvidia l4 24 pcie x 4,g6.12xlarge,4309.839335445501
+GCP,not gpu,custom.custom-8-vcpu,4148.862867
+Amazon,nvidia a10g 24 pcie x 8,g5.48xlarge,4023.6378729966987
+Amazon,nvidia a10g 24 pcie x 1,g5.2xlarge,3993.6740903225996
+Amazon,not gpu,m7g.8xlarge,3678.1916267210004
+GCP,not gpu,highcpu.c3-192-vcpu,3652.7842490000003
+Amazon,nvidia l40s 48 pcie x 8,g6e.48xlarge,3380.287115190998
+Amazon,not gpu,m5.1yrPartialUpfront,3176.211156134402
+Amazon,not gpu,m5.metal,3048.6776219097
+Amazon,not gpu,c5.metal,2910.2415223833973
+Azure,not gpu,Standard_D4s_v5,2748.50479375875
+Amazon,not gpu,m6g.xlarge,2701.4729151623987
+Azure,not gpu,Standard_D8s_v5,2686.97991677025
+Amazon,not gpu,m5.24xlarge,2606.957103698001
+Amazon,nvidia a100 80 sxm4 x 8,p4de.24xlarge,2565.750233999999
+Amazon,nvidia l40s 48 pcie x 1,g6e.2xlarge,2536.5585924560028
+Amazon,not gpu,m6a.2xlarge,2373.063443089602
+Amazon,not gpu,m7i.metal-24xl,2275.4653003242015
+Amazon,not gpu,m6a.4xlarge,2209.232024481706
+GCP,not gpu,custom.e2-16-vcpu,2175.066368
+Amazon,not gpu,m6g.large,2114.319818720399
+Amazon,not gpu,m5.12xlarge,2101.8219547035
+Amazon,not gpu,r6g.2xlarge,2043.8051985601996
+Amazon,nvidia l40s 48 pcie x 1,g6e.4xlarge,2025.062075418
+GCP,not gpu,standard.n1-4-vcpu,1959.1777079999997
+Azure,not gpu,Standard_D16s_v3,1937.6782737419999
+Amazon,nvidia l4 24 pcie x 1,g6.4xlarge,1925.6394231801
+GCP,nvidia h100 80 sxm5 x 8,ultragpu.a3-8g-vcpu,1839.6868679999995
+Amazon,not gpu,i3.2xlarge,1816.1211500116003
+GCP,not gpu,standard.e2-16-vcpu,1789.25644
+Amazon,nvidia l4 24 pcie x 1,g6.2xlarge,1727.2209314550998
+Amazon,not gpu,m7i-flex.12xlarge,1690.8599038820003
+GCP,nvidia h100 80 sxm5 x 8,highgpu.a3-8g-vcpu,1660.8659900000002
+Amazon,not gpu,r5.xlarge,1658.1581249731983
+Amazon,not gpu,t3.micro,1597.0650757992007
+Amazon,not gpu,r6g.4xlarge,1588.7526400000002
+GCP,not gpu,standard.ct6e-4t-vcpu,1488.7890000000007
+GCP,not gpu,standard.n2-64-vcpu,1487.9771420000002
+Azure,nvidia h100 94 pcie x 2,Standard_NC80adis_H100_v5,1434.21570591
+Amazon,not gpu,m6i.2xlarge,1392.6816375841001
+Amazon,not gpu,r5.2xlarge,1347.7509384672985
+Amazon,not gpu,r7g.12xlarge,1308.2301598083002
+Azure,nvidia a100 80 pcie x 2,Standard_NC48ads_A100_v4,1298.9565344789996
+GCP,not gpu,highmem.n2-4-vcpu,1284.130172
+Azure,not gpu,Standard_D4ds_v5,1190.5490475022502
+Amazon,not gpu,t3.small,1173.1190614922004
+GCP,not gpu,standard.n1-16-vcpu,1132.75125
+GCP,not gpu,custom.custom-16-vcpu,1081.2213549999997
+Amazon,not gpu,r6g.large,1081.0557817407998
+GCP,not gpu,standard.n1-32-vcpu,1079.4843170000001
+GCP,nvidia a100 40 sxm4 x 8,ultragpu.a2-8g-vcpu,1071.120071
+Amazon,nvidia l40s 48 pcie x 1,g6e.xlarge,1068.4673732598997
+Azure,not gpu,Standard_D8ps_v5,1067.8365242655
+Azure,not gpu,Standard_D8as_v5,1066.4148416535002
+Azure,not gpu,Standard_D16als_v6,1053.29677432875
+GCP,not gpu,standard.e2-4-vcpu,999.469571
+GCP,not gpu,custom.n2-12-vcpu,990.59533
+GCP,nvidia l4 24 pcie x 1,standard.g2-48-vcpu,983.4440470000003
+Amazon,not gpu,m6g.2xlarge,974.3867859722997
+Amazon,not gpu,t3.medium,963.0512892160001
+Amazon,not gpu,m5.large,923.7005901612002
+Azure,not gpu,Standard_DS14_v2,920.1533375835
+Azure,xilinx u30 pcie x 1,Standard_NP10s,845.8827970094079
+Amazon,not gpu,t3.xlarge,827.5940010975002
+Amazon,not gpu,m5zn.metal,822.1202632504001
+Amazon,not gpu,r6i.2xlarge,788.6165943121998
+Amazon,not gpu,ultrawarm1.large.search,769.9103999999993
+Amazon,not gpu,m7g.12xlarge,768.3599999999994
+Azure,not gpu,Standard_DS1_v2,734.104768463475
+GCP,not gpu,custom.n1-custom-vcpu,726.843181
+Amazon,nvidia h100 80 sxm5 x 1,p5.4xlarge,714.8824
+Amazon,not gpu,m6i.8xlarge,711.6237758984003
+Amazon,not gpu,r6g.xlarge,709.2243999999998
+GCP,nvidia l4 24 pcie x 8,standard.g2-96-vcpu,699.2500910000002
+GCP,not gpu,standard.t2a-4-vcpu,699.0777
+Amazon,nvidia l4 24 pcie x 1,g6.xlarge,687.6763612592002
+Amazon,not gpu,r6g.8xlarge,683.4299999999998
+Azure,not gpu,Standard_D48s_v3,672.0999232608001
+Azure,not gpu,Standard_D2s_v3,670.2678972363
+Amazon,not gpu,mac2-m2,664.7871999999998
+GCP,not gpu,highmem.n2-8-vcpu,660.2416770000001
+GCP,nvidia a100 40 sxm4 x 1,ultragpu.a2-1g-vcpu,647.938663
+Azure,not gpu,Standard_ND40rs_v2,639.4704138525
+Amazon,not gpu,m5a.4xlarge,636.7233523597007
+Amazon,not gpu,m7i.xlarge,617.4160874193996
+Amazon,not gpu,t2.2xlarge,606.8592767593
+Amazon,nvidia l40s 48 pcie x 4,g6e.24xlarge,600.9909286152995
+Azure,not gpu,Standard_D8s_v4,589.3492272345
+Azure,not gpu,Standard_D4ps_v5,570.4675447830599
+Amazon,not gpu,t2.xlarge,564.9172836766999
+Amazon,not gpu,r5a.1yrNoUpfront,550.4832000000001
+GCP,nvidia a100 40 sxm4 x 2,highgpu.a2-2g-vcpu,541.088704
+Amazon,not gpu,r6a.1yrNoUpfront,526.9535999999998
+Amazon,not gpu,c5.9xlarge,524.0556594994999
+Amazon,not gpu,r5a.2xlarge,523.4879999999998
+GCP,not gpu,custom.custom-4-vcpu,520.416304
+Amazon,nvidia a10g 24 pcie x 1,g5.xlarge,517.4128628804001
+GCP,not gpu,standard.n1-8-vcpu,508.87565300000006
+Amazon,not gpu,m6g.8xlarge,508.22753810899974
+Amazon,trainium 2 96 x 16,trn2.48xlarge,502.34000000000003
+Amazon,not gpu,m5d.2xlarge,495.4345674648
+Azure,not gpu,Standard_D2alds_v6,495.1257789366
+Amazon,nvidia a10g 24 pcie x 4,g5.12xlarge,483.3347565821999
+Amazon,not gpu,m6i.large,481.7545477262998
+Azure,not gpu,Standard_D5_v2,479.1003922575
+Amazon,not gpu,m6i.4xlarge,478.4049711809008
+Amazon,not gpu,r6i.1yrNoUpfront,474.09408
+Amazon,nvidia t4 16 pcie x 4,g4dn.12xlarge,466.5521147057006
+Amazon,not gpu,r8i.2xlarge,465.4281677698001
+Azure,not gpu,Standard_D4s_v4,445.2374400645
+Amazon,not gpu,m7g.large,435.77463085330004
+GCP,nvidia l4 24 pcie x 1,standard.g2-16-vcpu,423.2866360000001
+Amazon,not gpu,t4g.large,423.0604496133
+Amazon,not gpu,c5n.metal,410.27611538489947
+Azure,nvidia t4 16 pcie x 4,Standard_NC64as_T4_v3,407.72805984
+Amazon,not gpu,t2.medium,403.6762297715999
+Azure,not gpu,Standard_DS2_v2,401.0758286947501
+Amazon,not gpu,r5a.xlarge,381.87189172680024
+Amazon,not gpu,r5.large,381.74267999999995
+Amazon,not gpu,c5.2xlarge,373.0706762050001
+Azure,not gpu,Standard_NC16as_T4_v3,364.812
+Amazon,not gpu,m7i.2xlarge,362.5344807420002
+GCP,not gpu,standard.c3-192-vcpu,357.817637
+Amazon,not gpu,m5a.xlarge,342.2199489969006
+GCP,not gpu,standard.t2a-8-vcpu,333.498431
+Amazon,nvidia t4 16 pcie x 1,g4dn.xlarge,325.87918988269917
+Amazon,not gpu,c7i.4xlarge,311.9050373307001
+Amazon,nvidia l40s 48 pcie x 1,g7e.2xlarge,303.1017750752
+Amazon,not gpu,m7g.2xlarge,299.4637017398999
+Azure,not gpu,Standard_D32s_v3,292.25580099599995
+Amazon,not gpu,mac2,284.0500000000001
+Amazon,not gpu,t3.2xlarge,281.9935021615999
+Amazon,not gpu,m8i.4xlarge,278.8495536375
+Amazon,nvidia l4 24 pcie x 1,g6.8xlarge,275.7362034824001
+Amazon,not gpu,c5,266.5960256496
+Amazon,inferentia 2 32 x 6,inf2.24xlarge,264.7719150619
+Azure,not gpu,Standard_D16s_v5,263.840625252
+Amazon,not gpu,t3a.medium,261.03997852220004
+Amazon,not gpu,i3.metal,259.3239167998999
+Amazon,not gpu,m5a.8xlarge,257.9136000000001
+Amazon,not gpu,m7g.4xlarge,257.5512899873999
+Amazon,not gpu,t4g.small,256.4226939601001
+Amazon,not gpu,t4g.micro,253.9668731952001
+Amazon,not gpu,ultrawarm1.medium.search,250.69967999999986
+Azure,not gpu,Standard_D8lds_v5,250.32500937299994
+Amazon,not gpu,r5.4xlarge,249.04459026519862
+Amazon,not gpu,r6a.2xlarge,241.9421157574999
+Amazon,not gpu,r6i.xlarge,238.2992810923999
+Amazon,not gpu,c5a.16xlarge,232.20735999999994
+GCP,not gpu,sharedcore.e2-2-vcpu,229.01115199999998
+Amazon,not gpu,r6a.xlarge,225.25831839260061
+Azure,not gpu,Gateway,216.25400457323101
+Amazon,not gpu,r5.1yrNoUpfront,212.97024000000002
+Amazon,not gpu,m7g.16xlarge,210.7110725898999
+Amazon,not gpu,t2.large,210.38833728179995
+Amazon,not gpu,m7g.xlarge,203.28504541509986
+Amazon,not gpu,t4g.medium,198.44759263599994
+Amazon,not gpu,m7i.8xlarge,193.6485928189003
+Azure,amd mi300x 192 oam x 8,Standard_ND96is_MI300X_v5,191.6370044026632
+Amazon,nvidia t4 16 pcie x 1,g4dn.2xlarge,185.23911441840056
+Azure,not gpu,Standard_D32s_v4,183.12757466192
+Amazon,not gpu,t2.small,181.49775006130008
+Amazon,not gpu,r5a.4xlarge,181.00301204320004
+GCP,not gpu,highmem.n2-16-vcpu,175.86784500000002
+Azure,not gpu,Standard_D2s_v4,175.60224813600001
+Amazon,not gpu,t3.large,175.5725674210001
+Amazon,not gpu,c5a.2xlarge,174.06314085169998
+Azure,not gpu,Standard_B16ms,169.61669999999998
+Amazon,not gpu,m6gd.2xlarge,168.1414396003
+Amazon,not gpu,m4.2xlarge,166.22479185600005
+Amazon,not gpu,t4g.xlarge,164.72844559210003
+Amazon,not gpu,c7i.metal-24xl,163.68905524230001
+Azure,nvidia t4 16 pcie x 1,Standard_NC4as_T4_v3,160.18674906449996
+Amazon,not gpu,m6a.metal,158.63159492629984
+GCP,nvidia a100 40 sxm4 x 1,highgpu.a2-1g-vcpu,158.403566
+Amazon,not gpu,c5.4xlarge,157.3420657345
+Amazon,not gpu,t2.micro,155.5317348278001
+GCP,not gpu,standard.n2-2-vcpu,154.937303
+Azure,not gpu,Standard_E8s_v5,154.6622784786336
+GCP,not gpu,standard.n2-128-vcpu,154.00710500000002
+GCP,not gpu,standard.e2-2-vcpu,150.382149
+Amazon,not gpu,c5d.4xlarge,143.87509317120006
+Amazon,not gpu,r5.8xlarge,139.65554780948256
+Azure,not gpu,Bastion,139.44548761862052
+Amazon,not gpu,r6gd.xlarge,135.0784649214
+Amazon,not gpu,m7g.metal,132.89188726569986
+Amazon,not gpu,c5.xlarge,128.79461274719986
+Amazon,not gpu,c7gd.8xlarge,124.57313368690002
+Amazon,not gpu,c8g.8xlarge,120.63225661540008
+GCP,nvidia l4 24 pcie x 1,standard.g2-24-vcpu,114.74486300000001
+Amazon,not gpu,m7i-flex.2xlarge,108.4059550087
+Amazon,not gpu,m4.large,105.70809600000001
+GCP,not gpu,custom.e2-8-vcpu,104.58745300000001
+Azure,nvidia h100 94 pcie x 1,Standard_NC40ads_H100_v5,104.264149605
+Azure,not gpu,Standard_D2ads_v5,97.5874025289
+Azure,not gpu,Standard_D8d_v4,96.61713200625
+Amazon,not gpu,dc2.large,95.73572217999998
+Azure,not gpu,Standard_D8ds_v5,95.09913195749999
+Azure,not gpu,Standard_D4ads_v5,91.23546289185
+GCP,not gpu,custom.n2-16-vcpu,90.49246300000001
+Amazon,not gpu,r6gd.4xlarge,89.8817795911
+Amazon,not gpu,m6g.4xlarge,89.64215624710009
+Amazon,not gpu,m5d.large,89.18116472330001
+Amazon,not gpu,m4.4xlarge,88.1251812037
+Amazon,nvidia l40s 48 pcie x 8,g7e.48xlarge,87.7370772079
+GCP,not gpu,custom.custom-32-vcpu,86.15716
+GCP,not gpu,custom.custom-12-vcpu,85.88611499999999
+Amazon,not gpu,z1d.metal,84.98667686010003
+Azure,not gpu,Standard_D4s_v6,83.9448778701
+Azure,not gpu,Standard_D8a_v4,80.28873598799998
+Amazon,not gpu,m8i.xlarge,78.89743180830001
+Amazon,not gpu,m3.xlarge,78.24959999999999
+Amazon,nvidia l4 24 pcie x 1,g6f.4xlarge,77.25399999999996
+Azure,nvidia t4 16 pcie x 1,Standard_NC8as_T4_v3,76.694611092
+Amazon,not gpu,c6a.8xlarge,75.9419371976
+Amazon,nvidia l40s 48 pcie x 1,g6e.8xlarge,75.86416424409998
+Amazon,not gpu,m5a.large,75.4357181617
+Amazon,not gpu,r5.16xlarge,73.92373848960153
+Amazon,not gpu,m6a.large,73.77205976770001
+Azure,not gpu,Standard_D8ads_v5,73.5001355415
+Amazon,nvidia t4 16 pcie x 1,g4dn.4xlarge,72.9769474406
+GCP,not gpu,custom.e2-4-vcpu,72.710733
+Amazon,not gpu,m7a.2xlarge,72.65368003419995
+Amazon,not gpu,im4gn.16xlarge,71.64131397050001
+Amazon,not gpu,m8g.xlarge,70.67999999999999
+Azure,not gpu,Standard_D4d_v5,69.85407347775
+Amazon,not gpu,r6gd.large,67.49249252219997
+Amazon,not gpu,r6i.24xlarge,67.3297279231
+Amazon,not gpu,m7i-flex.xlarge,66.4102855938
+Amazon,not gpu,c5.large,65.7735572579
+Azure,not gpu,Standard_D8d_v5,65.32272684224999
+Amazon,not gpu,i4i.2xlarge,65.21863999999997
+Amazon,not gpu,c6a.large,64.8322663692
+Azure,not gpu,Standard_E16as_v6,61.4595399495
+Amazon,not gpu,m8i.large,60.77273560479998
+Amazon,amd radeon pro v520 8 pcie x 1,g4ad.4xlarge,60.75451907290001
+Amazon,not gpu,mac1,60.35844000000001
+GCP,not gpu,standard.t2a-2-vcpu,59.713014
+Amazon,not gpu,r5.metal,58.7225962461
+Amazon,not gpu,r6i.large,57.39841970669993
+Amazon,not gpu,r8g.large,56.330503514099966
+Amazon,not gpu,r6gd.2xlarge,52.792044232200006
+Azure,not gpu,Standard_D2_v5,52.607283681599995
+Amazon,not gpu,ra3.large,51.997679999999974
+Azure,not gpu,Standard_B2s,51.699513944799996
+Amazon,not gpu,t3a.xlarge,50.2407654215
+Azure,not gpu,Standard_D32ps_v5,49.512334644000006
+GCP,nvidia l4 24 pcie x 1,standard.g2-4-vcpu,47.75424700000001
+Amazon,not gpu,c6a.4xlarge,47.43642925470007
+Azure,not gpu,Standard_D4lds_v5,46.156841094
+Azure,not gpu,Standard_D16ads_v6,45.6734665665864
+GCP,not gpu,standard.c2-8-vcpu,45.667926
+Amazon,not gpu,t3a.2xlarge,45.52704000000003
+Azure,not gpu,Standard_DC8ads_v5,45.082477422
+Amazon,not gpu,c6i.8xlarge,42.71090951620001
+Amazon,inferentia 2 32 x 1,inf2.8xlarge,42.1550086345
+Azure,not gpu,Standard_D4ds_v4,41.651682891
+Azure,not gpu,Standard_D8s_v6,41.105999999999995
+Amazon,not gpu,r4.8xlarge,40.938282302899985
+Amazon,not gpu,m7gd.2xlarge,40.31329045769999
+Amazon,not gpu,m7i.large,39.89395800000001
+Amazon,not gpu,t4g.2xlarge,38.60070399999999
+Azure,not gpu,Standard_B4ms,37.9196011305
+Amazon,not gpu,c5a.large,37.67610683530001
+Amazon,not gpu,m6a.12xlarge,37.57123945279997
+Azure,not gpu,Standard_D4d_v4,37.455737211
+Azure,not gpu,Standard_D8ds_v4,37.37978438925
+Amazon,not gpu,c5a.xlarge,37.04202009990002
+Amazon,not gpu,c6g.4xlarge,36.50147030520002
+Amazon,not gpu,m6gd.large,35.435
+Amazon,not gpu,c6a.large-management-hours,35.425954746899976
+Azure,not gpu,Standard_D4ps_v6,33.3840119595
+GCP,not gpu,standard.c4-8-vcpu,33.076222
+Amazon,not gpu,i3.xlarge,32.140502925300005
+Amazon,not gpu,c8i.large,31.9784542742
+Amazon,not gpu,m7a.large,31.570971154999995
+GCP,not gpu,standard.n1-2-vcpu,30.857173000000003
+GCP,not gpu,standard.n2d-4-vcpu,30.849465000000002
+Azure,not gpu,Standard_D4as_v5,29.259450333906003
+Amazon,not gpu,r7i.xlarge,28.7387415688
+Amazon,not gpu,c6g.large,27.899756203300004
+GCP,not gpu,highmem.n1-4-vcpu,27.517712
+Azure,not gpu,Standard_D16as_v4,25.390763816140797
+Azure,not gpu,Standard_E16s_v3,25.389144144
+Azure,not gpu,Standard_B2as_v2,25.275935299999993
+Amazon,not gpu,c8i.8xlarge,25.248765052499998
+Amazon,not gpu,m4.xlarge,24.364819903000107
+Amazon,not gpu,m7gd.large,24.059352209900002
+GCP,nvidia h100 80 sxm5 x 1,highgpu.a3-1g-vcpu,23.985750999999997
+Amazon,not gpu,c6gd.2xlarge,23.826596696000003
+Amazon,not gpu,m7a.xlarge,23.625466615700006
+Amazon,not gpu,r5a.large,23.549979282499976
+Amazon,not gpu,m5a.xlarge-management-hours,22.90677584879999
+Azure,nvidia a100 80 pcie x 1,Standard_NC24ads_A100_v4,22.315485670500003
+Amazon,not gpu,c5n.xlarge,22.23
+Amazon,not gpu,c7g.2xlarge,21.0268772573
+Azure,not gpu,Standard_D2s_v5,21.0105
+Amazon,not gpu,r7g.large,20.787519999999994
+Azure,amd mi300x 192 oam x 8,Standard_ND96isr_MI300X_v5,20.2509307305144
+Amazon,not gpu,r5d.12xlarge,19.839907375999985
+GCP,not gpu,standard.n4-4-vcpu,18.624335
+GCP,not gpu,standard.n1-1-vcpu,18.304099000000004
+Amazon,nvidia a10g 24 pcie x 1,g5.8xlarge,17.93657698
+Amazon,not gpu,m8i.2xlarge,17.93143999960001
+Amazon,not gpu,r6i.4xlarge,16.98198796
+Amazon,not gpu,r7i.4xlarge,16.9758948321
+Azure,not gpu,Standard_D16ls_v5,16.3622005632
+Amazon,not gpu,c5d.metal,15.725645132400004
+Amazon,not gpu,r7g.8xlarge,15.628031999999987
+GCP,not gpu,standard.c2d-4-vcpu,15.431373999999998
+Amazon,not gpu,c6a.2xlarge,14.93117156670001
+Azure,not gpu,Standard_DC4ads_v5,14.6187943125
+Azure,not gpu,Standard_F4s_v2,14.605854820095402
+GCP,not gpu,standard.c3-4-vcpu,14.232586000000001
+Amazon,nvidia t4 16 pcie x 1,gr6.4xlarge,14.049702650499995
+Amazon,not gpu,c6g.medium,14.016011714199998
+Amazon,not gpu,i3.4xlarge,13.5485103935
+Amazon,not gpu,m7a.medium,13.542480275700001
+Amazon,not gpu,r6a.4xlarge,13.451816267600005
+Amazon,not gpu,m5ad.4xlarge,13.3882950104
+Azure,not gpu,Standard_D2ps_v6,13.2504
+Amazon,amd radeon pro v520 8 pcie x 1,g4ad.2xlarge,12.749604992699995
+Amazon,not gpu,m3.medium,12.653892760399994
+Amazon,not gpu,m6a.24xlarge,12.607487999999995
+GCP,not gpu,highmem.n2d-2-vcpu,12.371035
+Azure,not gpu,Standard_B1s,12.006109410450001
+Amazon,not gpu,m5a.2xlarge,12.00191999999981
+Azure,not gpu,Standard_E8ps_v6,11.97833907375
+Amazon,not gpu,m6g.medium,11.512277457999994
+Azure,not gpu,Standard_B2ms,11.43198969555
+Azure,not gpu,Standard_DC4s_v3,11.041245129000002
+Azure,not gpu,Standard_EC4es_v6,10.87801911
+Amazon,not gpu,t3a.small,10.836238506700003
+Amazon,not gpu,r7gd.medium,10.82088
+GCP,not gpu,highmem.e2-4-vcpu,10.783322
+GCP,not gpu,standard.t2a-16-vcpu,10.734991
+Amazon,not gpu,c8i.12xlarge,10.682780341
+Amazon,not gpu,c6g.8xlarge,10.545017899699982
+Amazon,not gpu,m6i.24xlarge,10.50624000000001
+GCP,nvidia h100 80 sxm5 x 2,highgpu.a3-2g-vcpu,10.258016999999999
+Amazon,not gpu,r7a.large,9.909833800099973
+Amazon,not gpu,t3a.large,9.397612861899962
+GCP,nvidia l4 24 pcie x 1,standard.g2-8-vcpu,8.759062
+Amazon,not gpu,i3.large,8.7332148602
+Amazon,not gpu,r5a.24xlarge,8.483642435199652
+Amazon,not gpu,m7a.8xlarge,8.457523200000006
+Amazon,not gpu,r5a.8xlarge,8.244479999999982
+Amazon,not gpu,c5a.8xlarge,8.121195630699999
+GCP,not gpu,custom.custom-2-vcpu,8.002772
+GCP,not gpu,standard.n4-2-vcpu,8.000021
+GCP,not gpu,highcpu.c3-4-vcpu,7.9638469999999995
+Azure,not gpu,Standard_B2als_v2,7.9341367499999995
+Azure,not gpu,Standard_D8ls_v5,7.713771674999999
+Amazon,not gpu,i3.16xlarge,7.5593856
+Amazon,not gpu,c6gn.medium,7.354368000000002
+Amazon,not gpu,c5a.4xlarge,7.315908399899964
+Azure,not gpu,Standard_D8ds_v6,7.304318197428
+GCP,not gpu,standard.n2d-2-vcpu,7.2258569999999995
+GCP,not gpu,ultramem.m1-40-vcpu,6.820064000000001
+Amazon,not gpu,r7a.medium,6.5792146852999975
+Azure,not gpu,Standard_B8ms,6.23128223025
+Amazon,not gpu,c5ad.8xlarge,5.793413348100006
+Azure,not gpu,Standard_D4as_v6,5.731628936328001
+Amazon,not gpu,c5a.large-management-hours,5.496353940099998
+Azure,not gpu,Standard_E4as_v5,4.960707684
+Amazon,not gpu,c6g.large-management-hours,4.8208118110000004
+Amazon,not gpu,r6a.large,4.799881950700066
+Amazon,not gpu,c6gd.large,4.799665172299999
+Amazon,not gpu,ml.t3.medium,4.785924429400001
+Amazon,not gpu,m5ad.2xlarge,4.700991754999999
+GCP,not gpu,custom.e2-2-vcpu,3.9442399999999997
+Amazon,not gpu,c5d.9xlarge,3.8199433319000002
+Amazon,not gpu,c4.xlarge,3.4020772095999954
+Azure,not gpu,Standard_B16ps_v2,3.338352327
+Azure,not gpu,Standard_D64ads_v6,3.3094651408896
+Amazon,nvidia l4 24 pcie x 1,g6f.xlarge,3.3033172175
+Amazon,nvidia t4g 16 pcie x 1,g5g.2xlarge,3.0461566511000004
+Amazon,not gpu,r8a.medium,2.9832339839
+Amazon,not gpu,m6idn.2xlarge,2.8209219533999996
+Amazon,not gpu,m7a.16xlarge,2.8191743999999948
+Azure,not gpu,Standard_DC2as_v5,2.7725394007500004
+Amazon,not gpu,c7g.large,2.7266021898999995
+GCP,not gpu,standard.c3d-4-vcpu,2.692075
+GCP,not gpu,highcpu.e2-2-vcpu,2.620519
+Azure,not gpu,Standard_D2as_v5,2.614313586
+GCP,not gpu,sharedcore.g1-1-vcpu,2.418386
+Amazon,not gpu,m8gd.large,2.2536464978999997
+Amazon,not gpu,r6g.medium,2.0863810284
+Amazon,amd radeon pro v520 8 pcie x 1,g4ad.xlarge,2.0137795999999994
+Amazon,not gpu,r4.2xlarge,1.8937457330001997
+GCP,nvidia a100 40 sxm4 x 2,ultragpu.a2-2g-vcpu,1.891924
+Azure,not gpu,Standard_A2_v2,1.6406561587500004
+Azure,not gpu,Standard_DC4as_v5,1.6033919174999998
+Azure,not gpu,Standard_D4alds_v6,1.58953179
+Amazon,nvidia t4g 16 pcie x 1,g5g.4xlarge,1.5856668408
+Amazon,not gpu,r7a.2xlarge,1.5773763450000002
+Amazon,not gpu,r5dn.xlarge,1.5435412451
+GCP,rtx pro 6000 96 pcie x 1,standard.g4-48-vcpu,1.3092000000000001
+Amazon,not gpu,c5d.large,1.1922968615999994
+Azure,not gpu,Standard_FX12mds_v2,1.178175479712
+Azure,not gpu,Standard_E4ds_v4,1.1350485835098787
+Amazon,not gpu,c7g.metal,1.1335056250999997
+Amazon,not gpu,c7gn.large,1.0832207095
+Azure,not gpu,Standard_FX4mds_v2,1.0782399512808
+Azure,not gpu,Standard_F32ams_v6,1.0637734393440001
+Azure,not gpu,Standard_D96ds_v6,1.0403284061520002
+Azure,not gpu,Standard_F8ams_v6,1.0240817811840002
+GCP,not gpu,standard.e2-32-vcpu,1.000724
+Amazon,not gpu,c6i.large,0.9707215723999999
+Amazon,not gpu,t3.nano,0.94492041
+Azure,not gpu,Standard_D48ads_v6,0.934271338
+Azure,not gpu,Standard_D128ds_v6,0.8850088798235999
+Amazon,not gpu,c5ad.2xlarge,0.8490401239006402
+Azure,not gpu,Standard_D32as_v6,0.83477710656
+GCP,not gpu,sharedcore.f1-1-vcpu,0.77363
+Amazon,not gpu,m5d.metal,0.7405441459015245
+Amazon,not gpu,c4.large,0.7338065761999893
+GCP,not gpu,standard.t2d-4-vcpu,0.7027450000000001
+Azure,not gpu,Standard_D64ds_v6,0.7015935515904
+Azure,not gpu,Standard_E20s_v5,0.698302702944
+Amazon,not gpu,c7gd.metal,0.6755237609000001
+Azure,not gpu,Standard_DS4_v2,0.666176651318296
+Amazon,not gpu,m8i-flex.4xlarge,0.6598717469
+Azure,not gpu,Standard_D16as_v5,0.6423048652800001
+Amazon,not gpu,i4i.large,0.6223934460999999
+GCP,not gpu,highmem.c3d-4-vcpu,0.621005
+Azure,not gpu,Standard_E32ds_v6,0.6090421805999999
+Amazon,inferentia 2 32 x 1,inf2.xlarge,0.5851532600000001
+Azure,not gpu,Standard_E32s_v4,0.5529618432
+Amazon,not gpu,c8gn.large,0.549269215
+Amazon,not gpu,d3.xlarge,0.5363118416
+Amazon,not gpu,m6id.large,0.5290959450000001
+Amazon,not gpu,c5n.large,0.5279233536
+Azure,not gpu,Standard_D48s_v5,0.5278105559999999
+Amazon,not gpu,r7g.4xlarge,0.5267226324000001
+Amazon,not gpu,VolumeUsage.gp3,0.5045419259999997
+Amazon,not gpu,h1.4xlarge,0.4959548114000001
+Amazon,not gpu,c7i.large,0.4849628889
+Azure,not gpu,Standard_D16ls_v6,0.481959639
+Amazon,not gpu,c6gd.metal,0.4770886411
+Amazon,not gpu,m5d.4xlarge,0.46556175020000107
+Amazon,not gpu,c6i.metal,0.46089621429999994
+Azure,not gpu,Standard_D32s_v6,0.45384107664
+Azure,not gpu,Standard_D16lds_v6,0.4498247124
+Azure,not gpu,Standard_E16ads_v6,0.4341274023744
+Azure,not gpu,Standard_E16s_v6,0.42135242688
+Amazon,not gpu,c8a.medium,0.4172048316
+Azure,not gpu,Standard_E16bs_v5,0.41672033424000005
+GCP,not gpu,highcpu.c3d-4-vcpu,0.382174
+Azure,not gpu,Standard_E48bs_v5,0.37375947504
+Azure,not gpu,Standard_D16s_v4,0.37303220248
+Amazon,not gpu,c6id.large,0.3648542369
+Azure,not gpu,Standard_E20s_v6,0.3463669272
+GCP,not gpu,standard.t2a-1-vcpu,0.340805
+Azure,not gpu,Standard_D2als_v6,0.3391916631
+Amazon,not gpu,perCPU,0.329140095
+Amazon,not gpu,c7i-flex.large,0.3225702997
+Azure,not gpu,Standard_D16ds_v6,0.32184325673639996
+Azure,not gpu,Standard_D32ds_v6,0.3214952097756
+GCP,not gpu,standard.c3d-8-vcpu,0.320867
+Amazon,not gpu,c6gn.large,0.30176567870000004
+Azure,not gpu,Standard_D48as_v5,0.28954179071999997
+Amazon,not gpu,c5d.2xlarge,0.283237126799999
+Amazon,not gpu,m8g.medium,0.27679233559999994
+Amazon,not gpu,r6id.xlarge,0.25189931500000007
+Azure,not gpu,Standard_B1ms,0.24900316200000003
+Amazon,not gpu,r5d.large,0.24404876610000006
+Amazon,not gpu,h1.2xlarge,0.2328634456
+Azure,not gpu,Standard_E48ads_v6,0.22532850648
+Azure,not gpu,Standard_B2ats_v2,0.21571823535
+Azure,not gpu,Standard_D32pds_v6,0.21402732046079997
+Azure,not gpu,Standard_E8s_v4,0.2041186194432
+Azure,not gpu,Standard_F16as_v6,0.197170143324
+Amazon,not gpu,m7g.medium,0.1800287971
+Amazon,not gpu,c7a.medium,0.164735788
+Amazon,not gpu,r8g.medium,0.15167256440000002
+Amazon,not gpu,c7g.medium,0.1451968054
+Amazon,not gpu,c6i.2xlarge,0.13414767149999363
+Amazon,not gpu,c8i-flex.large,0.0972535211
+Azure,not gpu,Standard_D4ds_v6,0.0898036760376
+Amazon,not gpu,c6g.2xlarge,0.08699459779999953
+Amazon,not gpu,m5d.xlarge,0.08642640869999998
+Amazon,not gpu,m1.small,0.07237285499999976
+Amazon,not gpu,c6i.4xlarge,0.05469240279971582
+Amazon,not gpu,c6gn.xlarge,0.05318784
+Amazon,not gpu,c8a.large,0.053026950600000004
+Amazon,not gpu,t1.micro,0.0399759924
+GCP,not gpu,standard.n2-32-vcpu,0.03791
+Amazon,not gpu,c5ad.large,0.0351484428
+Amazon,not gpu,t4g.nano,0.03322753969999998
+Amazon,not gpu,c8id.large,0.0321531341
+Azure,not gpu,Standard_D2pls_v5,0.030070601400000008
+Amazon,not gpu,c6in.large,0.0291384
+GCP,not gpu,ultramem.m3-32-vcpu,0.028522
+Azure,not gpu,Standard_D64alds_v6,0.0281238958
+Amazon,not gpu,c7a.large,0.020366680499999998
+Amazon,not gpu,m6id.4xlarge,0.014944063000004244
+Azure,not gpu,Standard_F8amds_v7,0.0127606952088
+GCP,not gpu,custom.custom-1-vcpu,0.00799
+GCP,not gpu,highcpu.n2-4-vcpu,0.002355
+GCP,not gpu,standard.c4-4-vcpu,0.001226
+GCP,not gpu,standard.c4d-4-vcpu,0.001214
+GCP,not gpu,standard.c4a-2-vcpu,0.000557
+GCP,not gpu,standard.n4a-2-vcpu,0.000461
+Amazon,trainium 1 32 x 16,trn1.32xlarge,0.000000000599996497
+Amazon,not gpu,m7i-flex.4xlarge,0.000000000300494074
+Amazon,not gpu,m8i.12xlarge,0.000000000099999078
+Amazon,not gpu,m6a,0.000000000099971587
+Amazon,not gpu,m5n.metal,0.000000000000063949
+Amazon,not gpu,c6g.metal,0.000000000000018346
+Amazon,nvidia t4 16 pcie x 8,g4dn.metal,0.000000000000015099
+Amazon,not gpu,c4.2xlarge,0.000000000000014683
+Amazon,not gpu,m6id.metal,0.000000000000014211
+Amazon,not gpu,m7a.48xlarge,0.000000000000013212
+Amazon,not gpu,m7i.4xlarge,0.000000000000012323
+Amazon,not gpu,m7i.16xlarge,0.00000000000001199
+Amazon,inferentia 2 32 x 12,inf2.48xlarge,0.000000000000008882
+Amazon,not gpu,m5a.12xlarge,0.000000000000007105
+Amazon,not gpu,m8g.2xlarge,0.000000000000006439
+Amazon,not gpu,c8g.metal-24xl,0.000000000000004441
+Amazon,not gpu,c4.4xlarge,0.000000000000004115
+Amazon,not gpu,c5.12xlarge,0.000000000000003997
+Amazon,not gpu,m6i.metal,0.000000000000003553
+Amazon,not gpu,c6in.4xlarge,0.000000000000003164
+Amazon,not gpu,r5d.4xlarge,0.000000000000003109
+Amazon,not gpu,m6gd.xlarge,0.000000000000001998
+Amazon,not gpu,m8a.4xlarge,0.000000000000001915
+Amazon,not gpu,m6i.12xlarge,0.000000000000001776
+Amazon,not gpu,c7i.xlarge,0.000000000000001464
+Amazon,not gpu,m8gd.16xlarge,0.000000000000000888
+Amazon,not gpu,c6i.xlarge,0.00000000000000068
+Amazon,not gpu,r4.4xlarge,0.000000000000000438
+Amazon,not gpu,c8i.4xlarge,0.000000000000000333
+Amazon,not gpu,m5d.8xlarge,0.000000000000000236
+Amazon,not gpu,c7gn.8xlarge,0.000000000000000042
+Amazon,not gpu,c6g.xlarge,0.000000000000000036
+Amazon,not gpu,c5.18xlarge,0.000000000000000028
+Amazon,not gpu,c8i-flex.8xlarge,0.000000000000000028
+Amazon,not gpu,c5a.24xlarge,0.000000000000000014
+Amazon,not gpu,c6id.4xlarge,0.000000000000000014
+Amazon,not gpu,a1.2xlarge,0
+Amazon,not gpu,c5ad.4xlarge,0
+Amazon,not gpu,c6a.xlarge,0
+Amazon,not gpu,c6gd.4xlarge,0
+Amazon,not gpu,c6id.8xlarge,0
+Amazon,not gpu,c6in.8xlarge,0
+Amazon,not gpu,c7a.4xlarge,0
+Amazon,not gpu,c7a.8xlarge,0
+Amazon,not gpu,c7g.4xlarge,0
+Amazon,not gpu,c7i-flex.4xlarge,0
+Amazon,not gpu,c8a.4xlarge,0
+Amazon,not gpu,c8g.2xlarge,0
+Amazon,not gpu,c8g.4xlarge,0
+Amazon,not gpu,c8id.4xlarge,0
+Amazon,not gpu,m5.1yrAllUpfront,0
+Amazon,not gpu,m5dn.24xlarge,0
+Amazon,not gpu,m5zn.3xlarge,0
+Amazon,not gpu,m6g.metal,0
+Amazon,not gpu,m8azn.metal-12xl,0
+Amazon,not gpu,m8g.16xlarge,0
+Amazon,not gpu,m8g.24xlarge,0
+Amazon,not gpu,m8g.8xlarge,0
+Amazon,not gpu,m8g.large,0
+Amazon,not gpu,mac2-m2.metal,0
+Amazon,not gpu,mac2.metal,0
+Amazon,not gpu,r5a.12xlarge,0
+Amazon,not gpu,r6i.16xlarge,0
+Amazon,not gpu,r8g.2xlarge,0
+Amazon,not gpu,r8g.xlarge,0
+Amazon,not gpu,ra3.4xlarge,0
+Amazon,nvidia l4 24 pcie x 1,g6f.2xlarge,0
+Amazon,nvidia l4 24 pcie x 1,g6f.large,0
+Amazon,nvidia l4 24 pcie x 8,g6.48xlarge,0
+GCP,not gpu,custom.n2-custom-vcpu,0
+Amazon,not gpu,c7g.xlarge,-0.000000000000000097
+Amazon,not gpu,c8id.8xlarge,-0.00000000000000012
+Amazon,not gpu,t3a.micro,-0.000000000000000278
+Amazon,not gpu,m8g.4xlarge,-0.000000000000000361
+Amazon,not gpu,m8gd.8xlarge,-0.000000000000000777
+Amazon,not gpu,c8i.2xlarge,-0.000000000000000833
+Amazon,not gpu,c7i.8xlarge,-0.000000000000000888
+Amazon,not gpu,m6g.16xlarge,-0.000000000000000999
+Amazon,not gpu,r4.xlarge,-0.000000000000001096
+Amazon,not gpu,r5d.xlarge,-0.000000000000001388
+Amazon,not gpu,c6a.12xlarge,-0.000000000000001776
+Amazon,not gpu,m4.10xlarge,-0.000000000000001776
+Amazon,not gpu,m8g.48xlarge,-0.000000000000001776
+Amazon,nvidia a10g 24 pcie x 1,g5.16xlarge,-0.000000000000001776
+Amazon,not gpu,r4.large,-0.000000000000002665
+Amazon,not gpu,m5a.16xlarge,-0.000000000000004219
+Amazon,not gpu,c6id.metal,-0.000000000000007772
+Amazon,not gpu,m6in.8xlarge,-0.00000000000000909
+Amazon,not gpu,m5a.24xlarge,-0.000000000000009326
+Amazon,not gpu,m5.16xlarge,-0.000000000000013083
+Amazon,not gpu,m6gd.metal,-0.000000000000014211
+Amazon,not gpu,m7i.24xlarge,-0.000000000000017764
+Amazon,not gpu,c6a.16xlarge,-0.000000000000018902
+Amazon,not gpu,m7i.48xlarge,-0.000000000000019984
+Amazon,not gpu,m6id.8xlarge,-0.000000000000021316
+Amazon,not gpu,m7a.24xlarge,-0.000000000000025091
+Amazon,not gpu,c5n.9xlarge,-0.000000000000026382
+Amazon,not gpu,c4.8xlarge,-0.00000000000002931
+Amazon,not gpu,t3,-0.000000000000053291
+Amazon,not gpu,c6in.2xlarge,-0.000000000000130253
+Amazon,not gpu,m5n.4xlarge,-0.000000000001293188
+Amazon,not gpu,r6i.8xlarge,-0.000000000005417
+Amazon,not gpu,m7a.4xlarge,-0.000000000099780184
+Amazon,not gpu,c8g.large,-0.000000000100000216
+Amazon,not gpu,c7a.12xlarge,-0.000000000199992731
