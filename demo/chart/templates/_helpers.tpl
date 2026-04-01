@@ -1,5 +1,9 @@
 {{- define "kueue-dashboard.fullname" -}}
+{{- if contains .Chart.Name .Release.Name }}
+{{- .Release.Name }}
+{{- else }}
 {{- .Release.Name }}-{{ .Chart.Name }}
+{{- end }}
 {{- end }}
 
 {{- define "kueue-dashboard.labels" -}}

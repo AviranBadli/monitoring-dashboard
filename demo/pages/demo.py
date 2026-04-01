@@ -4,13 +4,16 @@ from config import core_api, k8s_api, settings
 
 
 def get_gpu_nodes() -> list[dict]:
-    """Fetch nodes that have nvidia.com/gpu resources."""
+    """Fetch nodes that have nvidia.com/gpu or nvidia.com/mig-* resources."""
     nodes = core_api.list_node()
     gpu_nodes = []
     for node in nodes.items:
         capacity = node.status.capacity or {}
         gpu_count = int(capacity.get("nvidia.com/gpu", 0))
-        if gpu_count > 0:
+        mig_resources = {
+            k: int(v) for k, v in capacity.items() if k.startswith("nvidia.com/mig-") and int(v) > 0
+        }
+        if gpu_count > 0 or mig_resources:
             labels = node.metadata.labels or {}
             gpu_type = labels.get("nvidia.com/gpu.product", "unknown")
             gpu_nodes.append(
@@ -18,6 +21,7 @@ def get_gpu_nodes() -> list[dict]:
                     "name": node.metadata.name,
                     "gpu_count": gpu_count,
                     "gpu_type": gpu_type,
+                    "mig_resources": mig_resources,
                 }
             )
     return gpu_nodes
@@ -31,14 +35,22 @@ def render_gpu_nodes_table(gpu_nodes: list[dict]) -> str:
         '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">Node</th>',
         '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:center">GPUs</th>',
         '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">GPU Type</th>',
+        '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">MIG Instances</th>',
         "</tr></thead><tbody>",
     ]
     for node in gpu_nodes:
+        mig = node.get("mig_resources", {})
+        if mig:
+            mig_parts = [f"{k.removeprefix('nvidia.com/')}: {v}" for k, v in sorted(mig.items())]
+            mig_html = "<br>".join(mig_parts)
+        else:
+            mig_html = ""
         html.append(
             f"<tr>"
             f'<td style="border:1px solid #ddd;padding:8px">{node["name"]}</td>'
             f'<td style="border:1px solid #ddd;padding:8px;text-align:center">{node["gpu_count"]}</td>'
             f'<td style="border:1px solid #ddd;padding:8px">{node["gpu_type"]}</td>'
+            f'<td style="border:1px solid #ddd;padding:8px;font-size:0.85em">{mig_html}</td>'
             f"</tr>"
         )
     html.append("</tbody></table>")
@@ -197,7 +209,6 @@ def get_localqueue_events():
 WORKLOAD_COLORS = {
     "P": "#aed6f1",  # pastel blue
     "A": "#abebc6",  # pastel green
-    "R": "#f5b7b1",  # pastel red
     "F": "#d3d3d3",  # light grey
 }
 
@@ -291,8 +302,8 @@ def render_html_table(cluster_queues, rows):
     return "\n".join(html)
 
 
-st.title("Kueue Activity Dashboard")
-st.text("This dashboard shows the activity of the Kueue scheduler across the cluster.")
+st.title("Kueue Activity Live View Dashboard")
+st.text("Activity of the Kueue scheduler across the cluster in real time.")
 
 st.subheader("Cluster Nodes")
 
@@ -305,7 +316,14 @@ try:
 except Exception as e:
     st.error(f"Error fetching GPU nodes: {e}")
 
-st.subheader("Workflow activity: Pending/Admitted/Finished")
+st.markdown(
+    f"<h3>Workload activity: "
+    f'<span style="background-color:{WORKLOAD_COLORS["P"]};padding:2px 6px;border-radius:3px">Pending</span>/'
+    f'<span style="background-color:{WORKLOAD_COLORS["A"]};padding:2px 6px;border-radius:3px">Admitted</span>/'
+    f'<span style="background-color:{WORKLOAD_COLORS["F"]};padding:2px 6px;border-radius:3px">Finished</span>'
+    f"</h3>",
+    unsafe_allow_html=True,
+)
 
 # Disable the fade effect during fragment re-runs
 st.markdown(
