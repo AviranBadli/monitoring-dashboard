@@ -44,7 +44,7 @@ class TestRenderWorkloadCell:
         workloads = [("reserving-job", "", "R", 1)]
         html = render_workload_cell(workloads)
         assert ">R<" in html
-        assert "#f5b7b1" in html  # red for reserving
+        assert "#ddd" in html  # fallback color for reserving
 
     def test_no_priority_class(self):
         workloads = [("my-job", "", "A", 2)]
@@ -173,7 +173,12 @@ class TestGetGpuNodes:
 
         result = get_gpu_nodes()
         assert len(result) == 1
-        assert result[0] == {"name": "gpu-node-1", "gpu_count": 8, "gpu_type": "A100"}
+        assert result[0] == {
+            "name": "gpu-node-1",
+            "gpu_count": 8,
+            "gpu_type": "A100",
+            "mig_resources": {},
+        }
 
     def test_skips_non_gpu_nodes(self):
         node = MagicMock()
