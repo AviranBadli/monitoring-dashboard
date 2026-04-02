@@ -1,11 +1,51 @@
+import logging
+
+import httpx
 import streamlit as st
 
 from config import core_api, k8s_api, settings
+
+logger = logging.getLogger(__name__)
+logger.setLevel(settings.LOG_LEVEL)
+logger.addHandler(logging.StreamHandler())
+
+
+def query_gpu_utilization() -> dict[str, list[float]]:
+    """Query Thanos for current DCGM_FI_DEV_GPU_UTIL per hostname.
+
+    Returns a dict mapping hostname to a list of utilization values (one per GPU).
+    """
+    headers = {}
+    if settings.THANOS_TOKEN:
+        headers["Authorization"] = f"Bearer {settings.THANOS_TOKEN}"
+    url = f"{settings.THANOS_URL}/api/v1/query"
+    params = {"query": "DCGM_FI_DEV_GPU_UTIL"}
+    try:
+        resp = httpx.get(url, params=params, headers=headers, verify=False, timeout=30)
+        logger.info("Thanos GPU util query: %s", resp.request.url)
+        resp.raise_for_status()
+        data = resp.json()
+        if data.get("status") != "success":
+            logger.warning("Thanos query failed: %s", data)
+            return {}
+    except Exception as e:
+        logger.warning("Failed to query GPU utilization: %s", e)
+        return {}
+
+    util_by_host: dict[str, list[float]] = {}
+    for result in data.get("data", {}).get("result", []):
+        hostname = result.get("metric", {}).get("Hostname", "")
+        if not hostname:
+            continue
+        value = float(result["value"][1])
+        util_by_host.setdefault(hostname, []).append(value)
+    return util_by_host
 
 
 def get_gpu_nodes() -> list[dict]:
     """Fetch nodes that have nvidia.com/gpu or nvidia.com/mig-* resources."""
     nodes = core_api.list_node()
+    gpu_util = query_gpu_utilization() if settings.SHOW_GPU_UTIL else {}
     gpu_nodes = []
     for node in nodes.items:
         capacity = node.status.capacity or {}
@@ -22,37 +62,87 @@ def get_gpu_nodes() -> list[dict]:
                     "gpu_count": gpu_count,
                     "gpu_type": gpu_type,
                     "mig_resources": mig_resources,
+                    "gpu_utilization": gpu_util.get(node.metadata.name, []),
                 }
             )
     return gpu_nodes
 
 
+def render_util_bars(utilizations: list[float]) -> str:
+    """Render inline horizontal bar chart for GPU utilization values."""
+    if not utilizations:
+        return '<span style="color:#999;font-size:0.85em">no data</span>'
+    bars = []
+    for i, pct in enumerate(utilizations):
+        pct = max(0.0, min(100.0, pct))
+        if pct >= 90:
+            color = "#e74c3c"  # red
+        elif pct >= 70:
+            color = "#f39c12"  # orange
+        elif pct >= 40:
+            color = "#3498db"  # blue
+        else:
+            color = "#2ecc71"  # green
+        bars.append(
+            f'<div style="display:flex;align-items:center;margin:1px 0">'
+            f'<span style="width:28px;font-size:0.7em;color:#888;text-align:right;'
+            f'margin-right:4px">G{i}</span>'
+            f'<div style="flex:1;background:#eee;border-radius:3px;height:12px;'
+            f'min-width:60px;max-width:120px">'
+            f'<div style="width:{pct:.0f}%;background:{color};height:100%;'
+            f'border-radius:3px"></div></div>'
+            f'<span style="margin-left:4px;font-size:0.7em;color:#555;'
+            f'width:32px">{pct:.0f}%</span>'
+            f"</div>"
+        )
+    return "".join(bars)
+
+
 def render_gpu_nodes_table(gpu_nodes: list[dict]) -> str:
     """Build an HTML table showing GPU nodes."""
+    show_mig = settings.SHOW_MIG
+    show_gpu_util = settings.SHOW_GPU_UTIL
     html = [
         '<table style="width:100%;border-collapse:collapse;font-family:sans-serif;font-size:0.9em">',
         "<thead><tr>",
         '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">Node</th>',
         '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:center">GPUs</th>',
         '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">GPU Type</th>',
-        '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">MIG Instances</th>',
-        "</tr></thead><tbody>",
     ]
+    if show_mig:
+        html.append(
+            '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">'
+            "MIG Instances</th>"
+        )
+    if show_gpu_util:
+        html.append(
+            '<th style="border:1px solid #ddd;padding:8px;background:#f8f8f8;text-align:left">'
+            "GPU Utilization</th>"
+        )
+    html.append("</tr></thead><tbody>")
     for node in gpu_nodes:
-        mig = node.get("mig_resources", {})
-        if mig:
-            mig_parts = [f"{k.removeprefix('nvidia.com/')}: {v}" for k, v in sorted(mig.items())]
-            mig_html = "<br>".join(mig_parts)
-        else:
-            mig_html = ""
         html.append(
             f"<tr>"
             f'<td style="border:1px solid #ddd;padding:8px">{node["name"]}</td>'
             f'<td style="border:1px solid #ddd;padding:8px;text-align:center">{node["gpu_count"]}</td>'
             f'<td style="border:1px solid #ddd;padding:8px">{node["gpu_type"]}</td>'
-            f'<td style="border:1px solid #ddd;padding:8px;font-size:0.85em">{mig_html}</td>'
-            f"</tr>"
         )
+        if show_mig:
+            mig = node.get("mig_resources", {})
+            if mig:
+                mig_parts = [
+                    f"{k.removeprefix('nvidia.com/')}: {v}" for k, v in sorted(mig.items())
+                ]
+                mig_html = "<br>".join(mig_parts)
+            else:
+                mig_html = ""
+            html.append(
+                f'<td style="border:1px solid #ddd;padding:8px;font-size:0.85em">{mig_html}</td>'
+            )
+        if show_gpu_util:
+            util_html = render_util_bars(node.get("gpu_utilization", []))
+            html.append(f'<td style="border:1px solid #ddd;padding:8px">{util_html}</td>')
+        html.append("</tr>")
     html.append("</tbody></table>")
     return "\n".join(html)
 
@@ -317,14 +407,20 @@ st.text("Activity of the Kueue scheduler across the cluster in real time.")
 
 st.subheader("Cluster Nodes")
 
-try:
-    gpu_nodes = get_gpu_nodes()
-    if gpu_nodes:
-        st.markdown(render_gpu_nodes_table(gpu_nodes), unsafe_allow_html=True)
-    else:
-        st.info("No GPU nodes found.")
-except Exception as e:
-    st.error(f"Error fetching GPU nodes: {e}")
+
+@st.fragment(run_every=5)
+def cluster_nodes_table():
+    try:
+        gpu_nodes = get_gpu_nodes()
+        if gpu_nodes:
+            st.markdown(render_gpu_nodes_table(gpu_nodes), unsafe_allow_html=True)
+        else:
+            st.info("No GPU nodes found.")
+    except Exception as e:
+        st.error(f"Error fetching GPU nodes: {e}")
+
+
+cluster_nodes_table()
 
 st.markdown(
     f"<h3>Workload activity: "

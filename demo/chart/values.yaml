@@ -26,6 +26,8 @@ serviceAccount:
   name: ""
 
 logLevel: INFO
+showMig: false
+showGpuUtil: true
 
 thanos:
   url: "https://thanos-querier.openshift-monitoring.svc.cluster.local:9091"
