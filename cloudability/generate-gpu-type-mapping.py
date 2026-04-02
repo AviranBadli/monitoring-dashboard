@@ -10,6 +10,9 @@ Each row in the CSV becomes a statement object with:
 - matchExpression: checks if instance_type matches the Instance Type column (A)
 - valueExpression: concatenates GPU Type (E) + GPU Memory (F) + GPU Variant (G) + GPU Count (D)
 
+Rows are grouped first by "Version of list" (blank = version 1), then by GPU type.
+Statements for version 1 appear first, then version 2, etc.
+
 Usage:
     python3 generate-gpu-type-mapping.py --csv CSV_FILE [-o OUTPUT_FILE]
 
@@ -52,10 +55,12 @@ def generate_gpu_type_mapping(csv_file, json_file=None):
     json_data = {"name": "GPU_Type", "defaultValue": "No GPU", "statements": []}
 
     # Read the CSV and create statements
-    # Group by valueExpression so each unique GPU config appears only once
+    # Group by version first, then by valueExpression so each unique GPU config
+    # appears only once within each version
     from collections import OrderedDict
 
-    value_to_instances = OrderedDict()
+    # version_groups: version_number -> OrderedDict(value_expr -> [match_exprs])
+    version_groups = OrderedDict()
     rows_processed = 0
     rows_with_gpu = 0
 
@@ -72,6 +77,7 @@ def generate_gpu_type_mapping(csv_file, json_file=None):
         "GPU Type",
         "GPU Memory (GB)",
         "GPU Variant",
+        "Version of list",
     ]
 
     try:
@@ -104,6 +110,10 @@ def generate_gpu_type_mapping(csv_file, json_file=None):
                 gpu_memory = row["GPU Memory (GB)"]  # Column F
                 gpu_variant = row["GPU Variant"]  # Column G
                 gpu_count = row["GPU Count"]  # Column D
+                version_raw = row["Version of list"]  # Version column
+
+                # Blank version defaults to 1
+                version = int(version_raw.strip()) if version_raw and version_raw.strip() else 1
 
                 # Only add if GPU Type has a value
                 if gpu_type and gpu_type.strip():
@@ -132,19 +142,22 @@ def generate_gpu_type_mapping(csv_file, json_file=None):
                     value_expr = f"'{gpu_value}'"
                     match_expr = f"DIMENSION['instance_type'] == '{instance_type}'"
 
-                    if value_expr not in value_to_instances:
-                        value_to_instances[value_expr] = []
-                    value_to_instances[value_expr].append(match_expr)
+                    if version not in version_groups:
+                        version_groups[version] = OrderedDict()
+                    if value_expr not in version_groups[version]:
+                        version_groups[version][value_expr] = []
+                    version_groups[version][value_expr].append(match_expr)
                     rows_with_gpu += 1
 
-        # Build statements with combined match expressions
+        # Build statements grouped by version (sorted), then by GPU type
         statements = []
-        for value_expr, match_exprs in value_to_instances.items():
-            statement = {
-                "matchExpression": " || ".join(match_exprs),
-                "valueExpression": value_expr,
-            }
-            statements.append(statement)
+        for version in sorted(version_groups.keys()):
+            for value_expr, match_exprs in version_groups[version].items():
+                statement = {
+                    "matchExpression": " || ".join(match_exprs),
+                    "valueExpression": value_expr,
+                }
+                statements.append(statement)
     except KeyError as e:
         print(f"Error: Required column not found in CSV: {e}")
         return False

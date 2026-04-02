@@ -301,6 +301,14 @@
     {
       "matchExpression": "DIMENSION['instance_type'] == 'vt1.24xlarge'",
       "valueExpression": "'Xilinx U30 PCIe x 8'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_NC16as_T4_v3'",
+      "valueExpression": "'NVIDIA T4 16 PCIe x 1'"
+    },
+    {
+      "matchExpression": "DIMENSION['instance_type'] == 'Standard_ND40rs_v2'",
+      "valueExpression": "'NVIDIA V100 32 SXM2 x 8'"
     }
   ]
 }
