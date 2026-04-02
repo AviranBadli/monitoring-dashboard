@@ -180,6 +180,7 @@ class TestGetGpuNodes:
             "gpu_count": 8,
             "gpu_type": "A100",
             "mig_resources": {},
+            "gpu_utilization": [],
         }
 
     def test_skips_non_gpu_nodes(self):

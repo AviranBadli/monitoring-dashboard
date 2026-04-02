@@ -38,6 +38,10 @@ spec:
               value: {{ .Values.logLevel | quote }}
             - name: THANOS_URL
               value: {{ .Values.thanos.url | quote }}
+            - name: SHOW_MIG
+              value: {{ .Values.showMig | quote }}
+            - name: SHOW_GPU_UTIL
+              value: {{ .Values.showGpuUtil | quote }}
           ports:
             - containerPort: 8501
               protocol: TCP

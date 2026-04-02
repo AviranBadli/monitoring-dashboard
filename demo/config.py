@@ -6,6 +6,8 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     TEST_ROW: bool = False
+    SHOW_MIG: bool = False
+    SHOW_GPU_UTIL: bool = False
     THANOS_URL: str = "https://thanos-querier.openshift-monitoring.svc.cluster.local:9091"
     THANOS_TOKEN: str = ""
     LOG_LEVEL: str = "INFO"

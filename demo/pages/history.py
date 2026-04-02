@@ -69,6 +69,31 @@ def build_dataframe(start: datetime.datetime, end: datetime.datetime, step: str)
     return pd.DataFrame(rows)
 
 
+def build_gpu_util_dataframe(
+    start: datetime.datetime, end: datetime.datetime, step: str
+) -> pd.DataFrame:
+    """Query DCGM_FI_DEV_GPU_UTIL and return a DataFrame with per-GPU utilization over time."""
+    results = query_thanos_range("DCGM_FI_DEV_GPU_UTIL", start, end, step)
+    rows = []
+    for series in results:
+        metric = series.get("metric", {})
+        hostname = metric.get("Hostname", "unknown")
+        gpu_id = metric.get("gpu", "0")
+        gpu_label = f"GPU {gpu_id}"
+        for timestamp, value in series.get("values", []):
+            rows.append(
+                {
+                    "time": pd.to_datetime(timestamp, unit="s", utc=True),
+                    "node": hostname,
+                    "gpu": gpu_label,
+                    "utilization": float(value),
+                }
+            )
+    if not rows:
+        return pd.DataFrame(columns=["time", "node", "gpu", "utilization"])
+    return pd.DataFrame(rows)
+
+
 st.title("Kueue Historical View")
 st.text("Historical view of Kueue local queue workload activity from Thanos metrics.")
 
@@ -170,6 +195,49 @@ def render_charts():
         )
         st.markdown(f"**{queue}**")
         st.altair_chart(q_chart, use_container_width=True)
+
+    # GPU Utilization section
+    if settings.SHOW_GPU_UTIL:
+        st.subheader("GPU Utilization per Node")
+        try:
+            gpu_df = build_gpu_util_dataframe(start, end, step)
+        except Exception as e:
+            st.error(f"Failed to query GPU utilization: {e}")
+            gpu_df = pd.DataFrame()
+
+        if gpu_df.empty:
+            st.info("No GPU utilization data returned for the selected time range.")
+        else:
+            nodes = sorted(gpu_df["node"].unique())
+            selected_nodes = st.multiselect("Filter nodes", nodes, default=nodes)
+            if selected_nodes:
+                gpu_df = gpu_df[gpu_df["node"].isin(selected_nodes)]
+
+            for node in sorted(gpu_df["node"].unique()):
+                node_df = gpu_df[gpu_df["node"] == node]
+                gpu_chart = (
+                    alt.Chart(node_df)
+                    .mark_line(point=True)
+                    .encode(
+                        x=alt.X(
+                            "time:T",
+                            title="Time",
+                            axis=alt.Axis(format="%H:%M:%S", labelAngle=-90),
+                            scale=alt.Scale(domain=[start.isoformat(), end.isoformat()]),
+                        ),
+                        y=alt.Y(
+                            "utilization:Q",
+                            title="Utilization %",
+                            axis=alt.Axis(values=[0, 25, 50, 75, 100], format="d", tickCount=5),
+                            scale=alt.Scale(domain=[0, 100]),
+                        ),
+                        color=alt.Color("gpu:N", title="GPU"),
+                        tooltip=["time:T", "gpu:N", "utilization:Q"],
+                    )
+                    .properties(height=250)
+                )
+                st.markdown(f"**{node}**")
+                st.altair_chart(gpu_chart, use_container_width=True)
 
 
 render_charts()
