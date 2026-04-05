@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: gpuadmin
+      POSTGRES_PASSWORD: gpupassword
+      POSTGRES_DB: gpu_monitoring
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gpuadmin -d gpu_monitoring"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    environment:
+      DATABASE_URL: postgresql://gpuadmin:gpupassword@db:5432/gpu_monitoring
+      VICTORIA_METRICS_URL: http://localhost:8428
+      API_V1_PREFIX: /api/v1
+      PROJECT_NAME: GPU Monitoring API
+      DEBUG: "true"
+      BACKEND_CORS_ORIGINS: '["http://localhost:3000", "http://localhost:8501"]'
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - ./cloudability:/cloudability
+    command: ["/bin/bash", "entrypoint.sh"]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    environment:
+      BACKEND_URL: http://backend:8000
+      API_V1_PREFIX: /api/v1
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

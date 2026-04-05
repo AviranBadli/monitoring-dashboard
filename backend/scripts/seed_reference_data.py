@@ -76,9 +76,11 @@ def seed_reference_data():
         print("Seeding reference data...")
 
         # Read CSV file once
-        csv_path = (
-            Path(__file__).parent.parent.parent / "apptio" / "GPU-types-by-cloud-provider.csv"
-        )
+        # Try repo root first, then /cloudability volume mount (Docker)
+        repo_root = Path(__file__).parent.parent.parent
+        csv_path = repo_root / "cloudability" / "GPU-types-by-cloud-provider.csv"
+        if not csv_path.exists():
+            csv_path = Path("/cloudability") / "GPU-types-by-cloud-provider.csv"
 
         csv_data = read_csv_data(csv_path)
         print(f"✓ Read {len(csv_data)} rows from CSV file")
